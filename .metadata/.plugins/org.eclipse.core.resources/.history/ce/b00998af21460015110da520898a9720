@@ -1,0 +1,140 @@
+grammar org.xtext.example.blorquescript.BlorqueScript with org.eclipse.xtext.common.Terminals
+
+generate blorqueScript "http://www.xtext.org/example/blorquescript/BlorqueScript"
+
+BSFile:
+	('package' name=QualifiedName ';')?
+	imports+=BSImport*
+	classes+=BSClass*
+;
+
+BSImport:
+	'import' importedNamespace=QualifiedNameWithWildcard ';'
+;
+
+QualifiedNameWithWildcard:
+	QualifiedName '.*'?
+;
+
+QualifiedName:
+	ID ('.' ID)*
+;
+
+BSClass:
+	'class' name=ID (':' superclass=[BSClass|QualifiedName])? '{'
+		members+=BSMember*
+	'}'
+;
+
+BSMember:
+	BSField | BSMethod
+;
+
+BSField:
+	type=[BSClass|QualifiedName] name=ID (isArray?='[' ']')? ';'
+;
+
+BSMethod:
+	type=[BSClass|QualifiedName] name=ID
+	'(' (params+=BSParameter (',' params+=BSParameter)*)? ')'
+	body=BSMethodBody
+;
+
+BSParameter:
+	type=[BSClass|QualifiedName] name=ID (isArray?='[' ']')?
+;
+
+BSMethodBody:
+	{BSMethodBody} '{' statements+=BSStatement* '}'
+;
+
+BSStatement:
+	BSVariableDeclaration |
+	BSReturn |
+	BSExpression ';' |
+	BSIfStatement
+;
+
+BSReturn:
+	'return' expression=BSExpression ';'
+;
+
+BSVariableDeclaration:
+	type=[BSClass|QualifiedName] name=ID ('=' expression=BSExpression)? ';'
+;
+
+BSIfStatement:
+	'if' '(' expression=BSExpression ')' thenBlock=BSIfBlock
+	(=> 'else' elseBlock=BSIfBlock)?
+;
+
+BSIfBlock:
+	statements+=BSStatement
+	| '{' statements+=BSStatement+ '}'
+;
+
+BSBlock:
+	BSMethodBody | BSIfBlock
+;
+
+BSSymbol:
+	BSVariableDeclaration | BSParameter | BSMember
+;
+
+BSExpression:
+	BSAssignment
+;
+
+BSAssignment returns BSExpression:
+	BSCastOrNewExpression
+	({BSAssignment.left=current} assignmentOperator=('='|'+='|'-='|'*='|'/='|'%=') right=BSExpression)?
+;
+
+
+BSCastOrNewExpression returns BSExpression:
+	{BSCast} '(' castType=('string'|'number'|'object') ')' castExpr=BSUnaryModifierExpression |
+	{BSNew} 'new' type=[BSClass|QualifiedName] '(' (args+=BSExpression (',' args+=BSExpression)*)? ')'
+	
+;
+//{BSNew} 'new' type=[BSClass|QualifiedName] '(' (args+=BSExpression (',' args+=BSExpression)*)? ')'
+
+
+//right-to-left prefix unary operators: + - !
+BSUnaryModifierExpression returns BSExpression:
+	operator=('+'|'-'|'!')receiver=BSUnaryModifierExpression |
+	BSInvokationExpression
+;
+
+//left-to-right unary postfixes: . (...) [...] ++ --
+BSInvokationExpression returns BSExpression:
+	BSTerminalExpression
+	(
+		{BSMemberSelection.receiver=current} '.'
+		|
+		{BSMethodInvokation.receiver=current} '('
+			(args+=BSExpression (',' args+=BSExpression)*)?
+		')'
+		|
+		{BSArrayAccess.receiver=current} '['
+			(args+=BSExpression (',' args+=BSExpression)*)?
+		']'
+		|
+		{BSPostfixOperation.receiver=current} operator=('++'|'--')
+	)*
+;
+
+//Maximum-precedence literals and keywords
+BSTerminalExpression returns BSExpression:
+	{BSStringConstant} value=STRING |
+	{BSNumberConstant} value=INT |
+	{BSBooleanConstant} value=('true' | 'false') |
+	{BSNull} 'null' |
+	{BSThis} 'this' |
+	{BSClient} 'client' |
+	{BSSymbolRef} symbol=[BSSymbol] |
+	'(' BSExpression ')'
+; 
+
+terminal ID:
+	('$')?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9'|':')*
+;

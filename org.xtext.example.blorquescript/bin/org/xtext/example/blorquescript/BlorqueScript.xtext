@@ -1,9 +1,0 @@
-grammar org.xtext.example.blorquescript.BlorqueScript with org.eclipse.xtext.common.Terminals
-
-generate blorqueScript "http://www.xtext.org/example/blorquescript/BlorqueScript"
-
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';
