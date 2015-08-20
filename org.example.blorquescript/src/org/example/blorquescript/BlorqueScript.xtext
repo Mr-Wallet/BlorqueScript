@@ -52,8 +52,10 @@ BSStatement:
 	BSVariableDeclaration |
 	BSReturn |
 	BSExpression ';' |
-	BSIfStatement
-	//TODO: for and while loops, switch($) statements
+	BSIfStatement |
+	BSWhileLoop |
+	BSForLoop |
+	BSSwitchStatement
 ;
 
 BSReturn:
@@ -69,13 +71,43 @@ BSIfStatement:
 	(=> 'else' elseBlock=BSIfBlock)?
 ;
 
+BSWhileLoop:
+	'while' '(' expression=BSExpression ')' block=BSLoopBlock
+;
+
+BSForLoop:
+	'for' '(' left=BSExpression ';' middle=BSExpression ';' right=BSExpression ')' block=BSLoopBlock
+;
+
+BSSwitchStatement:
+	'switch' (stringSwitch?='$')? '(' expression=BSExpression ')' block=BSSwitchBlock
+;
+
 BSIfBlock:
-	statements+=BSStatement
-	| '{' statements+=BSStatement+ '}'
+	statements+=BSStatement |
+	{BSIfBlock} '{' statements+=BSStatement* '}'
+;
+
+BSLoopBlock:
+	statements+=BSStatement |
+	{BSLoopBlock} '{' statements+=BSStatement* '}'
+;
+
+BSSwitchBlock:
+	{BSSwitchBlock} '{' cases+=BSCase* '}'
+;
+
+BSCase:
+	'case' expression=BSExpression ':' block=BSCaseBlock |
+	'default' ':' block=BSCaseBlock
+;
+
+BSCaseBlock:
+	{BSCaseBlock} statements+=BSStatement*
 ;
 
 BSBlock:
-	BSMethodBody | BSIfBlock
+	BSMethodBody | BSIfBlock | BSLoopBlock | BSSwitchBlock | BSCaseBlock
 ;
 
 BSSymbol:
@@ -83,118 +115,126 @@ BSSymbol:
 ;
 
 BSExpression:
-	BSAssignment
+	BSAssignmentExpression
 ;
 
-BSAssignment returns BSExpression:
+//right-to-left assignment operators: = and [op]=
+BSAssignmentExpression returns BSExpression:
+	BSTernaryExpression
+	({BSAssignmentExpression.left=current} assignmentOperator=('='|'+='|'-='|'*='|'/='|'%='|'<<='|'>>='|'&='|'^='|'|=') right=BSExpression)?
+;
+
+//right-to-left ternary operator: (?:)
+BSTernaryExpression returns BSExpression:
 	BSBooleanOrExpression
-	({BSAssignment.left=current} assignmentOperator=('='|'+='|'-='|'*='|'/='|'%=') right=BSExpression)?
+	({BSTernaryExpression.left=current} '?' middle=BSExpression ':' right=BSExpression)?
 ;
 
 //left-to-right boolean OR operator: ||
 BSBooleanOrExpression returns BSExpression:
 	BSBooleanAndExpression (
-		{BSBooleanOrOperation.left=current} '||' right=BSBooleanAndExpression
+		{BSBooleanOrExpression.left=current} '||' right=BSBooleanAndExpression
 	)*
 ;
 
 //left-to-right boolean AND operator: &&
 BSBooleanAndExpression returns BSExpression:
 	BSBitwiseOrExpression (
-		{BSBooleanAndOperation.left=current} '&&' right=BSBitwiseOrExpression
+		{BSBooleanAndExpression.left=current} '&&' right=BSBitwiseOrExpression
 	)*
 ;
 
 //left-to-right bitwise OR operator: |
 BSBitwiseOrExpression returns BSExpression:
 	BSBitwiseXorExpression (
-		{BSBitwiseOrOperation.left=current} '|' right=BSBitwiseXorExpression
+		{BSBitwiseOrExpression.left=current} '|' right=BSBitwiseXorExpression
 	)*
 ;
 
 //left-to-right bitwise XOR operator: ^
 BSBitwiseXorExpression returns BSExpression:
 	BSBitwiseAndExpression (
-		{BSBitwiseXorOperation.left=current} '^' right=BSBitwiseAndExpression
+		{BSBitwiseXorExpression.left=current} '^' right=BSBitwiseAndExpression
 	)*
 ;
 
 //left-to-right bitwise AND operator: &
 BSBitwiseAndExpression returns BSExpression:
 	BSEqualityExpression (
-		{BSBitwiseAndOperation.left=current} '&' right=BSEqualityExpression
+		{BSBitwiseAndExpression.left=current} '&' right=BSEqualityExpression
 	)*
 ;
 
 //left-to-right equality operators: == !=
 BSEqualityExpression returns BSExpression:
 	BSOrderedRelationExpression (
-		{BSEqualityOperation.left=current} operator=('=='|'!=') right=BSOrderedRelationExpression
+		{BSEqualityExpression.left=current} operator=('=='|'!=') right=BSOrderedRelationExpression
 	)*
 ;
 
 //left-to-right relational operators: < > <= >=
 BSOrderedRelationExpression returns BSExpression:
 	BSBitwiseShiftExpression (
-		{BSOrderedRelation.left=current} operator=('<'|'>'|'<='|'>=') right=BSBitwiseShiftExpression
+		{BSOrderedRelationExpression.left=current} operator=('<'|'>'|'<='|'>=') right=BSBitwiseShiftExpression
 	)*
 ;
 
 //left-to-right bit-shift operators: << >>
 BSBitwiseShiftExpression returns BSExpression:
-	BSPlusMinusOrStringConcatenationExpression (
-		{BSBitwiseShiftOperation.left=current} operator=('<<'|'>>') right=BSPlusMinusOrStringConcatenationExpression
+	BSPlusMinusOrStringConcatExpression (
+		{BSBitwiseShiftExpression.left=current} operator=('<<'|'>>') right=BSPlusMinusOrStringConcatExpression
 	)*
 ;
 
 //left-to-right additive operators: + - (string concat +) @ SPC NL TAB
-BSPlusMinusOrStringConcatenationExpression returns BSExpression:
+BSPlusMinusOrStringConcatExpression returns BSExpression:
 	BSMulDivOrModExpression (
-		{BSPlusMinusOrStringConcatenationOperation.left=current} operator=('+'|'-'|'@'|'SPC'|'NL'|'TAB') right=BSMulDivOrModExpression
+		{BSPlusMinusOrStringConcatExpression.left=current} operator=('+'|'-'|'@'|'SPC'|'NL'|'TAB') right=BSMulDivOrModExpression
 	)*
 ;
 
 //left-to-right multiplication operators: * / %
 BSMulDivOrModExpression returns BSExpression:
 	BSCastOrNewExpression (
-		{BSMulDivOrModOperation.left=current} operator=('*'|'/'|'%') right=BSCastOrNewExpression
+		{BSMulDivOrModExpression.left=current} operator=('*'|'/'|'%') right=BSCastOrNewExpression
 	)*
 ;
 
 //right-to-left prefix unary operators: (cast) new
 BSCastOrNewExpression returns BSExpression:
 	BSUnaryModifierExpression |
-	{BSCastOperation} '(' castType=('string'|'number'|'object') ')' castExpr=BSCastOrNewExpression |
-	{BSNewOperation} 'new' (isArray?='[' ']')? type=[BSClass|QualifiedName] '(' (args+=BSExpression (',' args+=BSExpression)*)? ')'	
+	{BSCastExpression} '(' castType=('string'|'number'|'object') ')' castExpr=BSCastOrNewExpression |
+	{BSNewExpression} 'new' (isArray?='[' ']')? type=[BSClass|QualifiedName] '(' (args+=BSExpression (',' args+=BSExpression)*)? ')'	
 ;
 
 //right-to-left prefix unary operators: + - ! ~
 BSUnaryModifierExpression returns BSExpression:
-	operator=('+'|'-'|'!'|'~')receiver=BSUnaryModifierExpression |
-	BSInvokationExpression
+	BSInvokationExpression |
+	{BSUnaryModifierExpression} operator=('+'|'-'|'!'|'~')receiver=BSUnaryModifierExpression
 ;
 
 //left-to-right unary postfixes: . (...) [...] ++ --
 BSInvokationExpression returns BSExpression:
 	BSTerminalExpression
 	(
-		{BSMemberSelectionOperation.receiver=current} '.'
+		{BSMemberSelectionExpression.receiver=current} '.'
 		|
-		{BSMethodInvokationOperation.receiver=current} '('
+		{BSMethodInvokationExpression.receiver=current} '('
 			(args+=BSExpression (',' args+=BSExpression)*)?
 		')'
 		|
-		{BSArrayAccessOperation.receiver=current} '['
+		{BSArrayAccessExpression.receiver=current} '['
 			(args+=BSExpression (',' args+=BSExpression)*)?
 		']'
 		|
-		{BSPostfixOperation.receiver=current} operator=('++'|'--')
+		{BSPostfixArithmeticExpression.receiver=current} operator=('++'|'--')
 	)*
 ;
 
 //Maximum-precedence literals and keywords
 BSTerminalExpression returns BSExpression:
 	{BSStringConstant} value=STRING |
+	{BSHexadecimalConstant} value=HEX_VALUE |
 	{BSNumberConstant} value=INT ({BSRealConstant.left=current} '.' right=INT)? |
 	{BSBooleanConstant} value=('true' | 'false') |
 	{BSNullLiteral} 'null' |
@@ -208,6 +248,8 @@ BSTerminalExpression returns BSExpression:
 	{BSSymbolRef} symbol=[BSSymbol] |
 	{BSParentheticalExpression} '(' expression=BSExpression ')'
 ;
+
+//TODO: figure out how to deal with special class names: global, servercmd, server, etc.
 
 //Namespace (::) deliberately excluded, as it is only allowed in Global anyway.
 //Instead, ':' is allowed in ID, and validation will forbid it anywhere but as a single '::' in global definitions.
