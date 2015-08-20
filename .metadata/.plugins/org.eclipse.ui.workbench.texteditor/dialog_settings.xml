@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="BSSwitchCase" key="selection"/>
+		<item value="?=" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="?="/>
+			<item value="BSMethodBody"/>
+			<item value="operati"/>
+			<item value="operato"/>
+			<item value="memberselectio"/>
 			<item value="BSSwitchCase"/>
 			<item value="STRING"/>
 			<item value="bool"/>
-			<item value="BSSymbol"/>
-			<item value="BSSymbolRef"/>
-			<item value="&apos;;&apos;"/>
-			<item value="name"/>
-			<item value="BSMemberSelection"/>
 		</list>
 		<list key="replacehistory">
 		</list>
