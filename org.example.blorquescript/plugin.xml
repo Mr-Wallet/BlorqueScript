@@ -5,8 +5,8 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://www.xtext.org/example/blorquescript/BlorqueScript" 
-       class = "org.xtext.example.blorquescript.blorqueScript.BlorqueScriptPackage"
+       uri = "http://www.example.org/blorquescript/BlorqueScript" 
+       class = "org.example.blorquescript.blorqueScript.BlorqueScriptPackage"
        genModel = "model/generated/BlorqueScript.genmodel" /> 
 	
   </extension>

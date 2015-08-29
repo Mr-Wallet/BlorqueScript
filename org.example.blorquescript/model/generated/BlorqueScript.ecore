@@ -19,15 +19,22 @@
         eType="#//BSMember" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSMember" eSuperTypes="#//BSSymbol"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BSField" eSuperTypes="#//BSMember"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BSField" eSuperTypes="#//BSMember">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isArray" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSMethod" eSuperTypes="#//BSMember">
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//BSParameter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//BSMethodBody"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BSParameter" eSuperTypes="#//BSSymbol"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BSMethodBody" eSuperTypes="#//BSBlock"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BSParameter" eSuperTypes="#//BSSymbol">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isArray" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSMethodBody" eSuperTypes="#//BSBlock">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="#//BSStatement" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSStatement"/>
   <eClassifiers xsi:type="ecore:EClass" name="BSReturn" eSuperTypes="#//BSStatement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//BSExpression"
@@ -45,55 +52,203 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elseBlock" eType="#//BSIfBlock"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BSIfBlock" eSuperTypes="#//BSBlock"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BSBlock">
+  <eClassifiers xsi:type="ecore:EClass" name="BSWhileLoop" eSuperTypes="#//BSStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//BSLoopBlock"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSForLoop" eSuperTypes="#//BSStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="middle" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//BSLoopBlock"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSSwitchStatement" eSuperTypes="#//BSStatement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringSwitch" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//BSSwitchBlock"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSIfBlock" eSuperTypes="#//BSBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
         eType="#//BSStatement" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSLoopBlock" eSuperTypes="#//BSBlock">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="#//BSStatement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSSwitchBlock" eSuperTypes="#//BSBlock">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cases" upperBound="-1"
+        eType="#//BSCase" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSCase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//BSCaseBlock"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSCaseBlock" eSuperTypes="#//BSBlock">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="#//BSStatement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSBlock"/>
   <eClassifiers xsi:type="ecore:EClass" name="BSSymbol">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//BSClass"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BSExpression" eSuperTypes="#//BSStatement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="castType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="castExpr" eType="#//BSExpression"
+  <eClassifiers xsi:type="ecore:EClass" name="BSExpression" eSuperTypes="#//BSStatement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BSAssignmentExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignmentOperator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BSExpression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BSAssignment" eSuperTypes="#//BSExpression">
+  <eClassifiers xsi:type="ecore:EClass" name="BSTernaryExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="middle" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSBooleanOrExpression" eSuperTypes="#//BSExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSExpression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BSExpression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BSMemberSelection" eSuperTypes="#//BSExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="receiver" eType="#//BSExpression"
+  <eClassifiers xsi:type="ecore:EClass" name="BSBooleanAndExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSExpression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="member" eType="#//BSMember"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodinvocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSBitwiseOrExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSBitwiseXorExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSBitwiseAndExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSEqualityExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSOrderedRelationExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSBitwiseShiftExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSPlusMinusOrStringConcatExpression"
+      eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSMulDivOrModExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSCastExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="castType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="castExpr" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSNewExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isArray" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//BSClass"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//BSExpression"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSUnaryModifierExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="receiver" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSMemberSelectionExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="receiver" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSMethodInvokationExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="receiver" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSArrayAccessExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="receiver" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//BSExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSPostfixArithmeticExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="receiver" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSStringConstant" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSHexadecimalConstant" eSuperTypes="#//BSExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSNumberConstant" eSuperTypes="#//BSExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSRealConstant" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSNumberConstant"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="right" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSBooleanConstant" eSuperTypes="#//BSExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BSNull" eSuperTypes="#//BSExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BSThis" eSuperTypes="#//BSExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BSClient" eSuperTypes="#//BSExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BSNullLiteral" eSuperTypes="#//BSExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BSBreakLiteral" eSuperTypes="#//BSExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BSContinueLiteral" eSuperTypes="#//BSExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BSThisLiteral" eSuperTypes="#//BSExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BSClientLiteral" eSuperTypes="#//BSExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BSParentLiteral" eSuperTypes="#//BSExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="BSSymbolRef" eSuperTypes="#//BSExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="symbol" eType="#//BSSymbol"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodinvocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//BSExpression"
-        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BSNew" eSuperTypes="#//BSExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//BSClass"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//BSExpression"
+  <eClassifiers xsi:type="ecore:EClass" name="BSParentheticalExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//BSExpression"
         containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

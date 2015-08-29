@@ -15,11 +15,12 @@ Require-Bundle: org.example.blorquescript;visibility:=reexport,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtext.common.types.ui,
  org.eclipse.xtext.ui.codetemplates.ui,
- org.eclipse.compare
+ org.eclipse.compare,
+ org.antlr.runtime
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.xtext.example.blorquescript.ui.quickfix,
- org.xtext.example.blorquescript.ui.contentassist,
- org.xtext.example.blorquescript.ui.internal,
- org.xtext.example.blorquescript.ui.contentassist.antlr
-Bundle-Activator: org.xtext.example.blorquescript.ui.internal.BlorqueScriptActivator
+Export-Package: org.example.blorquescript.ui.quickfix,
+ org.example.blorquescript.ui.contentassist,
+ org.example.blorquescript.ui.internal,
+ org.example.blorquescript.ui.contentassist.antlr
+Bundle-Activator: org.example.blorquescript.ui.internal.BlorqueScriptActivator

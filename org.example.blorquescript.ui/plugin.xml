@@ -6,48 +6,48 @@
     <extension
             point="org.eclipse.ui.editors">
         <editor
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="bs"
-            id="org.xtext.example.blorquescript.BlorqueScript"
+            id="org.example.blorquescript.BlorqueScript"
             name="BlorqueScript Editor">
         </editor>
     </extension>
     <extension
         point="org.eclipse.ui.handlers">
         <handler
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
             commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
             <activeWhen>
                 <reference
-                    definitionId="org.xtext.example.blorquescript.BlorqueScript.Editor.opened">
+                    definitionId="org.example.blorquescript.BlorqueScript.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
         <handler
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-            commandId="org.xtext.example.blorquescript.BlorqueScript.validate">
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+            commandId="org.example.blorquescript.BlorqueScript.validate">
          <activeWhen>
             <reference
-                    definitionId="org.xtext.example.blorquescript.BlorqueScript.Editor.opened">
+                    definitionId="org.example.blorquescript.BlorqueScript.Editor.opened">
             </reference>
          </activeWhen>
       	</handler>
       	<!-- copy qualified name -->
         <handler
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
             commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
             <activeWhen>
-				<reference definitionId="org.xtext.example.blorquescript.BlorqueScript.Editor.opened" />
+				<reference definitionId="org.example.blorquescript.BlorqueScript.Editor.opened" />
             </activeWhen>
         </handler>
         <handler
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
             commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
             <activeWhen>
             	<and>
-            		<reference definitionId="org.xtext.example.blorquescript.BlorqueScript.XtextEditor.opened" />
+            		<reference definitionId="org.example.blorquescript.BlorqueScript.XtextEditor.opened" />
 	                <iterate>
 						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 					</iterate>
@@ -56,22 +56,22 @@
         </handler>
     </extension>
     <extension point="org.eclipse.core.expressions.definitions">
-        <definition id="org.xtext.example.blorquescript.BlorqueScript.Editor.opened">
+        <definition id="org.example.blorquescript.BlorqueScript.Editor.opened">
             <and>
                 <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="org.xtext.example.blorquescript.BlorqueScript" 
+                        value="org.example.blorquescript.BlorqueScript" 
                         forcePluginActivation="true"/>
                 </with>        
             </and>
         </definition>
-        <definition id="org.xtext.example.blorquescript.BlorqueScript.XtextEditor.opened">
+        <definition id="org.example.blorquescript.BlorqueScript.XtextEditor.opened">
             <and>
                 <reference definitionId="isXtextEditorActive"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="org.xtext.example.blorquescript.BlorqueScript" 
+                        value="org.example.blorquescript.BlorqueScript" 
                         forcePluginActivation="true"/>
                 </with>        
             </and>
@@ -80,33 +80,33 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.xtext.example.blorquescript.BlorqueScript"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.example.blorquescript.BlorqueScript"
             name="BlorqueScript">
-            <keywordReference id="org.xtext.example.blorquescript.ui.keyword_BlorqueScript"/>
+            <keywordReference id="org.example.blorquescript.ui.keyword_BlorqueScript"/>
         </page>
         <page
-            category="org.xtext.example.blorquescript.BlorqueScript"
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-            id="org.xtext.example.blorquescript.BlorqueScript.coloring"
+            category="org.example.blorquescript.BlorqueScript"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+            id="org.example.blorquescript.BlorqueScript.coloring"
             name="Syntax Coloring">
-            <keywordReference id="org.xtext.example.blorquescript.ui.keyword_BlorqueScript"/>
+            <keywordReference id="org.example.blorquescript.ui.keyword_BlorqueScript"/>
         </page>
         <page
-            category="org.xtext.example.blorquescript.BlorqueScript"
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-            id="org.xtext.example.blorquescript.BlorqueScript.templates"
+            category="org.example.blorquescript.BlorqueScript"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+            id="org.example.blorquescript.BlorqueScript.templates"
             name="Templates">
-            <keywordReference id="org.xtext.example.blorquescript.ui.keyword_BlorqueScript"/>
+            <keywordReference id="org.example.blorquescript.ui.keyword_BlorqueScript"/>
         </page>
     </extension>
     <extension
             point="org.eclipse.ui.propertyPages">
         <page
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.xtext.example.blorquescript.BlorqueScript"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.example.blorquescript.BlorqueScript"
             name="BlorqueScript">
-            <keywordReference id="org.xtext.example.blorquescript.ui.keyword_BlorqueScript"/>
+            <keywordReference id="org.example.blorquescript.ui.keyword_BlorqueScript"/>
             <enabledWhen>
 	            <adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -116,14 +116,14 @@
     <extension
         point="org.eclipse.ui.keywords">
         <keyword
-            id="org.xtext.example.blorquescript.ui.keyword_BlorqueScript"
+            id="org.example.blorquescript.ui.keyword_BlorqueScript"
             label="BlorqueScript"/>
     </extension>
     <extension
          point="org.eclipse.ui.commands">
       <command
             description="Trigger expensive validation"
-            id="org.xtext.example.blorquescript.BlorqueScript.validate"
+            id="org.example.blorquescript.BlorqueScript.validate"
             name="Validate">
       </command>
       <!-- copy qualified name -->
@@ -144,12 +144,12 @@
         <menuContribution
             locationURI="popup:#TextEditorContext?after=group.edit">
              <command
-                 commandId="org.xtext.example.blorquescript.BlorqueScript.validate"
+                 commandId="org.example.blorquescript.BlorqueScript.validate"
                  style="push"
                  tooltip="Trigger expensive validation">
             <visibleWhen checkEnabled="false">
                 <reference
-                    definitionId="org.xtext.example.blorquescript.BlorqueScript.Editor.opened">
+                    definitionId="org.example.blorquescript.BlorqueScript.Editor.opened">
                 </reference>
             </visibleWhen>
          </command>  
@@ -159,7 +159,7 @@
          	<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName" 
          		style="push" tooltip="Copy Qualified Name">
             	<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.xtext.example.blorquescript.BlorqueScript.Editor.opened" />
+                	<reference definitionId="org.example.blorquescript.BlorqueScript.Editor.opened" />
             	</visibleWhen>
          	</command>  
          </menuContribution>
@@ -167,7 +167,7 @@
          	<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
             	style="push" tooltip="Copy Qualified Name">
             	<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.xtext.example.blorquescript.BlorqueScript.Editor.opened" />
+                	<reference definitionId="org.example.blorquescript.BlorqueScript.Editor.opened" />
             	</visibleWhen>
          	</command>  
          </menuContribution>
@@ -176,7 +176,7 @@
 				style="push" tooltip="Copy Qualified Name">
          		<visibleWhen checkEnabled="false">
 	            	<and>
-	            		<reference definitionId="org.xtext.example.blorquescript.BlorqueScript.XtextEditor.opened" />
+	            		<reference definitionId="org.example.blorquescript.BlorqueScript.XtextEditor.opened" />
 						<iterate>
 							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 						</iterate>
@@ -189,7 +189,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.xtext.example.blorquescript.BlorqueScript.Editor.opened">
+                	<reference definitionId="org.example.blorquescript.BlorqueScript.Editor.opened">
                 	</reference>
             	</visibleWhen>
 			</command>
@@ -197,11 +197,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 	    <handler
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
             commandId="org.eclipse.xtext.ui.editor.FindReferences">
             <activeWhen>
                 <reference
-                    definitionId="org.xtext.example.blorquescript.BlorqueScript.Editor.opened">
+                    definitionId="org.example.blorquescript.BlorqueScript.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
@@ -212,19 +212,19 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="bs">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
         <resourceServiceProvider
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
             uriExtension="bs">
         </resourceServiceProvider>
     </extension>
 
 
-	<!-- marker definitions for org.xtext.example.blorquescript.BlorqueScript -->
+	<!-- marker definitions for org.example.blorquescript.BlorqueScript -->
 	<extension
 	        id="blorquescript.check.fast"
 	        name="BlorqueScript Problem"
@@ -250,7 +250,7 @@
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
             fileExtensions="bs"
             >
       </participant>
@@ -258,21 +258,21 @@
    <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            category="org.xtext.example.blorquescript.BlorqueScript"
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="org.xtext.example.blorquescript.BlorqueScript.compiler.preferencePage"
+            category="org.example.blorquescript.BlorqueScript"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="org.example.blorquescript.BlorqueScript.compiler.preferencePage"
             name="Compiler">
-            <keywordReference id="org.xtext.example.blorquescript.ui.keyword_BlorqueScript"/>
+            <keywordReference id="org.example.blorquescript.ui.keyword_BlorqueScript"/>
         </page>
     </extension>
     <extension
             point="org.eclipse.ui.propertyPages">
         <page
-            category="org.xtext.example.blorquescript.BlorqueScript"
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="org.xtext.example.blorquescript.BlorqueScript.compiler.propertyPage"
+            category="org.example.blorquescript.BlorqueScript"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="org.example.blorquescript.BlorqueScript.compiler.propertyPage"
             name="Compiler">
-            <keywordReference id="org.xtext.example.blorquescript.ui.keyword_BlorqueScript"/>
+            <keywordReference id="org.example.blorquescript.ui.keyword_BlorqueScript"/>
             <enabledWhen>
 	            <adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -283,20 +283,20 @@
 		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
 			<command
 				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="org.xtext.example.blorquescript.BlorqueScript.OpenGeneratedCode"
+				id="org.example.blorquescript.BlorqueScript.OpenGeneratedCode"
 				style="push">
 					<visibleWhen checkEnabled="false">
-						<reference definitionId="org.xtext.example.blorquescript.BlorqueScript.Editor.opened" />
+						<reference definitionId="org.example.blorquescript.BlorqueScript.Editor.opened" />
 					</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
 			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
 				<activeWhen>
-					<reference definitionId="org.xtext.example.blorquescript.BlorqueScript.Editor.opened" />
+					<reference definitionId="org.example.blorquescript.BlorqueScript.Editor.opened" />
 				</activeWhen>
 		</handler>
 	</extension>
@@ -305,11 +305,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="org.xtext.example.blorquescript.BlorqueScript.Editor.opened">
+					definitionId="org.example.blorquescript.BlorqueScript.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -329,33 +329,33 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.xtext.example.blorquescript.BlorqueScript.Editor.opened"/>
+					<reference definitionId="org.example.blorquescript.BlorqueScript.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
-    <!-- quickfix marker resolution generator for org.xtext.example.blorquescript.BlorqueScript -->
+    <!-- quickfix marker resolution generator for org.example.blorquescript.BlorqueScript -->
     <extension
             point="org.eclipse.ui.ide.markerResolution">
         <markerResolutionGenerator
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.xtext.example.blorquescript.ui.blorquescript.check.fast">
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.example.blorquescript.ui.blorquescript.check.fast">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
             </attribute>
         </markerResolutionGenerator>
         <markerResolutionGenerator
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.xtext.example.blorquescript.ui.blorquescript.check.normal">
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.example.blorquescript.ui.blorquescript.check.normal">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
             </attribute>
         </markerResolutionGenerator>
         <markerResolutionGenerator
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.xtext.example.blorquescript.ui.blorquescript.check.expensive">
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="org.example.blorquescript.ui.blorquescript.check.expensive">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
@@ -365,11 +365,11 @@
    	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
 				<reference
-					definitionId="org.xtext.example.blorquescript.BlorqueScript.Editor.opened">
+					definitionId="org.example.blorquescript.BlorqueScript.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -381,7 +381,7 @@
                style="push">
             <visibleWhen checkEnabled="false">
                <reference
-                     definitionId="org.xtext.example.blorquescript.BlorqueScript.Editor.opened">
+                     definitionId="org.example.blorquescript.BlorqueScript.Editor.opened">
                </reference>
             </visibleWhen>
          </command>
@@ -389,29 +389,29 @@
    </extension>
    <extension point="org.eclipse.ui.preferencePages">
 	    <page
-	        category="org.xtext.example.blorquescript.BlorqueScript"
-	        class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-	        id="org.xtext.example.blorquescript.BlorqueScript.refactoring"
+	        category="org.example.blorquescript.BlorqueScript"
+	        class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+	        id="org.example.blorquescript.BlorqueScript.refactoring"
 	        name="Refactoring">
-	        <keywordReference id="org.xtext.example.blorquescript.ui.keyword_BlorqueScript"/>
+	        <keywordReference id="org.example.blorquescript.ui.keyword_BlorqueScript"/>
 	    </page>
 	</extension>
 
   <extension point="org.eclipse.compare.contentViewers">
-    <viewer id="org.xtext.example.blorquescript.BlorqueScript.compare.contentViewers"
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+    <viewer id="org.example.blorquescript.BlorqueScript.compare.contentViewers"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
             extensions="bs">
     </viewer>
   </extension>
   <extension point="org.eclipse.compare.contentMergeViewers">
-    <viewer id="org.xtext.example.blorquescript.BlorqueScript.compare.contentMergeViewers"
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+    <viewer id="org.example.blorquescript.BlorqueScript.compare.contentMergeViewers"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
             extensions="bs" label="BlorqueScript Compare">
      </viewer>
   </extension>
   <extension point="org.eclipse.ui.editors.documentProviders">
-    <provider id="org.xtext.example.blorquescript.BlorqueScript.editors.documentProviders"
-            class="org.xtext.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+    <provider id="org.example.blorquescript.BlorqueScript.editors.documentProviders"
+            class="org.example.blorquescript.ui.BlorqueScriptExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
             extensions="bs">
     </provider>
   </extension>

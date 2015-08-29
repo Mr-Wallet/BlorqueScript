@@ -5,8 +5,8 @@
     forceOverwrite="true" modelName="BlorqueScript" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" editPluginID="org.example.blorquescript.edit"
     editorPluginID="org.example.blorquescript.editor" runtimeVersion="2.11">
-  <genPackages prefix="BlorqueScript" basePackage="org.xtext.example.blorquescript"
-      disposableProviderFactory="true" fileExtensions="bs" ecorePackage="BlorqueScript.ecore#/">
+  <genPackages prefix="BlorqueScript" basePackage="org.example.blorquescript" disposableProviderFactory="true"
+      fileExtensions="bs" ecorePackage="BlorqueScript.ecore#/">
     <genClasses ecoreClass="BlorqueScript.ecore#//BSFile">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSFile/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSFile/imports"/>
@@ -21,13 +21,19 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSClass/members"/>
     </genClasses>
     <genClasses ecoreClass="BlorqueScript.ecore#//BSMember"/>
-    <genClasses ecoreClass="BlorqueScript.ecore#//BSField"/>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSField/isArray"/>
+    </genClasses>
     <genClasses ecoreClass="BlorqueScript.ecore#//BSMethod">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSMethod/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSMethod/body"/>
     </genClasses>
-    <genClasses ecoreClass="BlorqueScript.ecore#//BSParameter"/>
-    <genClasses ecoreClass="BlorqueScript.ecore#//BSMethodBody"/>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSParameter/isArray"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSMethodBody">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSMethodBody/statements"/>
+    </genClasses>
     <genClasses ecoreClass="BlorqueScript.ecore#//BSStatement"/>
     <genClasses ecoreClass="BlorqueScript.ecore#//BSReturn">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSReturn/expression"/>
@@ -40,48 +46,153 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSIfStatement/thenBlock"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSIfStatement/elseBlock"/>
     </genClasses>
-    <genClasses ecoreClass="BlorqueScript.ecore#//BSIfBlock"/>
-    <genClasses ecoreClass="BlorqueScript.ecore#//BSBlock">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSBlock/statements"/>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSWhileLoop">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSWhileLoop/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSWhileLoop/block"/>
     </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSForLoop">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSForLoop/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSForLoop/middle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSForLoop/right"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSForLoop/block"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSSwitchStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSSwitchStatement/stringSwitch"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSSwitchStatement/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSSwitchStatement/block"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSIfBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSIfBlock/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSLoopBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSLoopBlock/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSSwitchBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSSwitchBlock/cases"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSCase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSCase/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSCase/block"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSCaseBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSCaseBlock/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSBlock"/>
     <genClasses ecoreClass="BlorqueScript.ecore#//BSSymbol">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSSymbol/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSSymbol/name"/>
     </genClasses>
-    <genClasses ecoreClass="BlorqueScript.ecore#//BSExpression">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSExpression/castType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSExpression/castExpr"/>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSExpression"/>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSAssignmentExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSAssignmentExpression/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSAssignmentExpression/assignmentOperator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSAssignmentExpression/right"/>
     </genClasses>
-    <genClasses ecoreClass="BlorqueScript.ecore#//BSAssignment">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSAssignment/left"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSAssignment/right"/>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSTernaryExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSTernaryExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSTernaryExpression/middle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSTernaryExpression/right"/>
     </genClasses>
-    <genClasses ecoreClass="BlorqueScript.ecore#//BSMemberSelection">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSMemberSelection/receiver"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSMemberSelection/member"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSMemberSelection/methodinvocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSMemberSelection/args"/>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSBooleanOrExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSBooleanOrExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSBooleanOrExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSBooleanAndExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSBooleanAndExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSBooleanAndExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSBitwiseOrExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSBitwiseOrExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSBitwiseOrExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSBitwiseXorExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSBitwiseXorExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSBitwiseXorExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSBitwiseAndExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSBitwiseAndExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSBitwiseAndExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSEqualityExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSEqualityExpression/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSEqualityExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSEqualityExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSOrderedRelationExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSOrderedRelationExpression/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSOrderedRelationExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSOrderedRelationExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSBitwiseShiftExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSBitwiseShiftExpression/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSBitwiseShiftExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSBitwiseShiftExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSPlusMinusOrStringConcatExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSPlusMinusOrStringConcatExpression/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSPlusMinusOrStringConcatExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSPlusMinusOrStringConcatExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSMulDivOrModExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSMulDivOrModExpression/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSMulDivOrModExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSMulDivOrModExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSCastExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSCastExpression/castType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSCastExpression/castExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSNewExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSNewExpression/isArray"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSNewExpression/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSNewExpression/args"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSUnaryModifierExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSUnaryModifierExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSUnaryModifierExpression/receiver"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSMemberSelectionExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSMemberSelectionExpression/receiver"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSMethodInvokationExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSMethodInvokationExpression/receiver"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSMethodInvokationExpression/args"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSArrayAccessExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSArrayAccessExpression/receiver"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSArrayAccessExpression/args"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSPostfixArithmeticExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSPostfixArithmeticExpression/receiver"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSPostfixArithmeticExpression/operator"/>
     </genClasses>
     <genClasses ecoreClass="BlorqueScript.ecore#//BSStringConstant">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSStringConstant/value"/>
     </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSHexadecimalConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSHexadecimalConstant/value"/>
+    </genClasses>
     <genClasses ecoreClass="BlorqueScript.ecore#//BSNumberConstant">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSNumberConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSRealConstant">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSRealConstant/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSRealConstant/right"/>
     </genClasses>
     <genClasses ecoreClass="BlorqueScript.ecore#//BSBooleanConstant">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSBooleanConstant/value"/>
     </genClasses>
-    <genClasses ecoreClass="BlorqueScript.ecore#//BSNull"/>
-    <genClasses ecoreClass="BlorqueScript.ecore#//BSThis"/>
-    <genClasses ecoreClass="BlorqueScript.ecore#//BSClient"/>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSNullLiteral"/>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSBreakLiteral"/>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSContinueLiteral"/>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSThisLiteral"/>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSClientLiteral"/>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSParentLiteral"/>
     <genClasses ecoreClass="BlorqueScript.ecore#//BSSymbolRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSSymbolRef/symbol"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BlorqueScript.ecore#//BSSymbolRef/methodinvocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSSymbolRef/args"/>
     </genClasses>
-    <genClasses ecoreClass="BlorqueScript.ecore#//BSNew">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSNew/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSNew/args"/>
+    <genClasses ecoreClass="BlorqueScript.ecore#//BSParentheticalExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BlorqueScript.ecore#//BSParentheticalExpression/expression"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

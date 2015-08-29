@@ -1,4 +1,6 @@
-grammar org.example.blorquescript.BlorqueScript with org.example.blorquescript.Terminals
+grammar org.example.blorquescript.BlorqueScript
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 generate blorqueScript "http://www.xtext.org/example/blorquescript/BlorqueScript"
 
@@ -115,13 +117,13 @@ BSSymbol:
 ;
 
 BSExpression:
-	BSAssignmentExpression
+	BSTernaryExpression
 ;
 
 //right-to-left assignment operators: = and [op]=
 BSAssignmentExpression returns BSExpression:
 	BSTernaryExpression
-	({BSAssignmentExpression.left=current} assignmentOperator=('='|'+='|'-='|'*='|'/='|'%='|'<<='|'>>='|'&='|'^='|'|=') right=BSExpression)?
+	({BSAssignmentExpression.left=current} assignmentOperator=('='|'@='|'+='|'-='|'*='|'/='|'%='|'<<='|'>>='|'&='|'^='|'|=') right=BSExpression)?
 ;
 
 //right-to-left ternary operator: (?:)
@@ -240,8 +242,6 @@ BSTerminalExpression returns BSExpression:
 	{BSNullLiteral} 'null' |
 	{BSBreakLiteral} 'break' |
 	{BSContinueLiteral} 'continue' |
-	{BSSwitchCase} 'case' expression=BSExpression | 
-	{BSDefaultLiteral} 'default' |
 	{BSThisLiteral} 'this' |
 	{BSClientLiteral} 'client' |
 	{BSParentLiteral} 'parent' |
@@ -253,4 +253,43 @@ BSTerminalExpression returns BSExpression:
 
 //Namespace (::) deliberately excluded, as it is only allowed in Global anyway.
 //Instead, ':' is allowed in ID, and validation will forbid it anywhere but as a single '::' in global definitions.
+
+terminal HEX_VALUE:
+	'0x' ('0'..'9'|'a'..'f'|'A'..'F')*
+;
+
+terminal ID:
+	('$'|'%')?('a'..'z'|'A'..'Z'|'_')('a'..'z'|'A'..'Z'|'_'|'0'..'9'|':')*
+;
+
+terminal INT returns ecore::EInt:
+	('0'..'9')+
+;
+
+terminal fragment ESCAPE_CODE:
+	'\\' ('x' . . | 'c' . | !('c'|'x'))
+;
+
+terminal STRING: 
+	'"' ( ESCAPE_CODE | !('\\'|'"') )* '"'
+;
+
+terminal TAGGED_STRING:
+	"'" ( ESCAPE_CODE | !('\\'|"'") )* "'"
+;
+
+terminal ML_COMMENT:
+	'/*' -> '*/'
+;
+terminal SL_COMMENT:
+	'//' !('\n'|'\r')* ('\r'? '\n')?
+;
+
+terminal WS:
+	(' '|'\t'|'\r'|'\n')+
+;
+
+terminal ANY_OTHER:
+	.
+;
 
