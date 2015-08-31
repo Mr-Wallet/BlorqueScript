@@ -3,6 +3,7 @@
 package org.example.blorquescript.blorqueScript.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -74,6 +75,8 @@ public class BlorqueScriptFactoryImpl extends EFactoryImpl implements BlorqueScr
       case BlorqueScriptPackage.BS_METHOD_BODY: return createBSMethodBody();
       case BlorqueScriptPackage.BS_STATEMENT: return createBSStatement();
       case BlorqueScriptPackage.BS_RETURN: return createBSReturn();
+      case BlorqueScriptPackage.BS_BREAK: return createBSBreak();
+      case BlorqueScriptPackage.BS_CONTINUE: return createBSContinue();
       case BlorqueScriptPackage.BS_VARIABLE_DECLARATION: return createBSVariableDeclaration();
       case BlorqueScriptPackage.BS_IF_STATEMENT: return createBSIfStatement();
       case BlorqueScriptPackage.BS_WHILE_LOOP: return createBSWhileLoop();
@@ -112,8 +115,6 @@ public class BlorqueScriptFactoryImpl extends EFactoryImpl implements BlorqueScr
       case BlorqueScriptPackage.BS_REAL_CONSTANT: return createBSRealConstant();
       case BlorqueScriptPackage.BS_BOOLEAN_CONSTANT: return createBSBooleanConstant();
       case BlorqueScriptPackage.BS_NULL_LITERAL: return createBSNullLiteral();
-      case BlorqueScriptPackage.BS_BREAK_LITERAL: return createBSBreakLiteral();
-      case BlorqueScriptPackage.BS_CONTINUE_LITERAL: return createBSContinueLiteral();
       case BlorqueScriptPackage.BS_THIS_LITERAL: return createBSThisLiteral();
       case BlorqueScriptPackage.BS_CLIENT_LITERAL: return createBSClientLiteral();
       case BlorqueScriptPackage.BS_PARENT_LITERAL: return createBSParentLiteral();
@@ -121,6 +122,40 @@ public class BlorqueScriptFactoryImpl extends EFactoryImpl implements BlorqueScr
       case BlorqueScriptPackage.BS_PARENTHETICAL_EXPRESSION: return createBSParentheticalExpression();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case BlorqueScriptPackage.BS_PRIMITIVE_TYPE:
+        return createBSPrimitiveTypeFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case BlorqueScriptPackage.BS_PRIMITIVE_TYPE:
+        return convertBSPrimitiveTypeToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -232,6 +267,28 @@ public class BlorqueScriptFactoryImpl extends EFactoryImpl implements BlorqueScr
   {
     BSReturnImpl bsReturn = new BSReturnImpl();
     return bsReturn;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BSBreak createBSBreak()
+  {
+    BSBreakImpl bsBreak = new BSBreakImpl();
+    return bsBreak;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BSContinue createBSContinue()
+  {
+    BSContinueImpl bsContinue = new BSContinueImpl();
+    return bsContinue;
   }
 
   /**
@@ -657,28 +714,6 @@ public class BlorqueScriptFactoryImpl extends EFactoryImpl implements BlorqueScr
    * <!-- end-user-doc -->
    * @generated
    */
-  public BSBreakLiteral createBSBreakLiteral()
-  {
-    BSBreakLiteralImpl bsBreakLiteral = new BSBreakLiteralImpl();
-    return bsBreakLiteral;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public BSContinueLiteral createBSContinueLiteral()
-  {
-    BSContinueLiteralImpl bsContinueLiteral = new BSContinueLiteralImpl();
-    return bsContinueLiteral;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public BSThisLiteral createBSThisLiteral()
   {
     BSThisLiteralImpl bsThisLiteral = new BSThisLiteralImpl();
@@ -727,6 +762,28 @@ public class BlorqueScriptFactoryImpl extends EFactoryImpl implements BlorqueScr
   {
     BSParentheticalExpressionImpl bsParentheticalExpression = new BSParentheticalExpressionImpl();
     return bsParentheticalExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BSPrimitiveType createBSPrimitiveTypeFromString(EDataType eDataType, String initialValue)
+  {
+    BSPrimitiveType result = BSPrimitiveType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertBSPrimitiveTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

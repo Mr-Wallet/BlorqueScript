@@ -1,0 +1,10 @@
+package org.example.blorquescript.util
+
+import static extension org.eclipse.xtext.EcoreUtil2.*
+import org.example.blorquescript.blorqueScript.*
+
+class BlorqueScriptASTAccessor {
+	def static fields(BSClass c) {
+		
+	}
+}

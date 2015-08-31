@@ -13,7 +13,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.example.blorquescript.blorqueScript.BSSymbol#getType <em>Type</em>}</li>
+ *   <li>{@link org.example.blorquescript.blorqueScript.BSSymbol#getPType <em>PType</em>}</li>
+ *   <li>{@link org.example.blorquescript.blorqueScript.BSSymbol#getRType <em>RType</em>}</li>
  *   <li>{@link org.example.blorquescript.blorqueScript.BSSymbol#getName <em>Name</em>}</li>
  * </ul>
  *
@@ -24,30 +25,59 @@ import org.eclipse.emf.ecore.EObject;
 public interface BSSymbol extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Type</b></em>' reference.
+   * Returns the value of the '<em><b>PType</b></em>' attribute.
+   * The literals are from the enumeration {@link org.example.blorquescript.blorqueScript.BSPrimitiveType}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type</em>' reference isn't clear,
+   * If the meaning of the '<em>PType</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(BSClass)
-   * @see org.example.blorquescript.blorqueScript.BlorqueScriptPackage#getBSSymbol_Type()
+   * @return the value of the '<em>PType</em>' attribute.
+   * @see org.example.blorquescript.blorqueScript.BSPrimitiveType
+   * @see #setPType(BSPrimitiveType)
+   * @see org.example.blorquescript.blorqueScript.BlorqueScriptPackage#getBSSymbol_PType()
    * @model
    * @generated
    */
-  BSClass getType();
+  BSPrimitiveType getPType();
 
   /**
-   * Sets the value of the '{@link org.example.blorquescript.blorqueScript.BSSymbol#getType <em>Type</em>}' reference.
+   * Sets the value of the '{@link org.example.blorquescript.blorqueScript.BSSymbol#getPType <em>PType</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' reference.
-   * @see #getType()
+   * @param value the new value of the '<em>PType</em>' attribute.
+   * @see org.example.blorquescript.blorqueScript.BSPrimitiveType
+   * @see #getPType()
    * @generated
    */
-  void setType(BSClass value);
+  void setPType(BSPrimitiveType value);
+
+  /**
+   * Returns the value of the '<em><b>RType</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>RType</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>RType</em>' reference.
+   * @see #setRType(BSClass)
+   * @see org.example.blorquescript.blorqueScript.BlorqueScriptPackage#getBSSymbol_RType()
+   * @model
+   * @generated
+   */
+  BSClass getRType();
+
+  /**
+   * Sets the value of the '{@link org.example.blorquescript.blorqueScript.BSSymbol#getRType <em>RType</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>RType</em>' reference.
+   * @see #getRType()
+   * @generated
+   */
+  void setRType(BSClass value);
 
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

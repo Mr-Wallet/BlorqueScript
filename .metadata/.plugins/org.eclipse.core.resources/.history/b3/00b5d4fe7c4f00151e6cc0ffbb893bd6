@@ -1,0 +1,158 @@
+package org.example.blorquescript.tests
+
+import com.google.inject.Inject
+import org.eclipse.xtext.junit4.InjectWith
+import org.eclipse.xtext.junit4.XtextRunner
+import org.eclipse.xtext.junit4.util.ParseHelper
+import org.eclipse.xtext.junit4.validation.ValidationTestHelper
+import org.example.blorquescript.BlorqueScriptInjectorProvider
+import org.example.blorquescript.blorqueScript.BSAssignmentExpression
+import org.example.blorquescript.blorqueScript.BSClass
+import org.example.blorquescript.blorqueScript.BSField
+import org.example.blorquescript.blorqueScript.BSFile
+import org.example.blorquescript.blorqueScript.BSMethod
+import org.example.blorquescript.blorqueScript.BSPrimitiveType
+import org.example.blorquescript.blorqueScript.BSReturn
+import org.example.blorquescript.blorqueScript.BSStatement
+import org.junit.Test
+import org.junit.runner.RunWith
+
+import static org.junit.Assert.*
+
+@RunWith(typeof(XtextRunner))
+@InjectWith(typeof(BlorqueScriptInjectorProvider))
+class BlorqueScriptParserTest {
+	@Inject extension ParseHelper<BSFile>
+	@Inject extension ValidationTestHelper
+	
+	@Test def void testEmptyClassDeclaration() {
+		val file = '''
+		class A {}
+		'''.parse;
+		
+		assertNoErrors(file);
+		assertTrue('File should be a file', file instanceof BSFile);
+		
+		assertEquals('File should have one member', 1, file.classes.size);
+		val class = file.classes.get(0);
+		assertTrue('File\'s member should be a class', class instanceof BSClass);
+		assertEquals('Class should have a name', 'A', class.name);
+	}
+	
+	@Test def void testFieldDeclaration() {
+		val file = '''
+		class A {
+			string f0;
+			A f1[];
+		}
+		'''.parse;
+		
+		assertNoErrors(file);
+		
+		val class = file.classes.get(0);
+		assertEquals('Class should have two members', 2, class.members.size);
+		val field0 = class.members.get(0);
+		val field1 = class.members.get(1);
+		assertTrue('members should be fields', field0 instanceof BSField);
+		assertTrue('members should be fields', field1 instanceof BSField);
+		assertEquals('fields should have names', 'f0', field0.name);
+		assertEquals('fields should have names', 'f1', field1.name);
+		assertEquals('fields should have types', BSPrimitiveType.STRING, (field0 as BSField).PType);
+		assertEquals('fields should have types', 'A', (field1 as BSField).RType.name);
+		assertFalse('field0 should not be an array', (field0 as BSField).isArray);
+		assertTrue('field1 should be an array', (field1 as BSField).isArray);
+	}
+	
+	@Test def void testEmptyMethodDeclaration() {
+		val file = '''
+		class A {
+			void m() {}
+		}
+		'''.parse;
+		
+		assertNoErrors(file);
+		
+		val class = file.classes.get(0);
+		assertEquals('Class should have one member', 1, class.members.size);
+		val method = class.members.get(0);
+		assertTrue('member should be a method', method instanceof BSMethod);
+		assertEquals('method should have a name', 'm', method.name);
+		assertEquals('method should have no params', 0, (method as BSMethod).params.size);
+		assertEquals('method should be void', BSPrimitiveType.VOID, (method as BSMethod).PType);
+		assertEquals('method should have void return type', BSPrimitiveType.VOID, (method as BSMethod).PType);
+		assertEquals('method should have void return type', null, (method as BSMethod).RType);
+		assertEquals('method body should have no statements', 0, (method as BSMethod).body.statements.size);
+	}
+	
+	@Test def void testComplexMethodDeclaration() {
+		val file = '''
+		class A {
+			void m0() { return; }
+			A f;
+			A m1(string p1, taggedString p2) { f = f; return null; }
+			number m2(object o) { return 0;}	
+		}
+		'''.parse;
+		
+		assertNoErrors(file);
+		
+		val class = file.classes.get(0);
+		assertEquals('Class should have fpur members', 4, class.members.size);
+		val method0 = class.members.get(0);
+		val field = class.members.get(1);
+		val method1 = class.members.get(2);
+		val method2 = class.members.get(3);
+		assertTrue('member should be a method', method0 instanceof BSMethod);
+		assertTrue('member should be a field', field instanceof BSField);
+		assertTrue('member should be a method', method1 instanceof BSMethod);
+		assertTrue('member should be a method', method2 instanceof BSMethod);
+		
+		assertEquals('method should have a name', 'm0', method0.name);
+		assertEquals('field should have a name', 'd', field.name);
+		assertEquals('method should have a name', 'm1', method1.name);
+		assertEquals('method should have a name', 'm2', method2.name);
+		
+		assertEquals('method should be void', BSPrimitiveType.VOID, (method0 as BSMethod).PType);
+		assertEquals('method should be A type', null, (method1 as BSMethod).PType);
+		assertEquals('method should be A type', 'A', (method1 as BSMethod).RType.name);
+		assertEquals('method should be number type', BSPrimitiveType.NUMBER, (method2 as BSMethod).PType);
+
+		assertEquals('method should have no params', 0, (method0 as BSMethod).params.size);
+		assertEquals('method should have 2 params', 2, (method1 as BSMethod).params.size);
+		assertEquals('method should have 1 param', 1, (method2 as BSMethod).params.size);
+		
+		val param0 = (method1 as BSMethod).params.get(0);
+		val param1 = (method1 as BSMethod).params.get(1);
+		val param2 = (method2 as BSMethod).params.get(0);
+		assertEquals('method2 param0 should be a string named p0', BSPrimitiveType.STRING, param0.PType);
+		assertEquals('method2 param0 should be a string named p0', 'p0', param0.name);
+		assertEquals('method2 param1 should be a string named p1', BSPrimitiveType.TAGGED_STRING, param1.PType);
+		assertEquals('method2 param1 should be a string named p1', 'p1', param1.name);
+		assertEquals('method2 param0 should be an object named o', BSPrimitiveType.OBJECT, param2.PType);
+		assertEquals('method2 param0 should be an object named o', 'o', param2.name);
+		
+		assertEquals('method body should have 1 return statement', 1, (method0 as BSMethod).body.statements.size);
+		val statement0 = (method0 as BSMethod).body.statements.get(0);
+		assertTrue('method body should have 1 return statement', statement0 instanceof BSReturn);
+		
+		assertEquals('method body should have an assignment then a return', 2, (method1 as BSMethod).body.statements.size);
+		val statement1 = (method1 as BSMethod).body.statements.get(0);
+		val statement2 = (method1 as BSMethod).body.statements.get(1);
+		assertTrue('method body should have an assignment then a return', statement1 instanceof BSAssignmentExpression);
+		assertTrue('method body should have an assignment then a return', statement2 instanceof BSReturn);
+		
+		assertEquals('method body should have 1 return statement', 1, (method2 as BSMethod).body.statements.size);
+		val statement3 = (method0 as BSMethod).body.statements.get(0);
+		assertTrue('method body should have 1 return statement', statement3 instanceof BSReturn);
+	}
+	
+	/* PRIVATES */
+	
+	def private assertAssociativity(BSStatement statement, CharSequence expected) {
+		assertEquals(expected.toString, statement.asString);
+	} 
+	
+	def private String asString(BSStatement statement) {
+		return '';
+	}
+}

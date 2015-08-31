@@ -4,6 +4,7 @@ package org.example.blorquescript.blorqueScript.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -19,13 +20,13 @@ import org.example.blorquescript.blorqueScript.BSBlock;
 import org.example.blorquescript.blorqueScript.BSBooleanAndExpression;
 import org.example.blorquescript.blorqueScript.BSBooleanConstant;
 import org.example.blorquescript.blorqueScript.BSBooleanOrExpression;
-import org.example.blorquescript.blorqueScript.BSBreakLiteral;
+import org.example.blorquescript.blorqueScript.BSBreak;
 import org.example.blorquescript.blorqueScript.BSCase;
 import org.example.blorquescript.blorqueScript.BSCaseBlock;
 import org.example.blorquescript.blorqueScript.BSCastExpression;
 import org.example.blorquescript.blorqueScript.BSClass;
 import org.example.blorquescript.blorqueScript.BSClientLiteral;
-import org.example.blorquescript.blorqueScript.BSContinueLiteral;
+import org.example.blorquescript.blorqueScript.BSContinue;
 import org.example.blorquescript.blorqueScript.BSEqualityExpression;
 import org.example.blorquescript.blorqueScript.BSExpression;
 import org.example.blorquescript.blorqueScript.BSField;
@@ -51,6 +52,7 @@ import org.example.blorquescript.blorqueScript.BSParentLiteral;
 import org.example.blorquescript.blorqueScript.BSParentheticalExpression;
 import org.example.blorquescript.blorqueScript.BSPlusMinusOrStringConcatExpression;
 import org.example.blorquescript.blorqueScript.BSPostfixArithmeticExpression;
+import org.example.blorquescript.blorqueScript.BSPrimitiveType;
 import org.example.blorquescript.blorqueScript.BSRealConstant;
 import org.example.blorquescript.blorqueScript.BSReturn;
 import org.example.blorquescript.blorqueScript.BSStatement;
@@ -144,6 +146,20 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
    * @generated
    */
   private EClass bsReturnEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass bsBreakEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass bsContinueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -416,20 +432,6 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass bsBreakLiteralEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass bsContinueLiteralEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass bsThisLiteralEClass = null;
 
   /**
@@ -459,6 +461,13 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
    * @generated
    */
   private EClass bsParentheticalExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum bsPrimitiveTypeEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -638,9 +647,9 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getBSField()
+  public EAttribute getBSMember_IsArray()
   {
-    return bsFieldEClass;
+    return (EAttribute)bsMemberEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -648,9 +657,9 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getBSField_IsArray()
+  public EClass getBSField()
   {
-    return (EAttribute)bsFieldEClass.getEStructuralFeatures().get(0);
+    return bsFieldEClass;
   }
 
   /**
@@ -751,6 +760,26 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
   public EReference getBSReturn_Expression()
   {
     return (EReference)bsReturnEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBSBreak()
+  {
+    return bsBreakEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBSContinue()
+  {
+    return bsContinueEClass;
   }
 
   /**
@@ -1068,9 +1097,19 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getBSSymbol_Type()
+  public EAttribute getBSSymbol_PType()
   {
-    return (EReference)bsSymbolEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)bsSymbolEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBSSymbol_RType()
+  {
+    return (EReference)bsSymbolEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1080,7 +1119,7 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
    */
   public EAttribute getBSSymbol_Name()
   {
-    return (EAttribute)bsSymbolEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)bsSymbolEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1538,7 +1577,7 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getBSCastExpression_CastType()
+  public EAttribute getBSCastExpression_PType()
   {
     return (EAttribute)bsCastExpressionEClass.getEStructuralFeatures().get(0);
   }
@@ -1548,9 +1587,19 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getBSCastExpression_IsArray()
+  {
+    return (EAttribute)bsCastExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getBSCastExpression_CastExpr()
   {
-    return (EReference)bsCastExpressionEClass.getEStructuralFeatures().get(1);
+    return (EReference)bsCastExpressionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1568,9 +1617,9 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getBSNewExpression_IsArray()
+  public EReference getBSNewExpression_RType()
   {
-    return (EAttribute)bsNewExpressionEClass.getEStructuralFeatures().get(0);
+    return (EReference)bsNewExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1578,9 +1627,9 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getBSNewExpression_Type()
+  public EAttribute getBSNewExpression_IsArray()
   {
-    return (EReference)bsNewExpressionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)bsNewExpressionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1641,6 +1690,16 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
   public EReference getBSMemberSelectionExpression_Receiver()
   {
     return (EReference)bsMemberSelectionExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBSMemberSelectionExpression_Member()
+  {
+    return (EReference)bsMemberSelectionExpressionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1858,26 +1917,6 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getBSBreakLiteral()
-  {
-    return bsBreakLiteralEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getBSContinueLiteral()
-  {
-    return bsContinueLiteralEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getBSThisLiteral()
   {
     return bsThisLiteralEClass;
@@ -1948,6 +1987,16 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
    * <!-- end-user-doc -->
    * @generated
    */
+  public EEnum getBSPrimitiveType()
+  {
+    return bsPrimitiveTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public BlorqueScriptFactory getBlorqueScriptFactory()
   {
     return (BlorqueScriptFactory)getEFactoryInstance();
@@ -1987,9 +2036,9 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
     createEReference(bsClassEClass, BS_CLASS__MEMBERS);
 
     bsMemberEClass = createEClass(BS_MEMBER);
+    createEAttribute(bsMemberEClass, BS_MEMBER__IS_ARRAY);
 
     bsFieldEClass = createEClass(BS_FIELD);
-    createEAttribute(bsFieldEClass, BS_FIELD__IS_ARRAY);
 
     bsMethodEClass = createEClass(BS_METHOD);
     createEReference(bsMethodEClass, BS_METHOD__PARAMS);
@@ -2005,6 +2054,10 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
 
     bsReturnEClass = createEClass(BS_RETURN);
     createEReference(bsReturnEClass, BS_RETURN__EXPRESSION);
+
+    bsBreakEClass = createEClass(BS_BREAK);
+
+    bsContinueEClass = createEClass(BS_CONTINUE);
 
     bsVariableDeclarationEClass = createEClass(BS_VARIABLE_DECLARATION);
     createEReference(bsVariableDeclarationEClass, BS_VARIABLE_DECLARATION__EXPRESSION);
@@ -2048,7 +2101,8 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
     bsBlockEClass = createEClass(BS_BLOCK);
 
     bsSymbolEClass = createEClass(BS_SYMBOL);
-    createEReference(bsSymbolEClass, BS_SYMBOL__TYPE);
+    createEAttribute(bsSymbolEClass, BS_SYMBOL__PTYPE);
+    createEReference(bsSymbolEClass, BS_SYMBOL__RTYPE);
     createEAttribute(bsSymbolEClass, BS_SYMBOL__NAME);
 
     bsExpressionEClass = createEClass(BS_EXPRESSION);
@@ -2109,12 +2163,13 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
     createEReference(bsMulDivOrModExpressionEClass, BS_MUL_DIV_OR_MOD_EXPRESSION__RIGHT);
 
     bsCastExpressionEClass = createEClass(BS_CAST_EXPRESSION);
-    createEAttribute(bsCastExpressionEClass, BS_CAST_EXPRESSION__CAST_TYPE);
+    createEAttribute(bsCastExpressionEClass, BS_CAST_EXPRESSION__PTYPE);
+    createEAttribute(bsCastExpressionEClass, BS_CAST_EXPRESSION__IS_ARRAY);
     createEReference(bsCastExpressionEClass, BS_CAST_EXPRESSION__CAST_EXPR);
 
     bsNewExpressionEClass = createEClass(BS_NEW_EXPRESSION);
+    createEReference(bsNewExpressionEClass, BS_NEW_EXPRESSION__RTYPE);
     createEAttribute(bsNewExpressionEClass, BS_NEW_EXPRESSION__IS_ARRAY);
-    createEReference(bsNewExpressionEClass, BS_NEW_EXPRESSION__TYPE);
     createEReference(bsNewExpressionEClass, BS_NEW_EXPRESSION__ARGS);
 
     bsUnaryModifierExpressionEClass = createEClass(BS_UNARY_MODIFIER_EXPRESSION);
@@ -2123,6 +2178,7 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
 
     bsMemberSelectionExpressionEClass = createEClass(BS_MEMBER_SELECTION_EXPRESSION);
     createEReference(bsMemberSelectionExpressionEClass, BS_MEMBER_SELECTION_EXPRESSION__RECEIVER);
+    createEReference(bsMemberSelectionExpressionEClass, BS_MEMBER_SELECTION_EXPRESSION__MEMBER);
 
     bsMethodInvokationExpressionEClass = createEClass(BS_METHOD_INVOKATION_EXPRESSION);
     createEReference(bsMethodInvokationExpressionEClass, BS_METHOD_INVOKATION_EXPRESSION__RECEIVER);
@@ -2154,10 +2210,6 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
 
     bsNullLiteralEClass = createEClass(BS_NULL_LITERAL);
 
-    bsBreakLiteralEClass = createEClass(BS_BREAK_LITERAL);
-
-    bsContinueLiteralEClass = createEClass(BS_CONTINUE_LITERAL);
-
     bsThisLiteralEClass = createEClass(BS_THIS_LITERAL);
 
     bsClientLiteralEClass = createEClass(BS_CLIENT_LITERAL);
@@ -2169,6 +2221,9 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
 
     bsParentheticalExpressionEClass = createEClass(BS_PARENTHETICAL_EXPRESSION);
     createEReference(bsParentheticalExpressionEClass, BS_PARENTHETICAL_EXPRESSION__EXPRESSION);
+
+    // Create enums
+    bsPrimitiveTypeEEnum = createEEnum(BS_PRIMITIVE_TYPE);
   }
 
   /**
@@ -2206,6 +2261,8 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
     bsParameterEClass.getESuperTypes().add(this.getBSSymbol());
     bsMethodBodyEClass.getESuperTypes().add(this.getBSBlock());
     bsReturnEClass.getESuperTypes().add(this.getBSStatement());
+    bsBreakEClass.getESuperTypes().add(this.getBSStatement());
+    bsContinueEClass.getESuperTypes().add(this.getBSStatement());
     bsVariableDeclarationEClass.getESuperTypes().add(this.getBSStatement());
     bsVariableDeclarationEClass.getESuperTypes().add(this.getBSSymbol());
     bsIfStatementEClass.getESuperTypes().add(this.getBSStatement());
@@ -2242,8 +2299,6 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
     bsRealConstantEClass.getESuperTypes().add(this.getBSExpression());
     bsBooleanConstantEClass.getESuperTypes().add(this.getBSExpression());
     bsNullLiteralEClass.getESuperTypes().add(this.getBSExpression());
-    bsBreakLiteralEClass.getESuperTypes().add(this.getBSExpression());
-    bsContinueLiteralEClass.getESuperTypes().add(this.getBSExpression());
     bsThisLiteralEClass.getESuperTypes().add(this.getBSExpression());
     bsClientLiteralEClass.getESuperTypes().add(this.getBSExpression());
     bsParentLiteralEClass.getESuperTypes().add(this.getBSExpression());
@@ -2265,9 +2320,9 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
     initEReference(getBSClass_Members(), this.getBSMember(), null, "members", null, 0, -1, BSClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(bsMemberEClass, BSMember.class, "BSMember", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBSMember_IsArray(), ecorePackage.getEBoolean(), "isArray", null, 0, 1, BSMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(bsFieldEClass, BSField.class, "BSField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getBSField_IsArray(), ecorePackage.getEBoolean(), "isArray", null, 0, 1, BSField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(bsMethodEClass, BSMethod.class, "BSMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBSMethod_Params(), this.getBSParameter(), null, "params", null, 0, -1, BSMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2283,6 +2338,10 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
 
     initEClass(bsReturnEClass, BSReturn.class, "BSReturn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBSReturn_Expression(), this.getBSExpression(), null, "expression", null, 0, 1, BSReturn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(bsBreakEClass, BSBreak.class, "BSBreak", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(bsContinueEClass, BSContinue.class, "BSContinue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(bsVariableDeclarationEClass, BSVariableDeclaration.class, "BSVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBSVariableDeclaration_Expression(), this.getBSExpression(), null, "expression", null, 0, 1, BSVariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2326,7 +2385,8 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
     initEClass(bsBlockEClass, BSBlock.class, "BSBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(bsSymbolEClass, BSSymbol.class, "BSSymbol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getBSSymbol_Type(), this.getBSClass(), null, "type", null, 0, 1, BSSymbol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBSSymbol_PType(), this.getBSPrimitiveType(), "pType", null, 0, 1, BSSymbol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBSSymbol_RType(), this.getBSClass(), null, "rType", null, 0, 1, BSSymbol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getBSSymbol_Name(), ecorePackage.getEString(), "name", null, 0, 1, BSSymbol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(bsExpressionEClass, BSExpression.class, "BSExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2387,12 +2447,13 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
     initEReference(getBSMulDivOrModExpression_Right(), this.getBSExpression(), null, "right", null, 0, 1, BSMulDivOrModExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(bsCastExpressionEClass, BSCastExpression.class, "BSCastExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getBSCastExpression_CastType(), ecorePackage.getEString(), "castType", null, 0, 1, BSCastExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBSCastExpression_PType(), this.getBSPrimitiveType(), "pType", null, 0, 1, BSCastExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBSCastExpression_IsArray(), ecorePackage.getEBoolean(), "isArray", null, 0, 1, BSCastExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBSCastExpression_CastExpr(), this.getBSExpression(), null, "castExpr", null, 0, 1, BSCastExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(bsNewExpressionEClass, BSNewExpression.class, "BSNewExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBSNewExpression_RType(), this.getBSClass(), null, "rType", null, 0, 1, BSNewExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getBSNewExpression_IsArray(), ecorePackage.getEBoolean(), "isArray", null, 0, 1, BSNewExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getBSNewExpression_Type(), this.getBSClass(), null, "type", null, 0, 1, BSNewExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBSNewExpression_Args(), this.getBSExpression(), null, "args", null, 0, -1, BSNewExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(bsUnaryModifierExpressionEClass, BSUnaryModifierExpression.class, "BSUnaryModifierExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2401,6 +2462,7 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
 
     initEClass(bsMemberSelectionExpressionEClass, BSMemberSelectionExpression.class, "BSMemberSelectionExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBSMemberSelectionExpression_Receiver(), this.getBSExpression(), null, "receiver", null, 0, 1, BSMemberSelectionExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBSMemberSelectionExpression_Member(), this.getBSExpression(), null, "member", null, 0, 1, BSMemberSelectionExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(bsMethodInvokationExpressionEClass, BSMethodInvokationExpression.class, "BSMethodInvokationExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBSMethodInvokationExpression_Receiver(), this.getBSExpression(), null, "receiver", null, 0, 1, BSMethodInvokationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2432,10 +2494,6 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
 
     initEClass(bsNullLiteralEClass, BSNullLiteral.class, "BSNullLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(bsBreakLiteralEClass, BSBreakLiteral.class, "BSBreakLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(bsContinueLiteralEClass, BSContinueLiteral.class, "BSContinueLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
     initEClass(bsThisLiteralEClass, BSThisLiteral.class, "BSThisLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(bsClientLiteralEClass, BSClientLiteral.class, "BSClientLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2447,6 +2505,15 @@ public class BlorqueScriptPackageImpl extends EPackageImpl implements BlorqueScr
 
     initEClass(bsParentheticalExpressionEClass, BSParentheticalExpression.class, "BSParentheticalExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBSParentheticalExpression_Expression(), this.getBSExpression(), null, "expression", null, 0, 1, BSParentheticalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    // Initialize enums and add enum literals
+    initEEnum(bsPrimitiveTypeEEnum, BSPrimitiveType.class, "BSPrimitiveType");
+    addEEnumLiteral(bsPrimitiveTypeEEnum, BSPrimitiveType.NONE);
+    addEEnumLiteral(bsPrimitiveTypeEEnum, BSPrimitiveType.STRING);
+    addEEnumLiteral(bsPrimitiveTypeEEnum, BSPrimitiveType.TAGGED_STRING);
+    addEEnumLiteral(bsPrimitiveTypeEEnum, BSPrimitiveType.NUMBER);
+    addEEnumLiteral(bsPrimitiveTypeEEnum, BSPrimitiveType.OBJECT);
+    addEEnumLiteral(bsPrimitiveTypeEEnum, BSPrimitiveType.VOID);
 
     // Create resource
     createResource(eNS_URI);

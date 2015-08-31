@@ -150,6 +150,22 @@ public class BlorqueScriptSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BlorqueScriptPackage.BS_BREAK:
+      {
+        BSBreak bsBreak = (BSBreak)theEObject;
+        T result = caseBSBreak(bsBreak);
+        if (result == null) result = caseBSStatement(bsBreak);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BlorqueScriptPackage.BS_CONTINUE:
+      {
+        BSContinue bsContinue = (BSContinue)theEObject;
+        T result = caseBSContinue(bsContinue);
+        if (result == null) result = caseBSStatement(bsContinue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BlorqueScriptPackage.BS_VARIABLE_DECLARATION:
       {
         BSVariableDeclaration bsVariableDeclaration = (BSVariableDeclaration)theEObject;
@@ -477,24 +493,6 @@ public class BlorqueScriptSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case BlorqueScriptPackage.BS_BREAK_LITERAL:
-      {
-        BSBreakLiteral bsBreakLiteral = (BSBreakLiteral)theEObject;
-        T result = caseBSBreakLiteral(bsBreakLiteral);
-        if (result == null) result = caseBSExpression(bsBreakLiteral);
-        if (result == null) result = caseBSStatement(bsBreakLiteral);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case BlorqueScriptPackage.BS_CONTINUE_LITERAL:
-      {
-        BSContinueLiteral bsContinueLiteral = (BSContinueLiteral)theEObject;
-        T result = caseBSContinueLiteral(bsContinueLiteral);
-        if (result == null) result = caseBSExpression(bsContinueLiteral);
-        if (result == null) result = caseBSStatement(bsContinueLiteral);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case BlorqueScriptPackage.BS_THIS_LITERAL:
       {
         BSThisLiteral bsThisLiteral = (BSThisLiteral)theEObject;
@@ -700,6 +698,38 @@ public class BlorqueScriptSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseBSReturn(BSReturn object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>BS Break</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>BS Break</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBSBreak(BSBreak object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>BS Continue</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>BS Continue</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBSContinue(BSContinue object)
   {
     return null;
   }
@@ -1308,38 +1338,6 @@ public class BlorqueScriptSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseBSNullLiteral(BSNullLiteral object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>BS Break Literal</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>BS Break Literal</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBSBreakLiteral(BSBreakLiteral object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>BS Continue Literal</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>BS Continue Literal</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBSContinueLiteral(BSContinueLiteral object)
   {
     return null;
   }

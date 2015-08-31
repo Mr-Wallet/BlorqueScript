@@ -10,6 +10,9 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
+import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 import org.example.blorquescript.services.BlorqueScriptGrammarAccess;
@@ -18,10 +21,12 @@ import org.example.blorquescript.services.BlorqueScriptGrammarAccess;
 public class BlorqueScriptSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected BlorqueScriptGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_BSCastOrNewExpression___LeftParenthesisKeyword_2_3_1_0_RightParenthesisKeyword_2_3_1_2__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (BlorqueScriptGrammarAccess) access;
+		match_BSCastOrNewExpression___LeftParenthesisKeyword_2_3_1_0_RightParenthesisKeyword_2_3_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getBSCastOrNewExpressionAccess().getLeftParenthesisKeyword_2_3_1_0()), new TokenAlias(false, false, grammarAccess.getBSCastOrNewExpressionAccess().getRightParenthesisKeyword_2_3_1_2()));
 	}
 	
 	@Override
@@ -36,8 +41,22 @@ public class BlorqueScriptSyntacticSequencer extends AbstractSyntacticSequencer 
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			acceptNodes(getLastNavigableState(), syntaxNodes);
+			if(match_BSCastOrNewExpression___LeftParenthesisKeyword_2_3_1_0_RightParenthesisKeyword_2_3_1_2__q.equals(syntax))
+				emit_BSCastOrNewExpression___LeftParenthesisKeyword_2_3_1_0_RightParenthesisKeyword_2_3_1_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     ('(' ')')?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     rType=[BSClass|QualifiedName] (ambiguity) ';' (rule end)
+	 *     rType=[BSClass|QualifiedName] (ambiguity) (rule end)
+	 */
+	protected void emit_BSCastOrNewExpression___LeftParenthesisKeyword_2_3_1_0_RightParenthesisKeyword_2_3_1_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 }

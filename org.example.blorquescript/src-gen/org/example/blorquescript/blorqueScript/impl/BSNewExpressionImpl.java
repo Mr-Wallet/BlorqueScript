@@ -30,8 +30,8 @@ import org.example.blorquescript.blorqueScript.BlorqueScriptPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSNewExpressionImpl#getRType <em>RType</em>}</li>
  *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSNewExpressionImpl#isIsArray <em>Is Array</em>}</li>
- *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSNewExpressionImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSNewExpressionImpl#getArgs <em>Args</em>}</li>
  * </ul>
  *
@@ -39,6 +39,16 @@ import org.example.blorquescript.blorqueScript.BlorqueScriptPackage;
  */
 public class BSNewExpressionImpl extends BSExpressionImpl implements BSNewExpression
 {
+  /**
+   * The cached value of the '{@link #getRType() <em>RType</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRType()
+   * @generated
+   * @ordered
+   */
+  protected BSClass rType;
+
   /**
    * The default value of the '{@link #isIsArray() <em>Is Array</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -58,16 +68,6 @@ public class BSNewExpressionImpl extends BSExpressionImpl implements BSNewExpres
    * @ordered
    */
   protected boolean isArray = IS_ARRAY_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected BSClass type;
 
   /**
    * The cached value of the '{@link #getArgs() <em>Args</em>}' containment reference list.
@@ -105,6 +105,49 @@ public class BSNewExpressionImpl extends BSExpressionImpl implements BSNewExpres
    * <!-- end-user-doc -->
    * @generated
    */
+  public BSClass getRType()
+  {
+    if (rType != null && rType.eIsProxy())
+    {
+      InternalEObject oldRType = (InternalEObject)rType;
+      rType = (BSClass)eResolveProxy(oldRType);
+      if (rType != oldRType)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlorqueScriptPackage.BS_NEW_EXPRESSION__RTYPE, oldRType, rType));
+      }
+    }
+    return rType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BSClass basicGetRType()
+  {
+    return rType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setRType(BSClass newRType)
+  {
+    BSClass oldRType = rType;
+    rType = newRType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BlorqueScriptPackage.BS_NEW_EXPRESSION__RTYPE, oldRType, rType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public boolean isIsArray()
   {
     return isArray;
@@ -121,49 +164,6 @@ public class BSNewExpressionImpl extends BSExpressionImpl implements BSNewExpres
     isArray = newIsArray;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, BlorqueScriptPackage.BS_NEW_EXPRESSION__IS_ARRAY, oldIsArray, isArray));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public BSClass getType()
-  {
-    if (type != null && type.eIsProxy())
-    {
-      InternalEObject oldType = (InternalEObject)type;
-      type = (BSClass)eResolveProxy(oldType);
-      if (type != oldType)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlorqueScriptPackage.BS_NEW_EXPRESSION__TYPE, oldType, type));
-      }
-    }
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public BSClass basicGetType()
-  {
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setType(BSClass newType)
-  {
-    BSClass oldType = type;
-    type = newType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BlorqueScriptPackage.BS_NEW_EXPRESSION__TYPE, oldType, type));
   }
 
   /**
@@ -206,11 +206,11 @@ public class BSNewExpressionImpl extends BSExpressionImpl implements BSNewExpres
   {
     switch (featureID)
     {
+      case BlorqueScriptPackage.BS_NEW_EXPRESSION__RTYPE:
+        if (resolve) return getRType();
+        return basicGetRType();
       case BlorqueScriptPackage.BS_NEW_EXPRESSION__IS_ARRAY:
         return isIsArray();
-      case BlorqueScriptPackage.BS_NEW_EXPRESSION__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
       case BlorqueScriptPackage.BS_NEW_EXPRESSION__ARGS:
         return getArgs();
     }
@@ -228,11 +228,11 @@ public class BSNewExpressionImpl extends BSExpressionImpl implements BSNewExpres
   {
     switch (featureID)
     {
+      case BlorqueScriptPackage.BS_NEW_EXPRESSION__RTYPE:
+        setRType((BSClass)newValue);
+        return;
       case BlorqueScriptPackage.BS_NEW_EXPRESSION__IS_ARRAY:
         setIsArray((Boolean)newValue);
-        return;
-      case BlorqueScriptPackage.BS_NEW_EXPRESSION__TYPE:
-        setType((BSClass)newValue);
         return;
       case BlorqueScriptPackage.BS_NEW_EXPRESSION__ARGS:
         getArgs().clear();
@@ -252,11 +252,11 @@ public class BSNewExpressionImpl extends BSExpressionImpl implements BSNewExpres
   {
     switch (featureID)
     {
+      case BlorqueScriptPackage.BS_NEW_EXPRESSION__RTYPE:
+        setRType((BSClass)null);
+        return;
       case BlorqueScriptPackage.BS_NEW_EXPRESSION__IS_ARRAY:
         setIsArray(IS_ARRAY_EDEFAULT);
-        return;
-      case BlorqueScriptPackage.BS_NEW_EXPRESSION__TYPE:
-        setType((BSClass)null);
         return;
       case BlorqueScriptPackage.BS_NEW_EXPRESSION__ARGS:
         getArgs().clear();
@@ -275,10 +275,10 @@ public class BSNewExpressionImpl extends BSExpressionImpl implements BSNewExpres
   {
     switch (featureID)
     {
+      case BlorqueScriptPackage.BS_NEW_EXPRESSION__RTYPE:
+        return rType != null;
       case BlorqueScriptPackage.BS_NEW_EXPRESSION__IS_ARRAY:
         return isArray != IS_ARRAY_EDEFAULT;
-      case BlorqueScriptPackage.BS_NEW_EXPRESSION__TYPE:
-        return type != null;
       case BlorqueScriptPackage.BS_NEW_EXPRESSION__ARGS:
         return args != null && !args.isEmpty();
     }

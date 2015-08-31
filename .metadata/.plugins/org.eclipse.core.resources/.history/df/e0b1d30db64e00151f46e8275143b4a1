@@ -1,0 +1,5 @@
+package org.example.blorquescript.util
+
+class BlorqueScriptASTAccessor {
+	
+}

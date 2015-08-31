@@ -113,6 +113,24 @@ public interface BlorqueScriptFactory extends EFactory
   BSReturn createBSReturn();
 
   /**
+   * Returns a new object of class '<em>BS Break</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>BS Break</em>'.
+   * @generated
+   */
+  BSBreak createBSBreak();
+
+  /**
+   * Returns a new object of class '<em>BS Continue</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>BS Continue</em>'.
+   * @generated
+   */
+  BSContinue createBSContinue();
+
+  /**
    * Returns a new object of class '<em>BS Variable Declaration</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -453,24 +471,6 @@ public interface BlorqueScriptFactory extends EFactory
    * @generated
    */
   BSNullLiteral createBSNullLiteral();
-
-  /**
-   * Returns a new object of class '<em>BS Break Literal</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>BS Break Literal</em>'.
-   * @generated
-   */
-  BSBreakLiteral createBSBreakLiteral();
-
-  /**
-   * Returns a new object of class '<em>BS Continue Literal</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>BS Continue Literal</em>'.
-   * @generated
-   */
-  BSContinueLiteral createBSContinueLiteral();
 
   /**
    * Returns a new object of class '<em>BS This Literal</em>'.

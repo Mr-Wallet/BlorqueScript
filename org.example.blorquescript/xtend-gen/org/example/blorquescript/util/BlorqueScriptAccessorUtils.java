@@ -1,0 +1,41 @@
+package org.example.blorquescript.util;
+
+import com.google.common.collect.Iterables;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.EcoreUtil2;
+import org.example.blorquescript.blorqueScript.BSBlock;
+import org.example.blorquescript.blorqueScript.BSClass;
+import org.example.blorquescript.blorqueScript.BSField;
+import org.example.blorquescript.blorqueScript.BSFile;
+import org.example.blorquescript.blorqueScript.BSMember;
+import org.example.blorquescript.blorqueScript.BSMethod;
+
+@SuppressWarnings("all")
+public class BlorqueScriptAccessorUtils {
+  public static Iterable<BSField> fields(final BSClass c) {
+    EList<BSMember> _members = c.getMembers();
+    return Iterables.<BSField>filter(_members, BSField.class);
+  }
+  
+  public static Iterable<BSMethod> methods(final BSClass c) {
+    EList<BSMember> _members = c.getMembers();
+    return Iterables.<BSMethod>filter(_members, BSMethod.class);
+  }
+  
+  public static BSFile containingFile(final EObject o) {
+    return EcoreUtil2.<BSFile>getContainerOfType(o, BSFile.class);
+  }
+  
+  public static BSClass containingClass(final EObject o) {
+    return EcoreUtil2.<BSClass>getContainerOfType(o, BSClass.class);
+  }
+  
+  public static BSMethod containingMethod(final EObject o) {
+    return EcoreUtil2.<BSMethod>getContainerOfType(o, BSMethod.class);
+  }
+  
+  public static BSBlock containingBlock(final EObject o) {
+    return EcoreUtil2.<BSBlock>getContainerOfType(o, BSBlock.class);
+  }
+}

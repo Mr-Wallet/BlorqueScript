@@ -1,0 +1,19 @@
+package org.example.blorquescript.util
+
+import static extension org.eclipse.xtext.EcoreUtil2.*
+import org.example.blorquescript.blorqueScript.*
+import org.eclipse.emf.ecore.*
+
+class BlorqueScriptASTAccessor {
+	def static fields(BSClass c) {
+		return c.members.filter(typeof(BSField));
+	}
+	
+	def static method(BSClass c) {
+		return c.members.filter(typeof(BSMethod));
+	}
+	
+	def static containingClass(EObject o) {
+		return o.ge
+	}
+}

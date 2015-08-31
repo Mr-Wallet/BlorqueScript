@@ -1,0 +1,7 @@
+package org.example.blorquescript.util
+
+import static extension org.eclipse.xtext.EcoreUtil2.*
+
+class BlorqueScriptASTAccessor {
+	
+}

@@ -17,16 +17,17 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.example.blorquescript,
- org.example.blorquescript.services,
  org.example.blorquescript.blorqueScript,
  org.example.blorquescript.blorqueScript.impl,
  org.example.blorquescript.blorqueScript.util,
- org.example.blorquescript.serializer,
+ org.example.blorquescript.formatting,
+ org.example.blorquescript.generator,
  org.example.blorquescript.parser.antlr,
  org.example.blorquescript.parser.antlr.internal,
- org.example.blorquescript.validation,
+ org.example.blorquescript.parser.antlr.lexer,
  org.example.blorquescript.scoping,
- org.example.blorquescript.generator,
- org.example.blorquescript.formatting,
- org.example.blorquescript.parser.antlr.lexer
+ org.example.blorquescript.serializer,
+ org.example.blorquescript.services,
+ org.example.blorquescript.util,
+ org.example.blorquescript.validation
 

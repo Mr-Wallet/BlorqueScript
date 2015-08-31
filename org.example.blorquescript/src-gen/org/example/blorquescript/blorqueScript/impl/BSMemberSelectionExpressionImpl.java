@@ -23,6 +23,7 @@ import org.example.blorquescript.blorqueScript.BlorqueScriptPackage;
  * </p>
  * <ul>
  *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSMemberSelectionExpressionImpl#getReceiver <em>Receiver</em>}</li>
+ *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSMemberSelectionExpressionImpl#getMember <em>Member</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,6 +39,16 @@ public class BSMemberSelectionExpressionImpl extends BSExpressionImpl implements
    * @ordered
    */
   protected BSExpression receiver;
+
+  /**
+   * The cached value of the '{@link #getMember() <em>Member</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMember()
+   * @generated
+   * @ordered
+   */
+  protected BSExpression member;
 
   /**
    * <!-- begin-user-doc -->
@@ -113,6 +124,54 @@ public class BSMemberSelectionExpressionImpl extends BSExpressionImpl implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public BSExpression getMember()
+  {
+    return member;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetMember(BSExpression newMember, NotificationChain msgs)
+  {
+    BSExpression oldMember = member;
+    member = newMember;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BlorqueScriptPackage.BS_MEMBER_SELECTION_EXPRESSION__MEMBER, oldMember, newMember);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setMember(BSExpression newMember)
+  {
+    if (newMember != member)
+    {
+      NotificationChain msgs = null;
+      if (member != null)
+        msgs = ((InternalEObject)member).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BlorqueScriptPackage.BS_MEMBER_SELECTION_EXPRESSION__MEMBER, null, msgs);
+      if (newMember != null)
+        msgs = ((InternalEObject)newMember).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BlorqueScriptPackage.BS_MEMBER_SELECTION_EXPRESSION__MEMBER, null, msgs);
+      msgs = basicSetMember(newMember, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BlorqueScriptPackage.BS_MEMBER_SELECTION_EXPRESSION__MEMBER, newMember, newMember));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -120,6 +179,8 @@ public class BSMemberSelectionExpressionImpl extends BSExpressionImpl implements
     {
       case BlorqueScriptPackage.BS_MEMBER_SELECTION_EXPRESSION__RECEIVER:
         return basicSetReceiver(null, msgs);
+      case BlorqueScriptPackage.BS_MEMBER_SELECTION_EXPRESSION__MEMBER:
+        return basicSetMember(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -136,6 +197,8 @@ public class BSMemberSelectionExpressionImpl extends BSExpressionImpl implements
     {
       case BlorqueScriptPackage.BS_MEMBER_SELECTION_EXPRESSION__RECEIVER:
         return getReceiver();
+      case BlorqueScriptPackage.BS_MEMBER_SELECTION_EXPRESSION__MEMBER:
+        return getMember();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -152,6 +215,9 @@ public class BSMemberSelectionExpressionImpl extends BSExpressionImpl implements
     {
       case BlorqueScriptPackage.BS_MEMBER_SELECTION_EXPRESSION__RECEIVER:
         setReceiver((BSExpression)newValue);
+        return;
+      case BlorqueScriptPackage.BS_MEMBER_SELECTION_EXPRESSION__MEMBER:
+        setMember((BSExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -170,6 +236,9 @@ public class BSMemberSelectionExpressionImpl extends BSExpressionImpl implements
       case BlorqueScriptPackage.BS_MEMBER_SELECTION_EXPRESSION__RECEIVER:
         setReceiver((BSExpression)null);
         return;
+      case BlorqueScriptPackage.BS_MEMBER_SELECTION_EXPRESSION__MEMBER:
+        setMember((BSExpression)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -186,6 +255,8 @@ public class BSMemberSelectionExpressionImpl extends BSExpressionImpl implements
     {
       case BlorqueScriptPackage.BS_MEMBER_SELECTION_EXPRESSION__RECEIVER:
         return receiver != null;
+      case BlorqueScriptPackage.BS_MEMBER_SELECTION_EXPRESSION__MEMBER:
+        return member != null;
     }
     return super.eIsSet(featureID);
   }

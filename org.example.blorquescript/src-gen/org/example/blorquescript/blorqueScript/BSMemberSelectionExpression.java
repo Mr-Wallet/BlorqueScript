@@ -13,6 +13,7 @@ package org.example.blorquescript.blorqueScript;
  * </p>
  * <ul>
  *   <li>{@link org.example.blorquescript.blorqueScript.BSMemberSelectionExpression#getReceiver <em>Receiver</em>}</li>
+ *   <li>{@link org.example.blorquescript.blorqueScript.BSMemberSelectionExpression#getMember <em>Member</em>}</li>
  * </ul>
  *
  * @see org.example.blorquescript.blorqueScript.BlorqueScriptPackage#getBSMemberSelectionExpression()
@@ -46,5 +47,31 @@ public interface BSMemberSelectionExpression extends BSExpression
    * @generated
    */
   void setReceiver(BSExpression value);
+
+  /**
+   * Returns the value of the '<em><b>Member</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Member</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Member</em>' containment reference.
+   * @see #setMember(BSExpression)
+   * @see org.example.blorquescript.blorqueScript.BlorqueScriptPackage#getBSMemberSelectionExpression_Member()
+   * @model containment="true"
+   * @generated
+   */
+  BSExpression getMember();
+
+  /**
+   * Sets the value of the '{@link org.example.blorquescript.blorqueScript.BSMemberSelectionExpression#getMember <em>Member</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Member</em>' containment reference.
+   * @see #getMember()
+   * @generated
+   */
+  void setMember(BSExpression value);
 
 } // BSMemberSelectionExpression

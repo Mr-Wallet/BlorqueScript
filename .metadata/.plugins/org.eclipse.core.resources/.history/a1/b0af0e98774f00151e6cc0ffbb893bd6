@@ -1,0 +1,309 @@
+grammar org.example.blorquescript.BlorqueScript hidden(WS, ML_COMMENT, SL_COMMENT)
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+generate blorqueScript "http://www.xtext.org/example/blorquescript/BlorqueScript"
+
+BSFile:
+	('package' name=QualifiedName ';')?
+	imports+=BSImport*
+	classes+=BSClass*
+;
+
+BSImport:
+	'import' importedNamespace=QualifiedNameWithWildcard ';'
+;
+
+QualifiedNameWithWildcard:
+	QualifiedName '.*'?
+;
+
+QualifiedName:
+	ID ('.' ID)*
+;
+
+BSClass:
+	'class' name=ID (':' superclass=[BSClass|QualifiedName])? '{'
+		members+=BSMember*
+	'}'
+;
+
+BSMember:
+	BSField | BSMethod
+;
+
+BSField:
+	(pType=BSPrimitiveType|rType=[BSClass|QualifiedName]) name=ID (isArray?='[' ']')? ';'
+;
+
+BSMethod:
+	(pType=BSPrimitiveType|rType=[BSClass|QualifiedName]) name=ID
+	'(' (params+=BSParameter (',' params+=BSParameter)*)? ')'
+	body=BSMethodBody
+;
+
+BSParameter:
+	(pType=BSPrimitiveType|rType=[BSClass|QualifiedName]) name=ID (isArray?='[' ']')?
+;
+
+BSMethodBody:
+	{BSMethodBody} '{' statements+=BSStatement* '}'
+;
+
+BSStatement:
+	BSVariableDeclaration |
+	BSReturn |
+	BSBreak |
+	BSContinue |
+	BSExpression ';' |
+	BSIfStatement |
+	BSWhileLoop |
+	BSForLoop |
+	BSSwitchStatement
+;
+
+BSReturn:
+	'return' expression=BSExpression ';'
+;
+
+BSBreak:
+	'break' ';'
+;
+
+BSContinue:
+	'continue' ';'
+;
+
+BSVariableDeclaration:
+	(pType=BSPrimitiveType|rType=[BSClass|QualifiedName]) name=ID ('=' expression=BSExpression)? ';'
+;
+
+BSIfStatement:
+	'if' '(' expression=BSExpression ')' thenBlock=BSIfBlock
+	(=> 'else' elseBlock=BSIfBlock)?
+;
+
+BSWhileLoop:
+	'while' '(' expression=BSExpression ')' block=BSLoopBlock
+;
+
+BSForLoop:
+	'for' '(' left=BSExpression ';' middle=BSExpression ';' right=BSExpression ')' block=BSLoopBlock
+;
+
+BSSwitchStatement:
+	'switch' (stringSwitch?='$')? '(' expression=BSExpression ')' block=BSSwitchBlock
+;
+
+BSIfBlock:
+	statements+=BSStatement |
+	{BSIfBlock} '{' statements+=BSStatement* '}'
+;
+
+BSLoopBlock:
+	statements+=BSStatement |
+	{BSLoopBlock} '{' statements+=BSStatement* '}'
+;
+
+BSSwitchBlock:
+	{BSSwitchBlock} '{' cases+=BSCase* '}'
+;
+
+BSCase:
+	'case' expression=BSExpression ':' block=BSCaseBlock |
+	'default' ':' block=BSCaseBlock
+;
+
+BSCaseBlock:
+	{BSCaseBlock} statements+=BSStatement*
+;
+
+BSBlock:
+	BSMethodBody | BSIfBlock | BSLoopBlock | BSSwitchBlock | BSCaseBlock
+;
+
+BSSymbol:
+	BSVariableDeclaration | BSParameter | BSMember
+;
+
+BSExpression:
+	BSAssignmentExpression
+;
+
+//right-to-left assignment operators: = and [op]=
+BSAssignmentExpression returns BSExpression:
+	BSTernaryExpression
+	({BSAssignmentExpression.left=current} assignmentOperator=('='|'@='|'+='|'-='|'*='|'/='|'%='|'<<='|'>>='|'&='|'^='|'|=') right=BSExpression)?
+;
+
+//right-to-left ternary operator: (?:)
+BSTernaryExpression returns BSExpression:
+	BSBooleanOrExpression
+	({BSTernaryExpression.left=current} '?' middle=BSExpression ':' right=BSExpression)?
+;
+
+//left-to-right boolean OR operator: ||
+BSBooleanOrExpression returns BSExpression:
+	BSBooleanAndExpression (
+		{BSBooleanOrExpression.left=current} '||' right=BSBooleanAndExpression
+	)*
+;
+
+//left-to-right boolean AND operator: &&
+BSBooleanAndExpression returns BSExpression:
+	BSBitwiseOrExpression (
+		{BSBooleanAndExpression.left=current} '&&' right=BSBitwiseOrExpression
+	)*
+;
+
+//left-to-right bitwise OR operator: |
+BSBitwiseOrExpression returns BSExpression:
+	BSBitwiseXorExpression (
+		{BSBitwiseOrExpression.left=current} '|' right=BSBitwiseXorExpression
+	)*
+;
+
+//left-to-right bitwise XOR operator: ^
+BSBitwiseXorExpression returns BSExpression:
+	BSBitwiseAndExpression (
+		{BSBitwiseXorExpression.left=current} '^' right=BSBitwiseAndExpression
+	)*
+;
+
+//left-to-right bitwise AND operator: &
+BSBitwiseAndExpression returns BSExpression:
+	BSEqualityExpression (
+		{BSBitwiseAndExpression.left=current} '&' right=BSEqualityExpression
+	)*
+;
+
+//left-to-right equality operators: == !=
+BSEqualityExpression returns BSExpression:
+	BSOrderedRelationExpression (
+		{BSEqualityExpression.left=current} operator=('=='|'!=') right=BSOrderedRelationExpression
+	)*
+;
+
+//left-to-right relational operators: < > <= >=
+BSOrderedRelationExpression returns BSExpression:
+	BSBitwiseShiftExpression (
+		{BSOrderedRelationExpression.left=current} operator=('<'|'>'|'<='|'>=') right=BSBitwiseShiftExpression
+	)*
+;
+
+//left-to-right bit-shift operators: << >>
+BSBitwiseShiftExpression returns BSExpression:
+	BSPlusMinusOrStringConcatExpression (
+		{BSBitwiseShiftExpression.left=current} operator=('<<'|'>>') right=BSPlusMinusOrStringConcatExpression
+	)*
+;
+
+//left-to-right additive operators: + - (string concat +) @ SPC NL TAB
+BSPlusMinusOrStringConcatExpression returns BSExpression:
+	BSMulDivOrModExpression (
+		{BSPlusMinusOrStringConcatExpression.left=current} operator=('+'|'-'|'@'|'SPC'|'NL'|'TAB') right=BSMulDivOrModExpression
+	)*
+;
+
+//left-to-right multiplication operators: * / %
+BSMulDivOrModExpression returns BSExpression:
+	BSCastOrNewExpression (
+		{BSMulDivOrModExpression.left=current} operator=('*'|'/'|'%') right=BSCastOrNewExpression
+	)*
+;
+
+//right-to-left prefix unary operators: (cast) new
+BSCastOrNewExpression returns BSExpression:
+	BSUnaryModifierExpression |
+	{BSCastExpression} '(' (pType=BSPrimitiveType) ')' castExpr=BSCastOrNewExpression |
+	{BSNewExpression} 'new' rType=[BSClass|QualifiedName] (
+		(isArray?='[' ']')? |
+		'(' (args+=BSExpression (',' args+=BSExpression)*)? ')' )	
+;
+
+//right-to-left prefix unary operators: + - ! ~
+BSUnaryModifierExpression returns BSExpression:
+	BSInvokationExpression |
+	{BSUnaryModifierExpression} operator=('+'|'-'|'!'|'~')receiver=BSUnaryModifierExpression
+;
+
+//left-to-right unary postfixes: . (...) [...] ++ --
+BSInvokationExpression returns BSExpression:
+	BSTerminalExpression
+	(
+		{BSMemberSelectionExpression.receiver=current} '.' member=BSTerminalExpression
+		|
+		{BSMethodInvokationExpression.receiver=current} '('
+			(args+=BSExpression (',' args+=BSExpression)*)?
+		')'
+		|
+		{BSArrayAccessExpression.receiver=current} '['
+			(args+=BSExpression (',' args+=BSExpression)*)?
+		']'
+		|
+		{BSPostfixArithmeticExpression.receiver=current} operator=('++'|'--')
+	)*
+;
+
+//Maximum-precedence literals and keywords
+BSTerminalExpression returns BSExpression:
+	{BSStringConstant} value=STRING |
+	{BSHexadecimalConstant} value=HEX_VALUE |
+	{BSNumberConstant} value=INT (=> '.' {BSRealConstant.left=current} right=INT)? |
+	{BSBooleanConstant} value=('true' | 'false') |
+	{BSNullLiteral} 'null' |
+	{BSThisLiteral} 'this' |
+	{BSClientLiteral} 'client' |
+	{BSParentLiteral} 'parent' |
+	{BSSymbolRef} symbol=[BSSymbol] |
+	{BSParentheticalExpression} '(' expression=BSExpression ')'
+;
+
+enum BSPrimitiveType:
+	STRING='string' | TAGGED_STRING='taggedString' | NUMBER='number' | OBJECT='object' | VOID='void'
+;
+
+//TODO: figure out how to deal with special class names: global, servercmd, server, etc.
+
+//Namespace (::) deliberately excluded, as it is only allowed in Global anyway.
+//Instead, ':' is allowed in ID, and validation will forbid it anywhere but as a single '::' in global definitions.
+
+terminal HEX_VALUE:
+	'0x' ('0'..'9'|'a'..'f'|'A'..'F')*
+;
+
+terminal ID:
+	('$'|'%')?('a'..'z'|'A'..'Z'|'_')('a'..'z'|'A'..'Z'|'_'|'0'..'9'|':')*
+;
+
+terminal INT returns ecore::EInt:
+	('0'..'9')+
+;
+
+terminal fragment ESCAPE_CODE:
+	'\\' ('x' . . | 'c' . | !('c'|'x'))
+;
+
+terminal STRING: 
+	'"' ( ESCAPE_CODE | !('\\'|'"') )* '"'
+;
+
+terminal TAGGED_STRING:
+	"'" ( ESCAPE_CODE | !('\\'|"'") )* "'"
+;
+
+terminal ML_COMMENT:
+	'/*' -> '*/'
+;
+terminal SL_COMMENT:
+	'//' !('\n'|'\r')* ('\r'? '\n')?
+;
+
+terminal WS:
+	(' '|'\t'|'\r'|'\n')+
+;
+
+terminal ANY_OTHER:
+	.
+;
+

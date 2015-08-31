@@ -25,13 +25,13 @@ import org.example.blorquescript.blorqueScript.BSBitwiseXorExpression;
 import org.example.blorquescript.blorqueScript.BSBooleanAndExpression;
 import org.example.blorquescript.blorqueScript.BSBooleanConstant;
 import org.example.blorquescript.blorqueScript.BSBooleanOrExpression;
-import org.example.blorquescript.blorqueScript.BSBreakLiteral;
+import org.example.blorquescript.blorqueScript.BSBreak;
 import org.example.blorquescript.blorqueScript.BSCase;
 import org.example.blorquescript.blorqueScript.BSCaseBlock;
 import org.example.blorquescript.blorqueScript.BSCastExpression;
 import org.example.blorquescript.blorqueScript.BSClass;
 import org.example.blorquescript.blorqueScript.BSClientLiteral;
-import org.example.blorquescript.blorqueScript.BSContinueLiteral;
+import org.example.blorquescript.blorqueScript.BSContinue;
 import org.example.blorquescript.blorqueScript.BSEqualityExpression;
 import org.example.blorquescript.blorqueScript.BSField;
 import org.example.blorquescript.blorqueScript.BSFile;
@@ -82,7 +82,7 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 				sequence_BSInvokationExpression(context, (BSArrayAccessExpression) semanticObject); 
 				return; 
 			case BlorqueScriptPackage.BS_ASSIGNMENT_EXPRESSION:
-				sequence_BSAssignmentExpression(context, (BSAssignmentExpression) semanticObject); 
+				sequence_BSAssignmentOrTernaryExpression(context, (BSAssignmentExpression) semanticObject); 
 				return; 
 			case BlorqueScriptPackage.BS_BITWISE_AND_EXPRESSION:
 				sequence_BSBitwiseAndExpression(context, (BSBitwiseAndExpression) semanticObject); 
@@ -105,8 +105,8 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 			case BlorqueScriptPackage.BS_BOOLEAN_OR_EXPRESSION:
 				sequence_BSBooleanOrExpression(context, (BSBooleanOrExpression) semanticObject); 
 				return; 
-			case BlorqueScriptPackage.BS_BREAK_LITERAL:
-				sequence_BSTerminalExpression(context, (BSBreakLiteral) semanticObject); 
+			case BlorqueScriptPackage.BS_BREAK:
+				sequence_BSBreak(context, (BSBreak) semanticObject); 
 				return; 
 			case BlorqueScriptPackage.BS_CASE:
 				sequence_BSCase(context, (BSCase) semanticObject); 
@@ -123,8 +123,8 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 			case BlorqueScriptPackage.BS_CLIENT_LITERAL:
 				sequence_BSTerminalExpression(context, (BSClientLiteral) semanticObject); 
 				return; 
-			case BlorqueScriptPackage.BS_CONTINUE_LITERAL:
-				sequence_BSTerminalExpression(context, (BSContinueLiteral) semanticObject); 
+			case BlorqueScriptPackage.BS_CONTINUE:
+				sequence_BSContinue(context, (BSContinue) semanticObject); 
 				return; 
 			case BlorqueScriptPackage.BS_EQUALITY_EXPRESSION:
 				sequence_BSEqualityExpression(context, (BSEqualityExpression) semanticObject); 
@@ -214,7 +214,7 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 				sequence_BSTerminalExpression(context, (BSSymbolRef) semanticObject); 
 				return; 
 			case BlorqueScriptPackage.BS_TERNARY_EXPRESSION:
-				sequence_BSTernaryExpression(context, (BSTernaryExpression) semanticObject); 
+				sequence_BSAssignmentOrTernaryExpression(context, (BSTernaryExpression) semanticObject); 
 				return; 
 			case BlorqueScriptPackage.BS_THIS_LITERAL:
 				sequence_BSTerminalExpression(context, (BSThisLiteral) semanticObject); 
@@ -235,7 +235,7 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 	/**
 	 * Constraint:
 	 *     (
-	 *         left=BSAssignmentExpression_BSAssignmentExpression_1_0 
+	 *         left=BSAssignmentOrTernaryExpression_BSAssignmentExpression_1_0_0 
 	 *         (
 	 *             assignmentOperator='=' | 
 	 *             assignmentOperator='@=' | 
@@ -253,8 +253,30 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *         right=BSExpression
 	 *     )
 	 */
-	protected void sequence_BSAssignmentExpression(EObject context, BSAssignmentExpression semanticObject) {
+	protected void sequence_BSAssignmentOrTernaryExpression(EObject context, BSAssignmentExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (left=BSAssignmentOrTernaryExpression_BSTernaryExpression_1_1_0 middle=BSExpression right=BSExpression)
+	 */
+	protected void sequence_BSAssignmentOrTernaryExpression(EObject context, BSTernaryExpression semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, BlorqueScriptPackage.Literals.BS_TERNARY_EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BlorqueScriptPackage.Literals.BS_TERNARY_EXPRESSION__LEFT));
+			if(transientValues.isValueTransient(semanticObject, BlorqueScriptPackage.Literals.BS_TERNARY_EXPRESSION__MIDDLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BlorqueScriptPackage.Literals.BS_TERNARY_EXPRESSION__MIDDLE));
+			if(transientValues.isValueTransient(semanticObject, BlorqueScriptPackage.Literals.BS_TERNARY_EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BlorqueScriptPackage.Literals.BS_TERNARY_EXPRESSION__RIGHT));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getBSAssignmentOrTernaryExpressionAccess().getBSTernaryExpressionLeftAction_1_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getBSAssignmentOrTernaryExpressionAccess().getMiddleBSExpressionParserRuleCall_1_1_2_0(), semanticObject.getMiddle());
+		feeder.accept(grammarAccess.getBSAssignmentOrTernaryExpressionAccess().getRightBSExpressionParserRuleCall_1_1_4_0(), semanticObject.getRight());
+		feeder.finish();
 	}
 	
 	
@@ -364,6 +386,15 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
+	 *     {BSBreak}
+	 */
+	protected void sequence_BSBreak(EObject context, BSBreak semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (statements+=BSStatement*)
 	 */
 	protected void sequence_BSCaseBlock(EObject context, BSCaseBlock semanticObject) {
@@ -382,7 +413,7 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     ((castType='string' | castType='number' | castType='object') castExpr=BSCastOrNewExpression)
+	 *     (pType=BSPrimitiveType isArray?='['? castExpr=BSCastOrNewExpression)
 	 */
 	protected void sequence_BSCastOrNewExpression(EObject context, BSCastExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -391,7 +422,7 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (isArray?='['? type=[BSClass|QualifiedName] (args+=BSExpression args+=BSExpression*)?)
+	 *     (rType=[BSClass|QualifiedName] (isArray?='['? | (args+=BSExpression args+=BSExpression*)?))
 	 */
 	protected void sequence_BSCastOrNewExpression(EObject context, BSNewExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -409,6 +440,15 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
+	 *     {BSContinue}
+	 */
+	protected void sequence_BSContinue(EObject context, BSContinue semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (left=BSEqualityExpression_BSEqualityExpression_1_0 (operator='==' | operator='!=') right=BSOrderedRelationExpression)
 	 */
 	protected void sequence_BSEqualityExpression(EObject context, BSEqualityExpression semanticObject) {
@@ -418,7 +458,7 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (type=[BSClass|QualifiedName] name=ID isArray?='['?)
+	 *     ((pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) name=ID isArray?='['?)
 	 */
 	protected void sequence_BSField(EObject context, BSField semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -507,16 +547,19 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     receiver=BSInvokationExpression_BSMemberSelectionExpression_1_0_0
+	 *     (receiver=BSInvokationExpression_BSMemberSelectionExpression_1_0_0 member=BSTerminalExpression)
 	 */
 	protected void sequence_BSInvokationExpression(EObject context, BSMemberSelectionExpression semanticObject) {
 		if(errorAcceptor != null) {
 			if(transientValues.isValueTransient(semanticObject, BlorqueScriptPackage.Literals.BS_MEMBER_SELECTION_EXPRESSION__RECEIVER) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BlorqueScriptPackage.Literals.BS_MEMBER_SELECTION_EXPRESSION__RECEIVER));
+			if(transientValues.isValueTransient(semanticObject, BlorqueScriptPackage.Literals.BS_MEMBER_SELECTION_EXPRESSION__MEMBER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BlorqueScriptPackage.Literals.BS_MEMBER_SELECTION_EXPRESSION__MEMBER));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getBSInvokationExpressionAccess().getBSMemberSelectionExpressionReceiverAction_1_0_0(), semanticObject.getReceiver());
+		feeder.accept(grammarAccess.getBSInvokationExpressionAccess().getMemberBSTerminalExpressionParserRuleCall_1_0_2_0(), semanticObject.getMember());
 		feeder.finish();
 	}
 	
@@ -562,7 +605,7 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (type=[BSClass|QualifiedName] name=ID (params+=BSParameter params+=BSParameter*)? body=BSMethodBody)
+	 *     ((pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) isArray?='['? name=ID (params+=BSParameter params+=BSParameter*)? body=BSMethodBody)
 	 */
 	protected void sequence_BSMethod(EObject context, BSMethod semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -593,7 +636,7 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (type=[BSClass|QualifiedName] name=ID isArray?='['?)
+	 *     ((pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) name=ID isArray?='['?)
 	 */
 	protected void sequence_BSParameter(EObject context, BSParameter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -622,17 +665,10 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     expression=BSExpression
+	 *     (expression=BSExpression?)
 	 */
 	protected void sequence_BSReturn(EObject context, BSReturn semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, BlorqueScriptPackage.Literals.BS_RETURN__EXPRESSION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BlorqueScriptPackage.Literals.BS_RETURN__EXPRESSION));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getBSReturnAccess().getExpressionBSExpressionParserRuleCall_1_0(), semanticObject.getExpression());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -665,27 +701,9 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     {BSBreakLiteral}
-	 */
-	protected void sequence_BSTerminalExpression(EObject context, BSBreakLiteral semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     {BSClientLiteral}
 	 */
 	protected void sequence_BSTerminalExpression(EObject context, BSClientLiteral semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     {BSContinueLiteral}
-	 */
-	protected void sequence_BSTerminalExpression(EObject context, BSContinueLiteral semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -751,14 +769,14 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getBSTerminalExpressionAccess().getExpressionBSExpressionParserRuleCall_11_2_0(), semanticObject.getExpression());
+		feeder.accept(grammarAccess.getBSTerminalExpressionAccess().getExpressionBSExpressionParserRuleCall_9_2_0(), semanticObject.getExpression());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (left=BSTerminalExpression_BSRealConstant_2_2_0 right=INT)
+	 *     (left=BSTerminalExpression_BSRealConstant_2_2_1 right=INT)
 	 */
 	protected void sequence_BSTerminalExpression(EObject context, BSRealConstant semanticObject) {
 		if(errorAcceptor != null) {
@@ -769,7 +787,7 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getBSTerminalExpressionAccess().getBSRealConstantLeftAction_2_2_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getBSTerminalExpressionAccess().getBSRealConstantLeftAction_2_2_1(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getBSTerminalExpressionAccess().getRightINTTerminalRuleCall_2_2_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
@@ -802,7 +820,7 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getBSTerminalExpressionAccess().getSymbolBSSymbolIDTerminalRuleCall_10_1_0_1(), semanticObject.getSymbol());
+		feeder.accept(grammarAccess.getBSTerminalExpressionAccess().getSymbolBSSymbolIDTerminalRuleCall_8_1_0_1(), semanticObject.getSymbol());
 		feeder.finish();
 	}
 	
@@ -818,28 +836,6 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (left=BSTernaryExpression_BSTernaryExpression_1_0 middle=BSExpression right=BSExpression)
-	 */
-	protected void sequence_BSTernaryExpression(EObject context, BSTernaryExpression semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, BlorqueScriptPackage.Literals.BS_TERNARY_EXPRESSION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BlorqueScriptPackage.Literals.BS_TERNARY_EXPRESSION__LEFT));
-			if(transientValues.isValueTransient(semanticObject, BlorqueScriptPackage.Literals.BS_TERNARY_EXPRESSION__MIDDLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BlorqueScriptPackage.Literals.BS_TERNARY_EXPRESSION__MIDDLE));
-			if(transientValues.isValueTransient(semanticObject, BlorqueScriptPackage.Literals.BS_TERNARY_EXPRESSION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BlorqueScriptPackage.Literals.BS_TERNARY_EXPRESSION__RIGHT));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getBSTernaryExpressionAccess().getBSTernaryExpressionLeftAction_1_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getBSTernaryExpressionAccess().getMiddleBSExpressionParserRuleCall_1_2_0(), semanticObject.getMiddle());
-		feeder.accept(grammarAccess.getBSTernaryExpressionAccess().getRightBSExpressionParserRuleCall_1_4_0(), semanticObject.getRight());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     ((operator='+' | operator='-' | operator='!' | operator='~') receiver=BSUnaryModifierExpression)
 	 */
 	protected void sequence_BSUnaryModifierExpression(EObject context, BSUnaryModifierExpression semanticObject) {
@@ -849,7 +845,7 @@ public class BlorqueScriptSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (type=[BSClass|QualifiedName] name=ID expression=BSExpression?)
+	 *     ((pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) name=ID expression=BSExpression?)
 	 */
 	protected void sequence_BSVariableDeclaration(EObject context, BSVariableDeclaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

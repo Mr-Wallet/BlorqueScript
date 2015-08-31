@@ -16,6 +16,8 @@ import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 
 
 
+TaggedString : ('T'|'t')('A'|'a')('G'|'g')('G'|'g')('E'|'e')('D'|'d')('S'|'s')('T'|'t')('R'|'r')('I'|'i')('N'|'n')('G'|'g');
+
 Continue : ('C'|'c')('O'|'o')('N'|'n')('T'|'t')('I'|'i')('N'|'n')('U'|'u')('E'|'e');
 
 Default : ('D'|'d')('E'|'e')('F'|'f')('A'|'a')('U'|'u')('L'|'l')('T'|'t');
@@ -46,6 +48,8 @@ False : ('F'|'f')('A'|'a')('L'|'l')('S'|'s')('E'|'e');
 
 While : ('W'|'w')('H'|'h')('I'|'i')('L'|'l')('E'|'e');
 
+NONE : ('N'|'n')('O'|'o')('N'|'n')('E'|'e');
+
 Case : ('C'|'c')('A'|'a')('S'|'s')('E'|'e');
 
 Else : ('E'|'e')('L'|'l')('S'|'s')('E'|'e');
@@ -55,6 +59,8 @@ Null : ('N'|'n')('U'|'u')('L'|'l')('L'|'l');
 This : ('T'|'t')('H'|'h')('I'|'i')('S'|'s');
 
 True : ('T'|'t')('R'|'r')('U'|'u')('E'|'e');
+
+Void : ('V'|'v')('O'|'o')('I'|'i')('D'|'d');
 
 LessThanSignLessThanSignEqualsSign : '<''<''=';
 

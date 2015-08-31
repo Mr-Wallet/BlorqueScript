@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.example.blorquescript.blorqueScript.BSClass;
+import org.example.blorquescript.blorqueScript.BSPrimitiveType;
 import org.example.blorquescript.blorqueScript.BSSymbol;
 import org.example.blorquescript.blorqueScript.BlorqueScriptPackage;
 
@@ -22,7 +23,8 @@ import org.example.blorquescript.blorqueScript.BlorqueScriptPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSSymbolImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSSymbolImpl#getPType <em>PType</em>}</li>
+ *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSSymbolImpl#getRType <em>RType</em>}</li>
  *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSSymbolImpl#getName <em>Name</em>}</li>
  * </ul>
  *
@@ -31,14 +33,34 @@ import org.example.blorquescript.blorqueScript.BlorqueScriptPackage;
 public class BSSymbolImpl extends MinimalEObjectImpl.Container implements BSSymbol
 {
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * The default value of the '{@link #getPType() <em>PType</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getPType()
    * @generated
    * @ordered
    */
-  protected BSClass type;
+  protected static final BSPrimitiveType PTYPE_EDEFAULT = BSPrimitiveType.NONE;
+
+  /**
+   * The cached value of the '{@link #getPType() <em>PType</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPType()
+   * @generated
+   * @ordered
+   */
+  protected BSPrimitiveType pType = PTYPE_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getRType() <em>RType</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRType()
+   * @generated
+   * @ordered
+   */
+  protected BSClass rType;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -86,19 +108,42 @@ public class BSSymbolImpl extends MinimalEObjectImpl.Container implements BSSymb
    * <!-- end-user-doc -->
    * @generated
    */
-  public BSClass getType()
+  public BSPrimitiveType getPType()
   {
-    if (type != null && type.eIsProxy())
+    return pType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setPType(BSPrimitiveType newPType)
+  {
+    BSPrimitiveType oldPType = pType;
+    pType = newPType == null ? PTYPE_EDEFAULT : newPType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BlorqueScriptPackage.BS_SYMBOL__PTYPE, oldPType, pType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BSClass getRType()
+  {
+    if (rType != null && rType.eIsProxy())
     {
-      InternalEObject oldType = (InternalEObject)type;
-      type = (BSClass)eResolveProxy(oldType);
-      if (type != oldType)
+      InternalEObject oldRType = (InternalEObject)rType;
+      rType = (BSClass)eResolveProxy(oldRType);
+      if (rType != oldRType)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlorqueScriptPackage.BS_SYMBOL__TYPE, oldType, type));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlorqueScriptPackage.BS_SYMBOL__RTYPE, oldRType, rType));
       }
     }
-    return type;
+    return rType;
   }
 
   /**
@@ -106,9 +151,9 @@ public class BSSymbolImpl extends MinimalEObjectImpl.Container implements BSSymb
    * <!-- end-user-doc -->
    * @generated
    */
-  public BSClass basicGetType()
+  public BSClass basicGetRType()
   {
-    return type;
+    return rType;
   }
 
   /**
@@ -116,12 +161,12 @@ public class BSSymbolImpl extends MinimalEObjectImpl.Container implements BSSymb
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(BSClass newType)
+  public void setRType(BSClass newRType)
   {
-    BSClass oldType = type;
-    type = newType;
+    BSClass oldRType = rType;
+    rType = newRType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BlorqueScriptPackage.BS_SYMBOL__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, BlorqueScriptPackage.BS_SYMBOL__RTYPE, oldRType, rType));
   }
 
   /**
@@ -157,9 +202,11 @@ public class BSSymbolImpl extends MinimalEObjectImpl.Container implements BSSymb
   {
     switch (featureID)
     {
-      case BlorqueScriptPackage.BS_SYMBOL__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
+      case BlorqueScriptPackage.BS_SYMBOL__PTYPE:
+        return getPType();
+      case BlorqueScriptPackage.BS_SYMBOL__RTYPE:
+        if (resolve) return getRType();
+        return basicGetRType();
       case BlorqueScriptPackage.BS_SYMBOL__NAME:
         return getName();
     }
@@ -176,8 +223,11 @@ public class BSSymbolImpl extends MinimalEObjectImpl.Container implements BSSymb
   {
     switch (featureID)
     {
-      case BlorqueScriptPackage.BS_SYMBOL__TYPE:
-        setType((BSClass)newValue);
+      case BlorqueScriptPackage.BS_SYMBOL__PTYPE:
+        setPType((BSPrimitiveType)newValue);
+        return;
+      case BlorqueScriptPackage.BS_SYMBOL__RTYPE:
+        setRType((BSClass)newValue);
         return;
       case BlorqueScriptPackage.BS_SYMBOL__NAME:
         setName((String)newValue);
@@ -196,8 +246,11 @@ public class BSSymbolImpl extends MinimalEObjectImpl.Container implements BSSymb
   {
     switch (featureID)
     {
-      case BlorqueScriptPackage.BS_SYMBOL__TYPE:
-        setType((BSClass)null);
+      case BlorqueScriptPackage.BS_SYMBOL__PTYPE:
+        setPType(PTYPE_EDEFAULT);
+        return;
+      case BlorqueScriptPackage.BS_SYMBOL__RTYPE:
+        setRType((BSClass)null);
         return;
       case BlorqueScriptPackage.BS_SYMBOL__NAME:
         setName(NAME_EDEFAULT);
@@ -216,8 +269,10 @@ public class BSSymbolImpl extends MinimalEObjectImpl.Container implements BSSymb
   {
     switch (featureID)
     {
-      case BlorqueScriptPackage.BS_SYMBOL__TYPE:
-        return type != null;
+      case BlorqueScriptPackage.BS_SYMBOL__PTYPE:
+        return pType != PTYPE_EDEFAULT;
+      case BlorqueScriptPackage.BS_SYMBOL__RTYPE:
+        return rType != null;
       case BlorqueScriptPackage.BS_SYMBOL__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
@@ -235,7 +290,9 @@ public class BSSymbolImpl extends MinimalEObjectImpl.Container implements BSSymb
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    result.append(" (pType: ");
+    result.append(pType);
+    result.append(", name: ");
     result.append(name);
     result.append(')');
     return result.toString();

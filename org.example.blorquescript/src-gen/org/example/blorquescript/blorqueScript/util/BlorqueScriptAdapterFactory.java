@@ -125,6 +125,16 @@ public class BlorqueScriptAdapterFactory extends AdapterFactoryImpl
         return createBSReturnAdapter();
       }
       @Override
+      public Adapter caseBSBreak(BSBreak object)
+      {
+        return createBSBreakAdapter();
+      }
+      @Override
+      public Adapter caseBSContinue(BSContinue object)
+      {
+        return createBSContinueAdapter();
+      }
+      @Override
       public Adapter caseBSVariableDeclaration(BSVariableDeclaration object)
       {
         return createBSVariableDeclarationAdapter();
@@ -313,16 +323,6 @@ public class BlorqueScriptAdapterFactory extends AdapterFactoryImpl
       public Adapter caseBSNullLiteral(BSNullLiteral object)
       {
         return createBSNullLiteralAdapter();
-      }
-      @Override
-      public Adapter caseBSBreakLiteral(BSBreakLiteral object)
-      {
-        return createBSBreakLiteralAdapter();
-      }
-      @Override
-      public Adapter caseBSContinueLiteral(BSContinueLiteral object)
-      {
-        return createBSContinueLiteralAdapter();
       }
       @Override
       public Adapter caseBSThisLiteral(BSThisLiteral object)
@@ -517,6 +517,36 @@ public class BlorqueScriptAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createBSReturnAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.example.blorquescript.blorqueScript.BSBreak <em>BS Break</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.example.blorquescript.blorqueScript.BSBreak
+   * @generated
+   */
+  public Adapter createBSBreakAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.example.blorquescript.blorqueScript.BSContinue <em>BS Continue</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.example.blorquescript.blorqueScript.BSContinue
+   * @generated
+   */
+  public Adapter createBSContinueAdapter()
   {
     return null;
   }
@@ -1087,36 +1117,6 @@ public class BlorqueScriptAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createBSNullLiteralAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.example.blorquescript.blorqueScript.BSBreakLiteral <em>BS Break Literal</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.example.blorquescript.blorqueScript.BSBreakLiteral
-   * @generated
-   */
-  public Adapter createBSBreakLiteralAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.example.blorquescript.blorqueScript.BSContinueLiteral <em>BS Continue Literal</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.example.blorquescript.blorqueScript.BSContinueLiteral
-   * @generated
-   */
-  public Adapter createBSContinueLiteralAdapter()
   {
     return null;
   }

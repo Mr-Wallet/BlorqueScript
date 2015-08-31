@@ -38,26 +38,32 @@ public class BlorqueScriptParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getBSMemberAccess().getAlternatives(), "rule__BSMember__Alternatives");
+					put(grammarAccess.getBSFieldAccess().getAlternatives_0(), "rule__BSField__Alternatives_0");
+					put(grammarAccess.getBSMethodAccess().getAlternatives_0(), "rule__BSMethod__Alternatives_0");
+					put(grammarAccess.getBSParameterAccess().getAlternatives_0(), "rule__BSParameter__Alternatives_0");
 					put(grammarAccess.getBSStatementAccess().getAlternatives(), "rule__BSStatement__Alternatives");
+					put(grammarAccess.getBSVariableDeclarationAccess().getAlternatives_0(), "rule__BSVariableDeclaration__Alternatives_0");
 					put(grammarAccess.getBSIfBlockAccess().getAlternatives(), "rule__BSIfBlock__Alternatives");
 					put(grammarAccess.getBSLoopBlockAccess().getAlternatives(), "rule__BSLoopBlock__Alternatives");
 					put(grammarAccess.getBSCaseAccess().getAlternatives(), "rule__BSCase__Alternatives");
 					put(grammarAccess.getBSBlockAccess().getAlternatives(), "rule__BSBlock__Alternatives");
 					put(grammarAccess.getBSSymbolAccess().getAlternatives(), "rule__BSSymbol__Alternatives");
-					put(grammarAccess.getBSAssignmentExpressionAccess().getAssignmentOperatorAlternatives_1_1_0(), "rule__BSAssignmentExpression__AssignmentOperatorAlternatives_1_1_0");
+					put(grammarAccess.getBSAssignmentOrTernaryExpressionAccess().getAlternatives_1(), "rule__BSAssignmentOrTernaryExpression__Alternatives_1");
+					put(grammarAccess.getBSAssignmentOrTernaryExpressionAccess().getAssignmentOperatorAlternatives_1_0_1_0(), "rule__BSAssignmentOrTernaryExpression__AssignmentOperatorAlternatives_1_0_1_0");
 					put(grammarAccess.getBSEqualityExpressionAccess().getOperatorAlternatives_1_1_0(), "rule__BSEqualityExpression__OperatorAlternatives_1_1_0");
 					put(grammarAccess.getBSOrderedRelationExpressionAccess().getOperatorAlternatives_1_1_0(), "rule__BSOrderedRelationExpression__OperatorAlternatives_1_1_0");
 					put(grammarAccess.getBSBitwiseShiftExpressionAccess().getOperatorAlternatives_1_1_0(), "rule__BSBitwiseShiftExpression__OperatorAlternatives_1_1_0");
 					put(grammarAccess.getBSPlusMinusOrStringConcatExpressionAccess().getOperatorAlternatives_1_1_0(), "rule__BSPlusMinusOrStringConcatExpression__OperatorAlternatives_1_1_0");
 					put(grammarAccess.getBSMulDivOrModExpressionAccess().getOperatorAlternatives_1_1_0(), "rule__BSMulDivOrModExpression__OperatorAlternatives_1_1_0");
 					put(grammarAccess.getBSCastOrNewExpressionAccess().getAlternatives(), "rule__BSCastOrNewExpression__Alternatives");
-					put(grammarAccess.getBSCastOrNewExpressionAccess().getCastTypeAlternatives_1_2_0(), "rule__BSCastOrNewExpression__CastTypeAlternatives_1_2_0");
+					put(grammarAccess.getBSCastOrNewExpressionAccess().getAlternatives_2_3(), "rule__BSCastOrNewExpression__Alternatives_2_3");
 					put(grammarAccess.getBSUnaryModifierExpressionAccess().getAlternatives(), "rule__BSUnaryModifierExpression__Alternatives");
 					put(grammarAccess.getBSUnaryModifierExpressionAccess().getOperatorAlternatives_1_1_0(), "rule__BSUnaryModifierExpression__OperatorAlternatives_1_1_0");
 					put(grammarAccess.getBSInvokationExpressionAccess().getAlternatives_1(), "rule__BSInvokationExpression__Alternatives_1");
 					put(grammarAccess.getBSInvokationExpressionAccess().getOperatorAlternatives_1_3_1_0(), "rule__BSInvokationExpression__OperatorAlternatives_1_3_1_0");
 					put(grammarAccess.getBSTerminalExpressionAccess().getAlternatives(), "rule__BSTerminalExpression__Alternatives");
 					put(grammarAccess.getBSTerminalExpressionAccess().getValueAlternatives_3_1_0(), "rule__BSTerminalExpression__ValueAlternatives_3_1_0");
+					put(grammarAccess.getBSPrimitiveTypeAccess().getAlternatives(), "rule__BSPrimitiveType__Alternatives");
 					put(grammarAccess.getBSFileAccess().getGroup(), "rule__BSFile__Group__0");
 					put(grammarAccess.getBSFileAccess().getGroup_0(), "rule__BSFile__Group_0__0");
 					put(grammarAccess.getBSImportAccess().getGroup(), "rule__BSImport__Group__0");
@@ -69,13 +75,16 @@ public class BlorqueScriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBSFieldAccess().getGroup(), "rule__BSField__Group__0");
 					put(grammarAccess.getBSFieldAccess().getGroup_2(), "rule__BSField__Group_2__0");
 					put(grammarAccess.getBSMethodAccess().getGroup(), "rule__BSMethod__Group__0");
-					put(grammarAccess.getBSMethodAccess().getGroup_3(), "rule__BSMethod__Group_3__0");
-					put(grammarAccess.getBSMethodAccess().getGroup_3_1(), "rule__BSMethod__Group_3_1__0");
+					put(grammarAccess.getBSMethodAccess().getGroup_1(), "rule__BSMethod__Group_1__0");
+					put(grammarAccess.getBSMethodAccess().getGroup_4(), "rule__BSMethod__Group_4__0");
+					put(grammarAccess.getBSMethodAccess().getGroup_4_1(), "rule__BSMethod__Group_4_1__0");
 					put(grammarAccess.getBSParameterAccess().getGroup(), "rule__BSParameter__Group__0");
 					put(grammarAccess.getBSParameterAccess().getGroup_2(), "rule__BSParameter__Group_2__0");
 					put(grammarAccess.getBSMethodBodyAccess().getGroup(), "rule__BSMethodBody__Group__0");
-					put(grammarAccess.getBSStatementAccess().getGroup_2(), "rule__BSStatement__Group_2__0");
+					put(grammarAccess.getBSStatementAccess().getGroup_4(), "rule__BSStatement__Group_4__0");
 					put(grammarAccess.getBSReturnAccess().getGroup(), "rule__BSReturn__Group__0");
+					put(grammarAccess.getBSBreakAccess().getGroup(), "rule__BSBreak__Group__0");
+					put(grammarAccess.getBSContinueAccess().getGroup(), "rule__BSContinue__Group__0");
 					put(grammarAccess.getBSVariableDeclarationAccess().getGroup(), "rule__BSVariableDeclaration__Group__0");
 					put(grammarAccess.getBSVariableDeclarationAccess().getGroup_2(), "rule__BSVariableDeclaration__Group_2__0");
 					put(grammarAccess.getBSIfStatementAccess().getGroup(), "rule__BSIfStatement__Group__0");
@@ -89,10 +98,9 @@ public class BlorqueScriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBSCaseAccess().getGroup_0(), "rule__BSCase__Group_0__0");
 					put(grammarAccess.getBSCaseAccess().getGroup_1(), "rule__BSCase__Group_1__0");
 					put(grammarAccess.getBSCaseBlockAccess().getGroup(), "rule__BSCaseBlock__Group__0");
-					put(grammarAccess.getBSAssignmentExpressionAccess().getGroup(), "rule__BSAssignmentExpression__Group__0");
-					put(grammarAccess.getBSAssignmentExpressionAccess().getGroup_1(), "rule__BSAssignmentExpression__Group_1__0");
-					put(grammarAccess.getBSTernaryExpressionAccess().getGroup(), "rule__BSTernaryExpression__Group__0");
-					put(grammarAccess.getBSTernaryExpressionAccess().getGroup_1(), "rule__BSTernaryExpression__Group_1__0");
+					put(grammarAccess.getBSAssignmentOrTernaryExpressionAccess().getGroup(), "rule__BSAssignmentOrTernaryExpression__Group__0");
+					put(grammarAccess.getBSAssignmentOrTernaryExpressionAccess().getGroup_1_0(), "rule__BSAssignmentOrTernaryExpression__Group_1_0__0");
+					put(grammarAccess.getBSAssignmentOrTernaryExpressionAccess().getGroup_1_1(), "rule__BSAssignmentOrTernaryExpression__Group_1_1__0");
 					put(grammarAccess.getBSBooleanOrExpressionAccess().getGroup(), "rule__BSBooleanOrExpression__Group__0");
 					put(grammarAccess.getBSBooleanOrExpressionAccess().getGroup_1(), "rule__BSBooleanOrExpression__Group_1__0");
 					put(grammarAccess.getBSBooleanAndExpressionAccess().getGroup(), "rule__BSBooleanAndExpression__Group__0");
@@ -114,10 +122,12 @@ public class BlorqueScriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBSMulDivOrModExpressionAccess().getGroup(), "rule__BSMulDivOrModExpression__Group__0");
 					put(grammarAccess.getBSMulDivOrModExpressionAccess().getGroup_1(), "rule__BSMulDivOrModExpression__Group_1__0");
 					put(grammarAccess.getBSCastOrNewExpressionAccess().getGroup_1(), "rule__BSCastOrNewExpression__Group_1__0");
+					put(grammarAccess.getBSCastOrNewExpressionAccess().getGroup_1_3(), "rule__BSCastOrNewExpression__Group_1_3__0");
 					put(grammarAccess.getBSCastOrNewExpressionAccess().getGroup_2(), "rule__BSCastOrNewExpression__Group_2__0");
-					put(grammarAccess.getBSCastOrNewExpressionAccess().getGroup_2_2(), "rule__BSCastOrNewExpression__Group_2_2__0");
-					put(grammarAccess.getBSCastOrNewExpressionAccess().getGroup_2_5(), "rule__BSCastOrNewExpression__Group_2_5__0");
-					put(grammarAccess.getBSCastOrNewExpressionAccess().getGroup_2_5_1(), "rule__BSCastOrNewExpression__Group_2_5_1__0");
+					put(grammarAccess.getBSCastOrNewExpressionAccess().getGroup_2_3_0(), "rule__BSCastOrNewExpression__Group_2_3_0__0");
+					put(grammarAccess.getBSCastOrNewExpressionAccess().getGroup_2_3_1(), "rule__BSCastOrNewExpression__Group_2_3_1__0");
+					put(grammarAccess.getBSCastOrNewExpressionAccess().getGroup_2_3_1_1(), "rule__BSCastOrNewExpression__Group_2_3_1_1__0");
+					put(grammarAccess.getBSCastOrNewExpressionAccess().getGroup_2_3_1_1_1(), "rule__BSCastOrNewExpression__Group_2_3_1_1_1__0");
 					put(grammarAccess.getBSUnaryModifierExpressionAccess().getGroup_1(), "rule__BSUnaryModifierExpression__Group_1__0");
 					put(grammarAccess.getBSInvokationExpressionAccess().getGroup(), "rule__BSInvokationExpression__Group__0");
 					put(grammarAccess.getBSInvokationExpressionAccess().getGroup_1_0(), "rule__BSInvokationExpression__Group_1_0__0");
@@ -139,8 +149,6 @@ public class BlorqueScriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBSTerminalExpressionAccess().getGroup_7(), "rule__BSTerminalExpression__Group_7__0");
 					put(grammarAccess.getBSTerminalExpressionAccess().getGroup_8(), "rule__BSTerminalExpression__Group_8__0");
 					put(grammarAccess.getBSTerminalExpressionAccess().getGroup_9(), "rule__BSTerminalExpression__Group_9__0");
-					put(grammarAccess.getBSTerminalExpressionAccess().getGroup_10(), "rule__BSTerminalExpression__Group_10__0");
-					put(grammarAccess.getBSTerminalExpressionAccess().getGroup_11(), "rule__BSTerminalExpression__Group_11__0");
 					put(grammarAccess.getBSFileAccess().getNameAssignment_0_1(), "rule__BSFile__NameAssignment_0_1");
 					put(grammarAccess.getBSFileAccess().getImportsAssignment_1(), "rule__BSFile__ImportsAssignment_1");
 					put(grammarAccess.getBSFileAccess().getClassesAssignment_2(), "rule__BSFile__ClassesAssignment_2");
@@ -148,20 +156,25 @@ public class BlorqueScriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBSClassAccess().getNameAssignment_1(), "rule__BSClass__NameAssignment_1");
 					put(grammarAccess.getBSClassAccess().getSuperclassAssignment_2_1(), "rule__BSClass__SuperclassAssignment_2_1");
 					put(grammarAccess.getBSClassAccess().getMembersAssignment_4(), "rule__BSClass__MembersAssignment_4");
-					put(grammarAccess.getBSFieldAccess().getTypeAssignment_0(), "rule__BSField__TypeAssignment_0");
+					put(grammarAccess.getBSFieldAccess().getPTypeAssignment_0_0(), "rule__BSField__PTypeAssignment_0_0");
+					put(grammarAccess.getBSFieldAccess().getRTypeAssignment_0_1(), "rule__BSField__RTypeAssignment_0_1");
 					put(grammarAccess.getBSFieldAccess().getNameAssignment_1(), "rule__BSField__NameAssignment_1");
 					put(grammarAccess.getBSFieldAccess().getIsArrayAssignment_2_0(), "rule__BSField__IsArrayAssignment_2_0");
-					put(grammarAccess.getBSMethodAccess().getTypeAssignment_0(), "rule__BSMethod__TypeAssignment_0");
-					put(grammarAccess.getBSMethodAccess().getNameAssignment_1(), "rule__BSMethod__NameAssignment_1");
-					put(grammarAccess.getBSMethodAccess().getParamsAssignment_3_0(), "rule__BSMethod__ParamsAssignment_3_0");
-					put(grammarAccess.getBSMethodAccess().getParamsAssignment_3_1_1(), "rule__BSMethod__ParamsAssignment_3_1_1");
-					put(grammarAccess.getBSMethodAccess().getBodyAssignment_5(), "rule__BSMethod__BodyAssignment_5");
-					put(grammarAccess.getBSParameterAccess().getTypeAssignment_0(), "rule__BSParameter__TypeAssignment_0");
+					put(grammarAccess.getBSMethodAccess().getPTypeAssignment_0_0(), "rule__BSMethod__PTypeAssignment_0_0");
+					put(grammarAccess.getBSMethodAccess().getRTypeAssignment_0_1(), "rule__BSMethod__RTypeAssignment_0_1");
+					put(grammarAccess.getBSMethodAccess().getIsArrayAssignment_1_0(), "rule__BSMethod__IsArrayAssignment_1_0");
+					put(grammarAccess.getBSMethodAccess().getNameAssignment_2(), "rule__BSMethod__NameAssignment_2");
+					put(grammarAccess.getBSMethodAccess().getParamsAssignment_4_0(), "rule__BSMethod__ParamsAssignment_4_0");
+					put(grammarAccess.getBSMethodAccess().getParamsAssignment_4_1_1(), "rule__BSMethod__ParamsAssignment_4_1_1");
+					put(grammarAccess.getBSMethodAccess().getBodyAssignment_6(), "rule__BSMethod__BodyAssignment_6");
+					put(grammarAccess.getBSParameterAccess().getPTypeAssignment_0_0(), "rule__BSParameter__PTypeAssignment_0_0");
+					put(grammarAccess.getBSParameterAccess().getRTypeAssignment_0_1(), "rule__BSParameter__RTypeAssignment_0_1");
 					put(grammarAccess.getBSParameterAccess().getNameAssignment_1(), "rule__BSParameter__NameAssignment_1");
 					put(grammarAccess.getBSParameterAccess().getIsArrayAssignment_2_0(), "rule__BSParameter__IsArrayAssignment_2_0");
 					put(grammarAccess.getBSMethodBodyAccess().getStatementsAssignment_2(), "rule__BSMethodBody__StatementsAssignment_2");
-					put(grammarAccess.getBSReturnAccess().getExpressionAssignment_1(), "rule__BSReturn__ExpressionAssignment_1");
-					put(grammarAccess.getBSVariableDeclarationAccess().getTypeAssignment_0(), "rule__BSVariableDeclaration__TypeAssignment_0");
+					put(grammarAccess.getBSReturnAccess().getExpressionAssignment_2(), "rule__BSReturn__ExpressionAssignment_2");
+					put(grammarAccess.getBSVariableDeclarationAccess().getPTypeAssignment_0_0(), "rule__BSVariableDeclaration__PTypeAssignment_0_0");
+					put(grammarAccess.getBSVariableDeclarationAccess().getRTypeAssignment_0_1(), "rule__BSVariableDeclaration__RTypeAssignment_0_1");
 					put(grammarAccess.getBSVariableDeclarationAccess().getNameAssignment_1(), "rule__BSVariableDeclaration__NameAssignment_1");
 					put(grammarAccess.getBSVariableDeclarationAccess().getExpressionAssignment_2_1(), "rule__BSVariableDeclaration__ExpressionAssignment_2_1");
 					put(grammarAccess.getBSIfStatementAccess().getExpressionAssignment_2(), "rule__BSIfStatement__ExpressionAssignment_2");
@@ -185,10 +198,10 @@ public class BlorqueScriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBSCaseAccess().getBlockAssignment_0_3(), "rule__BSCase__BlockAssignment_0_3");
 					put(grammarAccess.getBSCaseAccess().getBlockAssignment_1_2(), "rule__BSCase__BlockAssignment_1_2");
 					put(grammarAccess.getBSCaseBlockAccess().getStatementsAssignment_1(), "rule__BSCaseBlock__StatementsAssignment_1");
-					put(grammarAccess.getBSAssignmentExpressionAccess().getAssignmentOperatorAssignment_1_1(), "rule__BSAssignmentExpression__AssignmentOperatorAssignment_1_1");
-					put(grammarAccess.getBSAssignmentExpressionAccess().getRightAssignment_1_2(), "rule__BSAssignmentExpression__RightAssignment_1_2");
-					put(grammarAccess.getBSTernaryExpressionAccess().getMiddleAssignment_1_2(), "rule__BSTernaryExpression__MiddleAssignment_1_2");
-					put(grammarAccess.getBSTernaryExpressionAccess().getRightAssignment_1_4(), "rule__BSTernaryExpression__RightAssignment_1_4");
+					put(grammarAccess.getBSAssignmentOrTernaryExpressionAccess().getAssignmentOperatorAssignment_1_0_1(), "rule__BSAssignmentOrTernaryExpression__AssignmentOperatorAssignment_1_0_1");
+					put(grammarAccess.getBSAssignmentOrTernaryExpressionAccess().getRightAssignment_1_0_2(), "rule__BSAssignmentOrTernaryExpression__RightAssignment_1_0_2");
+					put(grammarAccess.getBSAssignmentOrTernaryExpressionAccess().getMiddleAssignment_1_1_2(), "rule__BSAssignmentOrTernaryExpression__MiddleAssignment_1_1_2");
+					put(grammarAccess.getBSAssignmentOrTernaryExpressionAccess().getRightAssignment_1_1_4(), "rule__BSAssignmentOrTernaryExpression__RightAssignment_1_1_4");
 					put(grammarAccess.getBSBooleanOrExpressionAccess().getRightAssignment_1_2(), "rule__BSBooleanOrExpression__RightAssignment_1_2");
 					put(grammarAccess.getBSBooleanAndExpressionAccess().getRightAssignment_1_2(), "rule__BSBooleanAndExpression__RightAssignment_1_2");
 					put(grammarAccess.getBSBitwiseOrExpressionAccess().getRightAssignment_1_2(), "rule__BSBitwiseOrExpression__RightAssignment_1_2");
@@ -204,14 +217,16 @@ public class BlorqueScriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBSPlusMinusOrStringConcatExpressionAccess().getRightAssignment_1_2(), "rule__BSPlusMinusOrStringConcatExpression__RightAssignment_1_2");
 					put(grammarAccess.getBSMulDivOrModExpressionAccess().getOperatorAssignment_1_1(), "rule__BSMulDivOrModExpression__OperatorAssignment_1_1");
 					put(grammarAccess.getBSMulDivOrModExpressionAccess().getRightAssignment_1_2(), "rule__BSMulDivOrModExpression__RightAssignment_1_2");
-					put(grammarAccess.getBSCastOrNewExpressionAccess().getCastTypeAssignment_1_2(), "rule__BSCastOrNewExpression__CastTypeAssignment_1_2");
-					put(grammarAccess.getBSCastOrNewExpressionAccess().getCastExprAssignment_1_4(), "rule__BSCastOrNewExpression__CastExprAssignment_1_4");
-					put(grammarAccess.getBSCastOrNewExpressionAccess().getIsArrayAssignment_2_2_0(), "rule__BSCastOrNewExpression__IsArrayAssignment_2_2_0");
-					put(grammarAccess.getBSCastOrNewExpressionAccess().getTypeAssignment_2_3(), "rule__BSCastOrNewExpression__TypeAssignment_2_3");
-					put(grammarAccess.getBSCastOrNewExpressionAccess().getArgsAssignment_2_5_0(), "rule__BSCastOrNewExpression__ArgsAssignment_2_5_0");
-					put(grammarAccess.getBSCastOrNewExpressionAccess().getArgsAssignment_2_5_1_1(), "rule__BSCastOrNewExpression__ArgsAssignment_2_5_1_1");
+					put(grammarAccess.getBSCastOrNewExpressionAccess().getPTypeAssignment_1_2(), "rule__BSCastOrNewExpression__PTypeAssignment_1_2");
+					put(grammarAccess.getBSCastOrNewExpressionAccess().getIsArrayAssignment_1_3_0(), "rule__BSCastOrNewExpression__IsArrayAssignment_1_3_0");
+					put(grammarAccess.getBSCastOrNewExpressionAccess().getCastExprAssignment_1_5(), "rule__BSCastOrNewExpression__CastExprAssignment_1_5");
+					put(grammarAccess.getBSCastOrNewExpressionAccess().getRTypeAssignment_2_2(), "rule__BSCastOrNewExpression__RTypeAssignment_2_2");
+					put(grammarAccess.getBSCastOrNewExpressionAccess().getIsArrayAssignment_2_3_0_0(), "rule__BSCastOrNewExpression__IsArrayAssignment_2_3_0_0");
+					put(grammarAccess.getBSCastOrNewExpressionAccess().getArgsAssignment_2_3_1_1_0(), "rule__BSCastOrNewExpression__ArgsAssignment_2_3_1_1_0");
+					put(grammarAccess.getBSCastOrNewExpressionAccess().getArgsAssignment_2_3_1_1_1_1(), "rule__BSCastOrNewExpression__ArgsAssignment_2_3_1_1_1_1");
 					put(grammarAccess.getBSUnaryModifierExpressionAccess().getOperatorAssignment_1_1(), "rule__BSUnaryModifierExpression__OperatorAssignment_1_1");
 					put(grammarAccess.getBSUnaryModifierExpressionAccess().getReceiverAssignment_1_2(), "rule__BSUnaryModifierExpression__ReceiverAssignment_1_2");
+					put(grammarAccess.getBSInvokationExpressionAccess().getMemberAssignment_1_0_2(), "rule__BSInvokationExpression__MemberAssignment_1_0_2");
 					put(grammarAccess.getBSInvokationExpressionAccess().getArgsAssignment_1_1_2_0(), "rule__BSInvokationExpression__ArgsAssignment_1_1_2_0");
 					put(grammarAccess.getBSInvokationExpressionAccess().getArgsAssignment_1_1_2_1_1(), "rule__BSInvokationExpression__ArgsAssignment_1_1_2_1_1");
 					put(grammarAccess.getBSInvokationExpressionAccess().getArgsAssignment_1_2_2_0(), "rule__BSInvokationExpression__ArgsAssignment_1_2_2_0");
@@ -222,8 +237,8 @@ public class BlorqueScriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBSTerminalExpressionAccess().getValueAssignment_2_1(), "rule__BSTerminalExpression__ValueAssignment_2_1");
 					put(grammarAccess.getBSTerminalExpressionAccess().getRightAssignment_2_2_2(), "rule__BSTerminalExpression__RightAssignment_2_2_2");
 					put(grammarAccess.getBSTerminalExpressionAccess().getValueAssignment_3_1(), "rule__BSTerminalExpression__ValueAssignment_3_1");
-					put(grammarAccess.getBSTerminalExpressionAccess().getSymbolAssignment_10_1(), "rule__BSTerminalExpression__SymbolAssignment_10_1");
-					put(grammarAccess.getBSTerminalExpressionAccess().getExpressionAssignment_11_2(), "rule__BSTerminalExpression__ExpressionAssignment_11_2");
+					put(grammarAccess.getBSTerminalExpressionAccess().getSymbolAssignment_8_1(), "rule__BSTerminalExpression__SymbolAssignment_8_1");
+					put(grammarAccess.getBSTerminalExpressionAccess().getExpressionAssignment_9_2(), "rule__BSTerminalExpression__ExpressionAssignment_9_2");
 				}
 			};
 		}
@@ -243,7 +258,7 @@ public class BlorqueScriptParser extends AbstractContentAssistParser {
 	
 	@Override
 	protected String[] getInitialHiddenTokens() {
-		return new String[] {  };
+		return new String[] { "RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT" };
 	}
 	
 	public BlorqueScriptGrammarAccess getGrammarAccess() {

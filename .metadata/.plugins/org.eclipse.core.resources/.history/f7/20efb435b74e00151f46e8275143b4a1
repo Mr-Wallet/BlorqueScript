@@ -1,0 +1,36 @@
+package org.example.blorquescript.util
+
+import org.eclipse.emf.ecore.EObject
+import org.example.blorquescript.blorqueScript.BSBlock
+import org.example.blorquescript.blorqueScript.BSClass
+import org.example.blorquescript.blorqueScript.BSField
+import org.example.blorquescript.blorqueScript.BSFile
+import org.example.blorquescript.blorqueScript.BSMethod
+
+import static extension org.eclipse.xtext.EcoreUtil2.*
+
+class BlorqueScriptASTAccessor {
+	def static fields(BSClass c) {
+		return c.members.filter(typeof(BSField));
+	}
+	
+	def static method(BSClass c) {
+		return c.members.filter(typeof(BSMethod));
+	}
+	
+	def static containingFile(EObject o) {
+		return o.getContainerOfType(typeof(BSFile));
+	}
+	
+	def static containingClass(EObject o) {
+		return o.getContainerOfType(typeof(BSClass));
+	}
+	
+	def static containingMethod(EObject o) {
+		return o.getContainerOfType(typeof(BSMethod));
+	}
+	
+	def static containingBlock(EObject o) {
+		return o.getContainerOfType(typeof(BSBlock));
+	}
+}

@@ -224,9 +224,12 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class BSFieldElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BSField");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cTypeBSClassCrossReference_0_0 = (CrossReference)cTypeAssignment_0.eContents().get(0);
-		private final RuleCall cTypeBSClassQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cTypeBSClassCrossReference_0_0.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Assignment cPTypeAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
+		private final RuleCall cPTypeBSPrimitiveTypeEnumRuleCall_0_0_0 = (RuleCall)cPTypeAssignment_0_0.eContents().get(0);
+		private final Assignment cRTypeAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
+		private final CrossReference cRTypeBSClassCrossReference_0_1_0 = (CrossReference)cRTypeAssignment_0_1.eContents().get(0);
+		private final RuleCall cRTypeBSClassQualifiedNameParserRuleCall_0_1_0_1 = (RuleCall)cRTypeBSClassCrossReference_0_1_0.eContents().get(1);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
@@ -236,20 +239,29 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//BSField:
-		//	type=[BSClass|QualifiedName] name=ID (isArray?="[" "]")? ";";
+		//	(pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) name=ID (isArray?="[" "]")? ";";
 		@Override public ParserRule getRule() { return rule; }
 
-		//type=[BSClass|QualifiedName] name=ID (isArray?="[" "]")? ";"
+		//(pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) name=ID (isArray?="[" "]")? ";"
 		public Group getGroup() { return cGroup; }
 
-		//type=[BSClass|QualifiedName]
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//pType=BSPrimitiveType | rType=[BSClass|QualifiedName]
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//pType=BSPrimitiveType
+		public Assignment getPTypeAssignment_0_0() { return cPTypeAssignment_0_0; }
+
+		//BSPrimitiveType
+		public RuleCall getPTypeBSPrimitiveTypeEnumRuleCall_0_0_0() { return cPTypeBSPrimitiveTypeEnumRuleCall_0_0_0; }
+
+		//rType=[BSClass|QualifiedName]
+		public Assignment getRTypeAssignment_0_1() { return cRTypeAssignment_0_1; }
 
 		//[BSClass|QualifiedName]
-		public CrossReference getTypeBSClassCrossReference_0_0() { return cTypeBSClassCrossReference_0_0; }
+		public CrossReference getRTypeBSClassCrossReference_0_1_0() { return cRTypeBSClassCrossReference_0_1_0; }
 
 		//QualifiedName
-		public RuleCall getTypeBSClassQualifiedNameParserRuleCall_0_0_1() { return cTypeBSClassQualifiedNameParserRuleCall_0_0_1; }
+		public RuleCall getRTypeBSClassQualifiedNameParserRuleCall_0_1_0_1() { return cRTypeBSClassQualifiedNameParserRuleCall_0_1_0_1; }
 
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -276,85 +288,118 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class BSMethodElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BSMethod");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cTypeBSClassCrossReference_0_0 = (CrossReference)cTypeAssignment_0.eContents().get(0);
-		private final RuleCall cTypeBSClassQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cTypeBSClassCrossReference_0_0.eContents().get(1);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Assignment cParamsAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
-		private final RuleCall cParamsBSParameterParserRuleCall_3_0_0 = (RuleCall)cParamsAssignment_3_0.eContents().get(0);
-		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
-		private final Keyword cCommaKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
-		private final Assignment cParamsAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
-		private final RuleCall cParamsBSParameterParserRuleCall_3_1_1_0 = (RuleCall)cParamsAssignment_3_1_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cBodyAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cBodyBSMethodBodyParserRuleCall_5_0 = (RuleCall)cBodyAssignment_5.eContents().get(0);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Assignment cPTypeAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
+		private final RuleCall cPTypeBSPrimitiveTypeEnumRuleCall_0_0_0 = (RuleCall)cPTypeAssignment_0_0.eContents().get(0);
+		private final Assignment cRTypeAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
+		private final CrossReference cRTypeBSClassCrossReference_0_1_0 = (CrossReference)cRTypeAssignment_0_1.eContents().get(0);
+		private final RuleCall cRTypeBSClassQualifiedNameParserRuleCall_0_1_0_1 = (RuleCall)cRTypeBSClassCrossReference_0_1_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Assignment cIsArrayAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cIsArrayLeftSquareBracketKeyword_1_0_0 = (Keyword)cIsArrayAssignment_1_0.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Assignment cParamsAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
+		private final RuleCall cParamsBSParameterParserRuleCall_4_0_0 = (RuleCall)cParamsAssignment_4_0.eContents().get(0);
+		private final Group cGroup_4_1 = (Group)cGroup_4.eContents().get(1);
+		private final Keyword cCommaKeyword_4_1_0 = (Keyword)cGroup_4_1.eContents().get(0);
+		private final Assignment cParamsAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
+		private final RuleCall cParamsBSParameterParserRuleCall_4_1_1_0 = (RuleCall)cParamsAssignment_4_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cBodyAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cBodyBSMethodBodyParserRuleCall_6_0 = (RuleCall)cBodyAssignment_6.eContents().get(0);
 		
 		//BSMethod:
-		//	type=[BSClass|QualifiedName] name=ID "(" (params+=BSParameter ("," params+=BSParameter)*)? ")" body=BSMethodBody;
+		//	(pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) (isArray?="[" "]")? name=ID "(" (params+=BSParameter (","
+		//	params+=BSParameter)*)? ")" body=BSMethodBody;
 		@Override public ParserRule getRule() { return rule; }
 
-		//type=[BSClass|QualifiedName] name=ID "(" (params+=BSParameter ("," params+=BSParameter)*)? ")" body=BSMethodBody
+		//(pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) (isArray?="[" "]")? name=ID "(" (params+=BSParameter (","
+		//params+=BSParameter)*)? ")" body=BSMethodBody
 		public Group getGroup() { return cGroup; }
 
-		//type=[BSClass|QualifiedName]
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//pType=BSPrimitiveType | rType=[BSClass|QualifiedName]
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//pType=BSPrimitiveType
+		public Assignment getPTypeAssignment_0_0() { return cPTypeAssignment_0_0; }
+
+		//BSPrimitiveType
+		public RuleCall getPTypeBSPrimitiveTypeEnumRuleCall_0_0_0() { return cPTypeBSPrimitiveTypeEnumRuleCall_0_0_0; }
+
+		//rType=[BSClass|QualifiedName]
+		public Assignment getRTypeAssignment_0_1() { return cRTypeAssignment_0_1; }
 
 		//[BSClass|QualifiedName]
-		public CrossReference getTypeBSClassCrossReference_0_0() { return cTypeBSClassCrossReference_0_0; }
+		public CrossReference getRTypeBSClassCrossReference_0_1_0() { return cRTypeBSClassCrossReference_0_1_0; }
 
 		//QualifiedName
-		public RuleCall getTypeBSClassQualifiedNameParserRuleCall_0_0_1() { return cTypeBSClassQualifiedNameParserRuleCall_0_0_1; }
+		public RuleCall getRTypeBSClassQualifiedNameParserRuleCall_0_1_0_1() { return cRTypeBSClassQualifiedNameParserRuleCall_0_1_0_1; }
+
+		//(isArray?="[" "]")?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//isArray?="["
+		public Assignment getIsArrayAssignment_1_0() { return cIsArrayAssignment_1_0; }
+
+		//"["
+		public Keyword getIsArrayLeftSquareBracketKeyword_1_0_0() { return cIsArrayLeftSquareBracketKeyword_1_0_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_1_1() { return cRightSquareBracketKeyword_1_1; }
 
 		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
 
 		//(params+=BSParameter ("," params+=BSParameter)*)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_4() { return cGroup_4; }
 
 		//params+=BSParameter
-		public Assignment getParamsAssignment_3_0() { return cParamsAssignment_3_0; }
+		public Assignment getParamsAssignment_4_0() { return cParamsAssignment_4_0; }
 
 		//BSParameter
-		public RuleCall getParamsBSParameterParserRuleCall_3_0_0() { return cParamsBSParameterParserRuleCall_3_0_0; }
+		public RuleCall getParamsBSParameterParserRuleCall_4_0_0() { return cParamsBSParameterParserRuleCall_4_0_0; }
 
 		//("," params+=BSParameter)*
-		public Group getGroup_3_1() { return cGroup_3_1; }
+		public Group getGroup_4_1() { return cGroup_4_1; }
 
 		//","
-		public Keyword getCommaKeyword_3_1_0() { return cCommaKeyword_3_1_0; }
+		public Keyword getCommaKeyword_4_1_0() { return cCommaKeyword_4_1_0; }
 
 		//params+=BSParameter
-		public Assignment getParamsAssignment_3_1_1() { return cParamsAssignment_3_1_1; }
+		public Assignment getParamsAssignment_4_1_1() { return cParamsAssignment_4_1_1; }
 
 		//BSParameter
-		public RuleCall getParamsBSParameterParserRuleCall_3_1_1_0() { return cParamsBSParameterParserRuleCall_3_1_1_0; }
+		public RuleCall getParamsBSParameterParserRuleCall_4_1_1_0() { return cParamsBSParameterParserRuleCall_4_1_1_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 
 		//body=BSMethodBody
-		public Assignment getBodyAssignment_5() { return cBodyAssignment_5; }
+		public Assignment getBodyAssignment_6() { return cBodyAssignment_6; }
 
 		//BSMethodBody
-		public RuleCall getBodyBSMethodBodyParserRuleCall_5_0() { return cBodyBSMethodBodyParserRuleCall_5_0; }
+		public RuleCall getBodyBSMethodBodyParserRuleCall_6_0() { return cBodyBSMethodBodyParserRuleCall_6_0; }
 	}
 
 	public class BSParameterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BSParameter");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cTypeBSClassCrossReference_0_0 = (CrossReference)cTypeAssignment_0.eContents().get(0);
-		private final RuleCall cTypeBSClassQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cTypeBSClassCrossReference_0_0.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Assignment cPTypeAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
+		private final RuleCall cPTypeBSPrimitiveTypeEnumRuleCall_0_0_0 = (RuleCall)cPTypeAssignment_0_0.eContents().get(0);
+		private final Assignment cRTypeAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
+		private final CrossReference cRTypeBSClassCrossReference_0_1_0 = (CrossReference)cRTypeAssignment_0_1.eContents().get(0);
+		private final RuleCall cRTypeBSClassQualifiedNameParserRuleCall_0_1_0_1 = (RuleCall)cRTypeBSClassCrossReference_0_1_0.eContents().get(1);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
@@ -363,20 +408,29 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
 		
 		//BSParameter:
-		//	type=[BSClass|QualifiedName] name=ID (isArray?="[" "]")?;
+		//	(pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) name=ID (isArray?="[" "]")?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//type=[BSClass|QualifiedName] name=ID (isArray?="[" "]")?
+		//(pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) name=ID (isArray?="[" "]")?
 		public Group getGroup() { return cGroup; }
 
-		//type=[BSClass|QualifiedName]
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//pType=BSPrimitiveType | rType=[BSClass|QualifiedName]
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//pType=BSPrimitiveType
+		public Assignment getPTypeAssignment_0_0() { return cPTypeAssignment_0_0; }
+
+		//BSPrimitiveType
+		public RuleCall getPTypeBSPrimitiveTypeEnumRuleCall_0_0_0() { return cPTypeBSPrimitiveTypeEnumRuleCall_0_0_0; }
+
+		//rType=[BSClass|QualifiedName]
+		public Assignment getRTypeAssignment_0_1() { return cRTypeAssignment_0_1; }
 
 		//[BSClass|QualifiedName]
-		public CrossReference getTypeBSClassCrossReference_0_0() { return cTypeBSClassCrossReference_0_0; }
+		public CrossReference getRTypeBSClassCrossReference_0_1_0() { return cRTypeBSClassCrossReference_0_1_0; }
 
 		//QualifiedName
-		public RuleCall getTypeBSClassQualifiedNameParserRuleCall_0_0_1() { return cTypeBSClassQualifiedNameParserRuleCall_0_0_1; }
+		public RuleCall getRTypeBSClassQualifiedNameParserRuleCall_0_1_0_1() { return cRTypeBSClassQualifiedNameParserRuleCall_0_1_0_1; }
 
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -434,19 +488,23 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cBSVariableDeclarationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cBSReturnParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final RuleCall cBSExpressionParserRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final Keyword cSemicolonKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final RuleCall cBSIfStatementParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cBSWhileLoopParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cBSForLoopParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cBSSwitchStatementParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cBSBreakParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cBSContinueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
+		private final RuleCall cBSExpressionParserRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final Keyword cSemicolonKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
+		private final RuleCall cBSIfStatementParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cBSWhileLoopParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cBSForLoopParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cBSSwitchStatementParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		
 		//BSStatement:
-		//	BSVariableDeclaration | BSReturn | BSExpression ";" | BSIfStatement | BSWhileLoop | BSForLoop | BSSwitchStatement;
+		//	BSVariableDeclaration | BSReturn | BSBreak | BSContinue | BSExpression ";" | BSIfStatement | BSWhileLoop | BSForLoop
+		//	| BSSwitchStatement;
 		@Override public ParserRule getRule() { return rule; }
 
-		//BSVariableDeclaration | BSReturn | BSExpression ";" | BSIfStatement | BSWhileLoop | BSForLoop | BSSwitchStatement
+		//BSVariableDeclaration | BSReturn | BSBreak | BSContinue | BSExpression ";" | BSIfStatement | BSWhileLoop | BSForLoop |
+		//BSSwitchStatement
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//BSVariableDeclaration
@@ -455,51 +513,109 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		//BSReturn
 		public RuleCall getBSReturnParserRuleCall_1() { return cBSReturnParserRuleCall_1; }
 
+		//BSBreak
+		public RuleCall getBSBreakParserRuleCall_2() { return cBSBreakParserRuleCall_2; }
+
+		//BSContinue
+		public RuleCall getBSContinueParserRuleCall_3() { return cBSContinueParserRuleCall_3; }
+
 		//BSExpression ";"
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_4() { return cGroup_4; }
 
 		//BSExpression
-		public RuleCall getBSExpressionParserRuleCall_2_0() { return cBSExpressionParserRuleCall_2_0; }
+		public RuleCall getBSExpressionParserRuleCall_4_0() { return cBSExpressionParserRuleCall_4_0; }
 
 		//";"
-		public Keyword getSemicolonKeyword_2_1() { return cSemicolonKeyword_2_1; }
+		public Keyword getSemicolonKeyword_4_1() { return cSemicolonKeyword_4_1; }
 
 		//BSIfStatement
-		public RuleCall getBSIfStatementParserRuleCall_3() { return cBSIfStatementParserRuleCall_3; }
+		public RuleCall getBSIfStatementParserRuleCall_5() { return cBSIfStatementParserRuleCall_5; }
 
 		//BSWhileLoop
-		public RuleCall getBSWhileLoopParserRuleCall_4() { return cBSWhileLoopParserRuleCall_4; }
+		public RuleCall getBSWhileLoopParserRuleCall_6() { return cBSWhileLoopParserRuleCall_6; }
 
 		//BSForLoop
-		public RuleCall getBSForLoopParserRuleCall_5() { return cBSForLoopParserRuleCall_5; }
+		public RuleCall getBSForLoopParserRuleCall_7() { return cBSForLoopParserRuleCall_7; }
 
 		//BSSwitchStatement
-		public RuleCall getBSSwitchStatementParserRuleCall_6() { return cBSSwitchStatementParserRuleCall_6; }
+		public RuleCall getBSSwitchStatementParserRuleCall_8() { return cBSSwitchStatementParserRuleCall_8; }
 	}
 
 	public class BSReturnElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BSReturn");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cReturnKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cExpressionAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cExpressionBSExpressionParserRuleCall_1_0 = (RuleCall)cExpressionAssignment_1.eContents().get(0);
-		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Action cBSReturnAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cReturnKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cExpressionBSExpressionParserRuleCall_2_0 = (RuleCall)cExpressionAssignment_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//BSReturn:
-		//	"return" expression=BSExpression ";";
+		//	{BSReturn} "return" expression=BSExpression? ";";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"return" expression=BSExpression ";"
+		//{BSReturn} "return" expression=BSExpression? ";"
 		public Group getGroup() { return cGroup; }
 
-		//"return"
-		public Keyword getReturnKeyword_0() { return cReturnKeyword_0; }
+		//{BSReturn}
+		public Action getBSReturnAction_0() { return cBSReturnAction_0; }
 
-		//expression=BSExpression
-		public Assignment getExpressionAssignment_1() { return cExpressionAssignment_1; }
+		//"return"
+		public Keyword getReturnKeyword_1() { return cReturnKeyword_1; }
+
+		//expression=BSExpression?
+		public Assignment getExpressionAssignment_2() { return cExpressionAssignment_2; }
 
 		//BSExpression
-		public RuleCall getExpressionBSExpressionParserRuleCall_1_0() { return cExpressionBSExpressionParserRuleCall_1_0; }
+		public RuleCall getExpressionBSExpressionParserRuleCall_2_0() { return cExpressionBSExpressionParserRuleCall_2_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+	}
+
+	public class BSBreakElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BSBreak");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cBSBreakAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cBreakKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//BSBreak:
+		//	{BSBreak} "break" ";";
+		@Override public ParserRule getRule() { return rule; }
+
+		//{BSBreak} "break" ";"
+		public Group getGroup() { return cGroup; }
+
+		//{BSBreak}
+		public Action getBSBreakAction_0() { return cBSBreakAction_0; }
+
+		//"break"
+		public Keyword getBreakKeyword_1() { return cBreakKeyword_1; }
+
+		//";"
+		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
+	}
+
+	public class BSContinueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BSContinue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cBSContinueAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cContinueKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//BSContinue:
+		//	{BSContinue} "continue" ";";
+		@Override public ParserRule getRule() { return rule; }
+
+		//{BSContinue} "continue" ";"
+		public Group getGroup() { return cGroup; }
+
+		//{BSContinue}
+		public Action getBSContinueAction_0() { return cBSContinueAction_0; }
+
+		//"continue"
+		public Keyword getContinueKeyword_1() { return cContinueKeyword_1; }
 
 		//";"
 		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
@@ -508,9 +624,12 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class BSVariableDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BSVariableDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cTypeBSClassCrossReference_0_0 = (CrossReference)cTypeAssignment_0.eContents().get(0);
-		private final RuleCall cTypeBSClassQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cTypeBSClassCrossReference_0_0.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Assignment cPTypeAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
+		private final RuleCall cPTypeBSPrimitiveTypeEnumRuleCall_0_0_0 = (RuleCall)cPTypeAssignment_0_0.eContents().get(0);
+		private final Assignment cRTypeAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
+		private final CrossReference cRTypeBSClassCrossReference_0_1_0 = (CrossReference)cRTypeAssignment_0_1.eContents().get(0);
+		private final RuleCall cRTypeBSClassQualifiedNameParserRuleCall_0_1_0_1 = (RuleCall)cRTypeBSClassCrossReference_0_1_0.eContents().get(1);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
@@ -520,20 +639,29 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//BSVariableDeclaration:
-		//	type=[BSClass|QualifiedName] name=ID ("=" expression=BSExpression)? ";";
+		//	(pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) name=ID ("=" expression=BSExpression)? ";";
 		@Override public ParserRule getRule() { return rule; }
 
-		//type=[BSClass|QualifiedName] name=ID ("=" expression=BSExpression)? ";"
+		//(pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) name=ID ("=" expression=BSExpression)? ";"
 		public Group getGroup() { return cGroup; }
 
-		//type=[BSClass|QualifiedName]
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//pType=BSPrimitiveType | rType=[BSClass|QualifiedName]
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//pType=BSPrimitiveType
+		public Assignment getPTypeAssignment_0_0() { return cPTypeAssignment_0_0; }
+
+		//BSPrimitiveType
+		public RuleCall getPTypeBSPrimitiveTypeEnumRuleCall_0_0_0() { return cPTypeBSPrimitiveTypeEnumRuleCall_0_0_0; }
+
+		//rType=[BSClass|QualifiedName]
+		public Assignment getRTypeAssignment_0_1() { return cRTypeAssignment_0_1; }
 
 		//[BSClass|QualifiedName]
-		public CrossReference getTypeBSClassCrossReference_0_0() { return cTypeBSClassCrossReference_0_0; }
+		public CrossReference getRTypeBSClassCrossReference_0_1_0() { return cRTypeBSClassCrossReference_0_1_0; }
 
 		//QualifiedName
-		public RuleCall getTypeBSClassQualifiedNameParserRuleCall_0_0_1() { return cTypeBSClassQualifiedNameParserRuleCall_0_0_1; }
+		public RuleCall getRTypeBSClassQualifiedNameParserRuleCall_0_1_0_1() { return cRTypeBSClassQualifiedNameParserRuleCall_0_1_0_1; }
 
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -1027,156 +1155,146 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class BSExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BSExpression");
-		private final RuleCall cBSTernaryExpressionParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final RuleCall cBSAssignmentOrTernaryExpressionParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//BSExpression:
-		//	BSTernaryExpression;
+		//	BSAssignmentOrTernaryExpression;
 		@Override public ParserRule getRule() { return rule; }
 
-		//BSTernaryExpression
-		public RuleCall getBSTernaryExpressionParserRuleCall() { return cBSTernaryExpressionParserRuleCall; }
+		//BSAssignmentOrTernaryExpression
+		public RuleCall getBSAssignmentOrTernaryExpressionParserRuleCall() { return cBSAssignmentOrTernaryExpressionParserRuleCall; }
 	}
 
-	public class BSAssignmentExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BSAssignmentExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cBSTernaryExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cBSAssignmentExpressionLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Assignment cAssignmentOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final Alternatives cAssignmentOperatorAlternatives_1_1_0 = (Alternatives)cAssignmentOperatorAssignment_1_1.eContents().get(0);
-		private final Keyword cAssignmentOperatorEqualsSignKeyword_1_1_0_0 = (Keyword)cAssignmentOperatorAlternatives_1_1_0.eContents().get(0);
-		private final Keyword cAssignmentOperatorCommercialAtEqualsSignKeyword_1_1_0_1 = (Keyword)cAssignmentOperatorAlternatives_1_1_0.eContents().get(1);
-		private final Keyword cAssignmentOperatorPlusSignEqualsSignKeyword_1_1_0_2 = (Keyword)cAssignmentOperatorAlternatives_1_1_0.eContents().get(2);
-		private final Keyword cAssignmentOperatorHyphenMinusEqualsSignKeyword_1_1_0_3 = (Keyword)cAssignmentOperatorAlternatives_1_1_0.eContents().get(3);
-		private final Keyword cAssignmentOperatorAsteriskEqualsSignKeyword_1_1_0_4 = (Keyword)cAssignmentOperatorAlternatives_1_1_0.eContents().get(4);
-		private final Keyword cAssignmentOperatorSolidusEqualsSignKeyword_1_1_0_5 = (Keyword)cAssignmentOperatorAlternatives_1_1_0.eContents().get(5);
-		private final Keyword cAssignmentOperatorPercentSignEqualsSignKeyword_1_1_0_6 = (Keyword)cAssignmentOperatorAlternatives_1_1_0.eContents().get(6);
-		private final Keyword cAssignmentOperatorLessThanSignLessThanSignEqualsSignKeyword_1_1_0_7 = (Keyword)cAssignmentOperatorAlternatives_1_1_0.eContents().get(7);
-		private final Keyword cAssignmentOperatorGreaterThanSignGreaterThanSignEqualsSignKeyword_1_1_0_8 = (Keyword)cAssignmentOperatorAlternatives_1_1_0.eContents().get(8);
-		private final Keyword cAssignmentOperatorAmpersandEqualsSignKeyword_1_1_0_9 = (Keyword)cAssignmentOperatorAlternatives_1_1_0.eContents().get(9);
-		private final Keyword cAssignmentOperatorCircumflexAccentEqualsSignKeyword_1_1_0_10 = (Keyword)cAssignmentOperatorAlternatives_1_1_0.eContents().get(10);
-		private final Keyword cAssignmentOperatorVerticalLineEqualsSignKeyword_1_1_0_11 = (Keyword)cAssignmentOperatorAlternatives_1_1_0.eContents().get(11);
-		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cRightBSExpressionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
-		
-		////right-to-left assignment operators: = and [op]=
-		//BSAssignmentExpression returns BSExpression:
-		//	BSTernaryExpression ({BSAssignmentExpression.left=current} assignmentOperator=("=" | "@=" | "+=" | "-=" | "*=" | "/="
-		//	| "%=" | "<<=" | ">>=" | "&=" | "^=" | "|=") right=BSExpression)?;
-		@Override public ParserRule getRule() { return rule; }
-
-		//BSTernaryExpression ({BSAssignmentExpression.left=current} assignmentOperator=("=" | "@=" | "+=" | "-=" | "*=" | "/=" |
-		//"%=" | "<<=" | ">>=" | "&=" | "^=" | "|=") right=BSExpression)?
-		public Group getGroup() { return cGroup; }
-
-		//BSTernaryExpression
-		public RuleCall getBSTernaryExpressionParserRuleCall_0() { return cBSTernaryExpressionParserRuleCall_0; }
-
-		//({BSAssignmentExpression.left=current} assignmentOperator=("=" | "@=" | "+=" | "-=" | "*=" | "/=" | "%=" | "<<=" | ">>="
-		//| "&=" | "^=" | "|=") right=BSExpression)?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//{BSAssignmentExpression.left=current}
-		public Action getBSAssignmentExpressionLeftAction_1_0() { return cBSAssignmentExpressionLeftAction_1_0; }
-
-		//assignmentOperator=("=" | "@=" | "+=" | "-=" | "*=" | "/=" | "%=" | "<<=" | ">>=" | "&=" | "^=" | "|=")
-		public Assignment getAssignmentOperatorAssignment_1_1() { return cAssignmentOperatorAssignment_1_1; }
-
-		//"=" | "@=" | "+=" | "-=" | "*=" | "/=" | "%=" | "<<=" | ">>=" | "&=" | "^=" | "|="
-		public Alternatives getAssignmentOperatorAlternatives_1_1_0() { return cAssignmentOperatorAlternatives_1_1_0; }
-
-		//"="
-		public Keyword getAssignmentOperatorEqualsSignKeyword_1_1_0_0() { return cAssignmentOperatorEqualsSignKeyword_1_1_0_0; }
-
-		//"@="
-		public Keyword getAssignmentOperatorCommercialAtEqualsSignKeyword_1_1_0_1() { return cAssignmentOperatorCommercialAtEqualsSignKeyword_1_1_0_1; }
-
-		//"+="
-		public Keyword getAssignmentOperatorPlusSignEqualsSignKeyword_1_1_0_2() { return cAssignmentOperatorPlusSignEqualsSignKeyword_1_1_0_2; }
-
-		//"-="
-		public Keyword getAssignmentOperatorHyphenMinusEqualsSignKeyword_1_1_0_3() { return cAssignmentOperatorHyphenMinusEqualsSignKeyword_1_1_0_3; }
-
-		//"*="
-		public Keyword getAssignmentOperatorAsteriskEqualsSignKeyword_1_1_0_4() { return cAssignmentOperatorAsteriskEqualsSignKeyword_1_1_0_4; }
-
-		//"/="
-		public Keyword getAssignmentOperatorSolidusEqualsSignKeyword_1_1_0_5() { return cAssignmentOperatorSolidusEqualsSignKeyword_1_1_0_5; }
-
-		//"%="
-		public Keyword getAssignmentOperatorPercentSignEqualsSignKeyword_1_1_0_6() { return cAssignmentOperatorPercentSignEqualsSignKeyword_1_1_0_6; }
-
-		//"<<="
-		public Keyword getAssignmentOperatorLessThanSignLessThanSignEqualsSignKeyword_1_1_0_7() { return cAssignmentOperatorLessThanSignLessThanSignEqualsSignKeyword_1_1_0_7; }
-
-		//">>="
-		public Keyword getAssignmentOperatorGreaterThanSignGreaterThanSignEqualsSignKeyword_1_1_0_8() { return cAssignmentOperatorGreaterThanSignGreaterThanSignEqualsSignKeyword_1_1_0_8; }
-
-		//"&="
-		public Keyword getAssignmentOperatorAmpersandEqualsSignKeyword_1_1_0_9() { return cAssignmentOperatorAmpersandEqualsSignKeyword_1_1_0_9; }
-
-		//"^="
-		public Keyword getAssignmentOperatorCircumflexAccentEqualsSignKeyword_1_1_0_10() { return cAssignmentOperatorCircumflexAccentEqualsSignKeyword_1_1_0_10; }
-
-		//"|="
-		public Keyword getAssignmentOperatorVerticalLineEqualsSignKeyword_1_1_0_11() { return cAssignmentOperatorVerticalLineEqualsSignKeyword_1_1_0_11; }
-
-		//right=BSExpression
-		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
-
-		//BSExpression
-		public RuleCall getRightBSExpressionParserRuleCall_1_2_0() { return cRightBSExpressionParserRuleCall_1_2_0; }
-	}
-
-	public class BSTernaryExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BSTernaryExpression");
+	public class BSAssignmentOrTernaryExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BSAssignmentOrTernaryExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cBSBooleanOrExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cBSTernaryExpressionLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Keyword cQuestionMarkKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cMiddleAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cMiddleBSExpressionParserRuleCall_1_2_0 = (RuleCall)cMiddleAssignment_1_2.eContents().get(0);
-		private final Keyword cColonKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
-		private final Assignment cRightAssignment_1_4 = (Assignment)cGroup_1.eContents().get(4);
-		private final RuleCall cRightBSExpressionParserRuleCall_1_4_0 = (RuleCall)cRightAssignment_1_4.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Action cBSAssignmentExpressionLeftAction_1_0_0 = (Action)cGroup_1_0.eContents().get(0);
+		private final Assignment cAssignmentOperatorAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
+		private final Alternatives cAssignmentOperatorAlternatives_1_0_1_0 = (Alternatives)cAssignmentOperatorAssignment_1_0_1.eContents().get(0);
+		private final Keyword cAssignmentOperatorEqualsSignKeyword_1_0_1_0_0 = (Keyword)cAssignmentOperatorAlternatives_1_0_1_0.eContents().get(0);
+		private final Keyword cAssignmentOperatorCommercialAtEqualsSignKeyword_1_0_1_0_1 = (Keyword)cAssignmentOperatorAlternatives_1_0_1_0.eContents().get(1);
+		private final Keyword cAssignmentOperatorPlusSignEqualsSignKeyword_1_0_1_0_2 = (Keyword)cAssignmentOperatorAlternatives_1_0_1_0.eContents().get(2);
+		private final Keyword cAssignmentOperatorHyphenMinusEqualsSignKeyword_1_0_1_0_3 = (Keyword)cAssignmentOperatorAlternatives_1_0_1_0.eContents().get(3);
+		private final Keyword cAssignmentOperatorAsteriskEqualsSignKeyword_1_0_1_0_4 = (Keyword)cAssignmentOperatorAlternatives_1_0_1_0.eContents().get(4);
+		private final Keyword cAssignmentOperatorSolidusEqualsSignKeyword_1_0_1_0_5 = (Keyword)cAssignmentOperatorAlternatives_1_0_1_0.eContents().get(5);
+		private final Keyword cAssignmentOperatorPercentSignEqualsSignKeyword_1_0_1_0_6 = (Keyword)cAssignmentOperatorAlternatives_1_0_1_0.eContents().get(6);
+		private final Keyword cAssignmentOperatorLessThanSignLessThanSignEqualsSignKeyword_1_0_1_0_7 = (Keyword)cAssignmentOperatorAlternatives_1_0_1_0.eContents().get(7);
+		private final Keyword cAssignmentOperatorGreaterThanSignGreaterThanSignEqualsSignKeyword_1_0_1_0_8 = (Keyword)cAssignmentOperatorAlternatives_1_0_1_0.eContents().get(8);
+		private final Keyword cAssignmentOperatorAmpersandEqualsSignKeyword_1_0_1_0_9 = (Keyword)cAssignmentOperatorAlternatives_1_0_1_0.eContents().get(9);
+		private final Keyword cAssignmentOperatorCircumflexAccentEqualsSignKeyword_1_0_1_0_10 = (Keyword)cAssignmentOperatorAlternatives_1_0_1_0.eContents().get(10);
+		private final Keyword cAssignmentOperatorVerticalLineEqualsSignKeyword_1_0_1_0_11 = (Keyword)cAssignmentOperatorAlternatives_1_0_1_0.eContents().get(11);
+		private final Assignment cRightAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
+		private final RuleCall cRightBSExpressionParserRuleCall_1_0_2_0 = (RuleCall)cRightAssignment_1_0_2.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Action cBSTernaryExpressionLeftAction_1_1_0 = (Action)cGroup_1_1.eContents().get(0);
+		private final Keyword cQuestionMarkKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
+		private final Assignment cMiddleAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
+		private final RuleCall cMiddleBSExpressionParserRuleCall_1_1_2_0 = (RuleCall)cMiddleAssignment_1_1_2.eContents().get(0);
+		private final Keyword cColonKeyword_1_1_3 = (Keyword)cGroup_1_1.eContents().get(3);
+		private final Assignment cRightAssignment_1_1_4 = (Assignment)cGroup_1_1.eContents().get(4);
+		private final RuleCall cRightBSExpressionParserRuleCall_1_1_4_0 = (RuleCall)cRightAssignment_1_1_4.eContents().get(0);
 		
-		////'='|'@='|'+='|'-='|'*='|'/='|'%='|'<<='|'>>='|'&='|'^='|'|='
-		////right-to-left ternary operator: (?:)
-		//BSTernaryExpression returns BSExpression:
-		//	BSBooleanOrExpression ({BSTernaryExpression.left=current} "?" middle=BSExpression ":" right=BSExpression)?;
+		////right-to-left assignment and ternary operators: = [op]= (?:)
+		//BSAssignmentOrTernaryExpression returns BSExpression:
+		//	BSBooleanOrExpression ({BSAssignmentExpression.left=current} assignmentOperator=("=" | "@=" | "+=" | "-=" | "*=" |
+		//	"/=" | "%=" | "<<=" | ">>=" | "&=" | "^=" | "|=") right=BSExpression | {BSTernaryExpression.left=current} "?"
+		//	middle=BSExpression ":" right=BSExpression)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//BSBooleanOrExpression ({BSTernaryExpression.left=current} "?" middle=BSExpression ":" right=BSExpression)?
+		//BSBooleanOrExpression ({BSAssignmentExpression.left=current} assignmentOperator=("=" | "@=" | "+=" | "-=" | "*=" | "/="
+		//| "%=" | "<<=" | ">>=" | "&=" | "^=" | "|=") right=BSExpression | {BSTernaryExpression.left=current} "?"
+		//middle=BSExpression ":" right=BSExpression)?
 		public Group getGroup() { return cGroup; }
 
 		//BSBooleanOrExpression
 		public RuleCall getBSBooleanOrExpressionParserRuleCall_0() { return cBSBooleanOrExpressionParserRuleCall_0; }
 
-		//({BSTernaryExpression.left=current} "?" middle=BSExpression ":" right=BSExpression)?
-		public Group getGroup_1() { return cGroup_1; }
+		//({BSAssignmentExpression.left=current} assignmentOperator=("=" | "@=" | "+=" | "-=" | "*=" | "/=" | "%=" | "<<=" | ">>="
+		//| "&=" | "^=" | "|=") right=BSExpression | {BSTernaryExpression.left=current} "?" middle=BSExpression ":"
+		//right=BSExpression)?
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//{BSTernaryExpression.left=current}
-		public Action getBSTernaryExpressionLeftAction_1_0() { return cBSTernaryExpressionLeftAction_1_0; }
+		//{BSAssignmentExpression.left=current} assignmentOperator=("=" | "@=" | "+=" | "-=" | "*=" | "/=" | "%=" | "<<=" | ">>="
+		//| "&=" | "^=" | "|=") right=BSExpression
+		public Group getGroup_1_0() { return cGroup_1_0; }
 
-		//"?"
-		public Keyword getQuestionMarkKeyword_1_1() { return cQuestionMarkKeyword_1_1; }
+		//{BSAssignmentExpression.left=current}
+		public Action getBSAssignmentExpressionLeftAction_1_0_0() { return cBSAssignmentExpressionLeftAction_1_0_0; }
 
-		//middle=BSExpression
-		public Assignment getMiddleAssignment_1_2() { return cMiddleAssignment_1_2; }
+		//assignmentOperator=("=" | "@=" | "+=" | "-=" | "*=" | "/=" | "%=" | "<<=" | ">>=" | "&=" | "^=" | "|=")
+		public Assignment getAssignmentOperatorAssignment_1_0_1() { return cAssignmentOperatorAssignment_1_0_1; }
 
-		//BSExpression
-		public RuleCall getMiddleBSExpressionParserRuleCall_1_2_0() { return cMiddleBSExpressionParserRuleCall_1_2_0; }
+		//"=" | "@=" | "+=" | "-=" | "*=" | "/=" | "%=" | "<<=" | ">>=" | "&=" | "^=" | "|="
+		public Alternatives getAssignmentOperatorAlternatives_1_0_1_0() { return cAssignmentOperatorAlternatives_1_0_1_0; }
 
-		//":"
-		public Keyword getColonKeyword_1_3() { return cColonKeyword_1_3; }
+		//"="
+		public Keyword getAssignmentOperatorEqualsSignKeyword_1_0_1_0_0() { return cAssignmentOperatorEqualsSignKeyword_1_0_1_0_0; }
+
+		//"@="
+		public Keyword getAssignmentOperatorCommercialAtEqualsSignKeyword_1_0_1_0_1() { return cAssignmentOperatorCommercialAtEqualsSignKeyword_1_0_1_0_1; }
+
+		//"+="
+		public Keyword getAssignmentOperatorPlusSignEqualsSignKeyword_1_0_1_0_2() { return cAssignmentOperatorPlusSignEqualsSignKeyword_1_0_1_0_2; }
+
+		//"-="
+		public Keyword getAssignmentOperatorHyphenMinusEqualsSignKeyword_1_0_1_0_3() { return cAssignmentOperatorHyphenMinusEqualsSignKeyword_1_0_1_0_3; }
+
+		//"*="
+		public Keyword getAssignmentOperatorAsteriskEqualsSignKeyword_1_0_1_0_4() { return cAssignmentOperatorAsteriskEqualsSignKeyword_1_0_1_0_4; }
+
+		//"/="
+		public Keyword getAssignmentOperatorSolidusEqualsSignKeyword_1_0_1_0_5() { return cAssignmentOperatorSolidusEqualsSignKeyword_1_0_1_0_5; }
+
+		//"%="
+		public Keyword getAssignmentOperatorPercentSignEqualsSignKeyword_1_0_1_0_6() { return cAssignmentOperatorPercentSignEqualsSignKeyword_1_0_1_0_6; }
+
+		//"<<="
+		public Keyword getAssignmentOperatorLessThanSignLessThanSignEqualsSignKeyword_1_0_1_0_7() { return cAssignmentOperatorLessThanSignLessThanSignEqualsSignKeyword_1_0_1_0_7; }
+
+		//">>="
+		public Keyword getAssignmentOperatorGreaterThanSignGreaterThanSignEqualsSignKeyword_1_0_1_0_8() { return cAssignmentOperatorGreaterThanSignGreaterThanSignEqualsSignKeyword_1_0_1_0_8; }
+
+		//"&="
+		public Keyword getAssignmentOperatorAmpersandEqualsSignKeyword_1_0_1_0_9() { return cAssignmentOperatorAmpersandEqualsSignKeyword_1_0_1_0_9; }
+
+		//"^="
+		public Keyword getAssignmentOperatorCircumflexAccentEqualsSignKeyword_1_0_1_0_10() { return cAssignmentOperatorCircumflexAccentEqualsSignKeyword_1_0_1_0_10; }
+
+		//"|="
+		public Keyword getAssignmentOperatorVerticalLineEqualsSignKeyword_1_0_1_0_11() { return cAssignmentOperatorVerticalLineEqualsSignKeyword_1_0_1_0_11; }
 
 		//right=BSExpression
-		public Assignment getRightAssignment_1_4() { return cRightAssignment_1_4; }
+		public Assignment getRightAssignment_1_0_2() { return cRightAssignment_1_0_2; }
 
 		//BSExpression
-		public RuleCall getRightBSExpressionParserRuleCall_1_4_0() { return cRightBSExpressionParserRuleCall_1_4_0; }
+		public RuleCall getRightBSExpressionParserRuleCall_1_0_2_0() { return cRightBSExpressionParserRuleCall_1_0_2_0; }
+
+		//{BSTernaryExpression.left=current} "?" middle=BSExpression ":" right=BSExpression
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
+		//{BSTernaryExpression.left=current}
+		public Action getBSTernaryExpressionLeftAction_1_1_0() { return cBSTernaryExpressionLeftAction_1_1_0; }
+
+		//"?"
+		public Keyword getQuestionMarkKeyword_1_1_1() { return cQuestionMarkKeyword_1_1_1; }
+
+		//middle=BSExpression
+		public Assignment getMiddleAssignment_1_1_2() { return cMiddleAssignment_1_1_2; }
+
+		//BSExpression
+		public RuleCall getMiddleBSExpressionParserRuleCall_1_1_2_0() { return cMiddleBSExpressionParserRuleCall_1_1_2_0; }
+
+		//":"
+		public Keyword getColonKeyword_1_1_3() { return cColonKeyword_1_1_3; }
+
+		//right=BSExpression
+		public Assignment getRightAssignment_1_1_4() { return cRightAssignment_1_1_4; }
+
+		//BSExpression
+		public RuleCall getRightBSExpressionParserRuleCall_1_1_4_0() { return cRightBSExpressionParserRuleCall_1_1_4_0; }
 	}
 
 	public class BSBooleanOrExpressionElements extends AbstractParserRuleElementFinder {
@@ -1189,6 +1307,17 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cRightBSBooleanAndExpressionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
+		////right-to-left assignment operators: = [op]=
+		////BSAssignmentExpression returns BSExpression:
+		////	BSTernaryExpression
+		////	({BSAssignmentExpression.left=current} assignmentOperator=('='|'@='|'+='|'-='|'*='|'/='|'%='|'<<='|'>>='|'&='|'^='|'|=') right=BSExpression)?
+		////;
+		////
+		//////right-to-left ternary operator: (?:)
+		////BSTernaryExpression returns BSExpression:
+		////	BSBooleanOrExpression
+		////	({BSTernaryExpression.left=current} '?' middle=BSExpression ':' right=BSExpression)?
+		////;
 		////left-to-right boolean OR operator: ||
 		//BSBooleanOrExpression returns BSExpression:
 		//	BSBooleanAndExpression ({BSBooleanOrExpression.left=current} "||" right=BSBooleanAndExpression)*;
@@ -1542,7 +1671,7 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cRightBSMulDivOrModExpressionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
-		////left-to-right additive operators: + - (string concat +) @ SPC NL TAB
+		////left-to-right additive operators: + - [string concat +] @ SPC NL TAB
 		//BSPlusMinusOrStringConcatExpression returns BSExpression:
 		//	BSMulDivOrModExpression ({BSPlusMinusOrStringConcatExpression.left=current} operator=("+" | "-" | "@" | "SPC" | "NL"
 		//	| "TAB") right=BSMulDivOrModExpression)*;
@@ -1654,50 +1783,53 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Action cBSCastExpressionAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cCastTypeAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final Alternatives cCastTypeAlternatives_1_2_0 = (Alternatives)cCastTypeAssignment_1_2.eContents().get(0);
-		private final Keyword cCastTypeStringKeyword_1_2_0_0 = (Keyword)cCastTypeAlternatives_1_2_0.eContents().get(0);
-		private final Keyword cCastTypeNumberKeyword_1_2_0_1 = (Keyword)cCastTypeAlternatives_1_2_0.eContents().get(1);
-		private final Keyword cCastTypeObjectKeyword_1_2_0_2 = (Keyword)cCastTypeAlternatives_1_2_0.eContents().get(2);
-		private final Keyword cRightParenthesisKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
-		private final Assignment cCastExprAssignment_1_4 = (Assignment)cGroup_1.eContents().get(4);
-		private final RuleCall cCastExprBSCastOrNewExpressionParserRuleCall_1_4_0 = (RuleCall)cCastExprAssignment_1_4.eContents().get(0);
+		private final Assignment cPTypeAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cPTypeBSPrimitiveTypeEnumRuleCall_1_2_0 = (RuleCall)cPTypeAssignment_1_2.eContents().get(0);
+		private final Group cGroup_1_3 = (Group)cGroup_1.eContents().get(3);
+		private final Assignment cIsArrayAssignment_1_3_0 = (Assignment)cGroup_1_3.eContents().get(0);
+		private final Keyword cIsArrayLeftSquareBracketKeyword_1_3_0_0 = (Keyword)cIsArrayAssignment_1_3_0.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_1_3_1 = (Keyword)cGroup_1_3.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
+		private final Assignment cCastExprAssignment_1_5 = (Assignment)cGroup_1.eContents().get(5);
+		private final RuleCall cCastExprBSCastOrNewExpressionParserRuleCall_1_5_0 = (RuleCall)cCastExprAssignment_1_5.eContents().get(0);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
 		private final Action cBSNewExpressionAction_2_0 = (Action)cGroup_2.eContents().get(0);
 		private final Keyword cNewKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
-		private final Assignment cIsArrayAssignment_2_2_0 = (Assignment)cGroup_2_2.eContents().get(0);
-		private final Keyword cIsArrayLeftSquareBracketKeyword_2_2_0_0 = (Keyword)cIsArrayAssignment_2_2_0.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_2_2_1 = (Keyword)cGroup_2_2.eContents().get(1);
-		private final Assignment cTypeAssignment_2_3 = (Assignment)cGroup_2.eContents().get(3);
-		private final CrossReference cTypeBSClassCrossReference_2_3_0 = (CrossReference)cTypeAssignment_2_3.eContents().get(0);
-		private final RuleCall cTypeBSClassQualifiedNameParserRuleCall_2_3_0_1 = (RuleCall)cTypeBSClassCrossReference_2_3_0.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_2_4 = (Keyword)cGroup_2.eContents().get(4);
-		private final Group cGroup_2_5 = (Group)cGroup_2.eContents().get(5);
-		private final Assignment cArgsAssignment_2_5_0 = (Assignment)cGroup_2_5.eContents().get(0);
-		private final RuleCall cArgsBSExpressionParserRuleCall_2_5_0_0 = (RuleCall)cArgsAssignment_2_5_0.eContents().get(0);
-		private final Group cGroup_2_5_1 = (Group)cGroup_2_5.eContents().get(1);
-		private final Keyword cCommaKeyword_2_5_1_0 = (Keyword)cGroup_2_5_1.eContents().get(0);
-		private final Assignment cArgsAssignment_2_5_1_1 = (Assignment)cGroup_2_5_1.eContents().get(1);
-		private final RuleCall cArgsBSExpressionParserRuleCall_2_5_1_1_0 = (RuleCall)cArgsAssignment_2_5_1_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_2_6 = (Keyword)cGroup_2.eContents().get(6);
+		private final Assignment cRTypeAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final CrossReference cRTypeBSClassCrossReference_2_2_0 = (CrossReference)cRTypeAssignment_2_2.eContents().get(0);
+		private final RuleCall cRTypeBSClassQualifiedNameParserRuleCall_2_2_0_1 = (RuleCall)cRTypeBSClassCrossReference_2_2_0.eContents().get(1);
+		private final Alternatives cAlternatives_2_3 = (Alternatives)cGroup_2.eContents().get(3);
+		private final Group cGroup_2_3_0 = (Group)cAlternatives_2_3.eContents().get(0);
+		private final Assignment cIsArrayAssignment_2_3_0_0 = (Assignment)cGroup_2_3_0.eContents().get(0);
+		private final Keyword cIsArrayLeftSquareBracketKeyword_2_3_0_0_0 = (Keyword)cIsArrayAssignment_2_3_0_0.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_2_3_0_1 = (Keyword)cGroup_2_3_0.eContents().get(1);
+		private final Group cGroup_2_3_1 = (Group)cAlternatives_2_3.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_2_3_1_0 = (Keyword)cGroup_2_3_1.eContents().get(0);
+		private final Group cGroup_2_3_1_1 = (Group)cGroup_2_3_1.eContents().get(1);
+		private final Assignment cArgsAssignment_2_3_1_1_0 = (Assignment)cGroup_2_3_1_1.eContents().get(0);
+		private final RuleCall cArgsBSExpressionParserRuleCall_2_3_1_1_0_0 = (RuleCall)cArgsAssignment_2_3_1_1_0.eContents().get(0);
+		private final Group cGroup_2_3_1_1_1 = (Group)cGroup_2_3_1_1.eContents().get(1);
+		private final Keyword cCommaKeyword_2_3_1_1_1_0 = (Keyword)cGroup_2_3_1_1_1.eContents().get(0);
+		private final Assignment cArgsAssignment_2_3_1_1_1_1 = (Assignment)cGroup_2_3_1_1_1.eContents().get(1);
+		private final RuleCall cArgsBSExpressionParserRuleCall_2_3_1_1_1_1_0 = (RuleCall)cArgsAssignment_2_3_1_1_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2_3_1_2 = (Keyword)cGroup_2_3_1.eContents().get(2);
 		
-		////right-to-left prefix unary operators: (cast) new
+		////right-to-left prefix unary operators: ([cast]) new
 		//BSCastOrNewExpression returns BSExpression:
-		//	BSUnaryModifierExpression | {BSCastExpression} "(" castType=("string" | "number" | "object") ")"
-		//	castExpr=BSCastOrNewExpression | {BSNewExpression} "new" (isArray?="[" "]")? type=[BSClass|QualifiedName] "("
-		//	(args+=BSExpression ("," args+=BSExpression)*)? ")";
+		//	BSUnaryModifierExpression | {BSCastExpression} "(" pType=BSPrimitiveType (isArray?="[" "]")? ")"
+		//	castExpr=BSCastOrNewExpression | {BSNewExpression} "new" rType=[BSClass|QualifiedName] ((isArray?="[" "]")? | "("
+		//	(args+=BSExpression ("," args+=BSExpression)*)? ")");
 		@Override public ParserRule getRule() { return rule; }
 
-		//BSUnaryModifierExpression | {BSCastExpression} "(" castType=("string" | "number" | "object") ")"
-		//castExpr=BSCastOrNewExpression | {BSNewExpression} "new" (isArray?="[" "]")? type=[BSClass|QualifiedName] "("
-		//(args+=BSExpression ("," args+=BSExpression)*)? ")"
+		//BSUnaryModifierExpression | {BSCastExpression} "(" pType=BSPrimitiveType (isArray?="[" "]")? ")"
+		//castExpr=BSCastOrNewExpression | {BSNewExpression} "new" rType=[BSClass|QualifiedName] ((isArray?="[" "]")? | "("
+		//(args+=BSExpression ("," args+=BSExpression)*)? ")")
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//BSUnaryModifierExpression
 		public RuleCall getBSUnaryModifierExpressionParserRuleCall_0() { return cBSUnaryModifierExpressionParserRuleCall_0; }
 
-		//{BSCastExpression} "(" castType=("string" | "number" | "object") ")" castExpr=BSCastOrNewExpression
+		//{BSCastExpression} "(" pType=BSPrimitiveType (isArray?="[" "]")? ")" castExpr=BSCastOrNewExpression
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{BSCastExpression}
@@ -1706,32 +1838,35 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_1_1() { return cLeftParenthesisKeyword_1_1; }
 
-		//castType=("string" | "number" | "object")
-		public Assignment getCastTypeAssignment_1_2() { return cCastTypeAssignment_1_2; }
+		//pType=BSPrimitiveType
+		public Assignment getPTypeAssignment_1_2() { return cPTypeAssignment_1_2; }
 
-		//"string" | "number" | "object"
-		public Alternatives getCastTypeAlternatives_1_2_0() { return cCastTypeAlternatives_1_2_0; }
+		//BSPrimitiveType
+		public RuleCall getPTypeBSPrimitiveTypeEnumRuleCall_1_2_0() { return cPTypeBSPrimitiveTypeEnumRuleCall_1_2_0; }
 
-		//"string"
-		public Keyword getCastTypeStringKeyword_1_2_0_0() { return cCastTypeStringKeyword_1_2_0_0; }
+		//(isArray?="[" "]")?
+		public Group getGroup_1_3() { return cGroup_1_3; }
 
-		//"number"
-		public Keyword getCastTypeNumberKeyword_1_2_0_1() { return cCastTypeNumberKeyword_1_2_0_1; }
+		//isArray?="["
+		public Assignment getIsArrayAssignment_1_3_0() { return cIsArrayAssignment_1_3_0; }
 
-		//"object"
-		public Keyword getCastTypeObjectKeyword_1_2_0_2() { return cCastTypeObjectKeyword_1_2_0_2; }
+		//"["
+		public Keyword getIsArrayLeftSquareBracketKeyword_1_3_0_0() { return cIsArrayLeftSquareBracketKeyword_1_3_0_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_1_3_1() { return cRightSquareBracketKeyword_1_3_1; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_1_3() { return cRightParenthesisKeyword_1_3; }
+		public Keyword getRightParenthesisKeyword_1_4() { return cRightParenthesisKeyword_1_4; }
 
 		//castExpr=BSCastOrNewExpression
-		public Assignment getCastExprAssignment_1_4() { return cCastExprAssignment_1_4; }
+		public Assignment getCastExprAssignment_1_5() { return cCastExprAssignment_1_5; }
 
 		//BSCastOrNewExpression
-		public RuleCall getCastExprBSCastOrNewExpressionParserRuleCall_1_4_0() { return cCastExprBSCastOrNewExpressionParserRuleCall_1_4_0; }
+		public RuleCall getCastExprBSCastOrNewExpressionParserRuleCall_1_5_0() { return cCastExprBSCastOrNewExpressionParserRuleCall_1_5_0; }
 
-		//{BSNewExpression} "new" (isArray?="[" "]")? type=[BSClass|QualifiedName] "(" (args+=BSExpression (","
-		//args+=BSExpression)*)? ")"
+		//{BSNewExpression} "new" rType=[BSClass|QualifiedName] ((isArray?="[" "]")? | "(" (args+=BSExpression (","
+		//args+=BSExpression)*)? ")")
 		public Group getGroup_2() { return cGroup_2; }
 
 		//{BSNewExpression}
@@ -1740,53 +1875,59 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		//"new"
 		public Keyword getNewKeyword_2_1() { return cNewKeyword_2_1; }
 
-		//(isArray?="[" "]")?
-		public Group getGroup_2_2() { return cGroup_2_2; }
-
-		//isArray?="["
-		public Assignment getIsArrayAssignment_2_2_0() { return cIsArrayAssignment_2_2_0; }
-
-		//"["
-		public Keyword getIsArrayLeftSquareBracketKeyword_2_2_0_0() { return cIsArrayLeftSquareBracketKeyword_2_2_0_0; }
-
-		//"]"
-		public Keyword getRightSquareBracketKeyword_2_2_1() { return cRightSquareBracketKeyword_2_2_1; }
-
-		//type=[BSClass|QualifiedName]
-		public Assignment getTypeAssignment_2_3() { return cTypeAssignment_2_3; }
+		//rType=[BSClass|QualifiedName]
+		public Assignment getRTypeAssignment_2_2() { return cRTypeAssignment_2_2; }
 
 		//[BSClass|QualifiedName]
-		public CrossReference getTypeBSClassCrossReference_2_3_0() { return cTypeBSClassCrossReference_2_3_0; }
+		public CrossReference getRTypeBSClassCrossReference_2_2_0() { return cRTypeBSClassCrossReference_2_2_0; }
 
 		//QualifiedName
-		public RuleCall getTypeBSClassQualifiedNameParserRuleCall_2_3_0_1() { return cTypeBSClassQualifiedNameParserRuleCall_2_3_0_1; }
+		public RuleCall getRTypeBSClassQualifiedNameParserRuleCall_2_2_0_1() { return cRTypeBSClassQualifiedNameParserRuleCall_2_2_0_1; }
+
+		//(isArray?="[" "]")? | "(" (args+=BSExpression ("," args+=BSExpression)*)? ")"
+		public Alternatives getAlternatives_2_3() { return cAlternatives_2_3; }
+
+		//(isArray?="[" "]")?
+		public Group getGroup_2_3_0() { return cGroup_2_3_0; }
+
+		//isArray?="["
+		public Assignment getIsArrayAssignment_2_3_0_0() { return cIsArrayAssignment_2_3_0_0; }
+
+		//"["
+		public Keyword getIsArrayLeftSquareBracketKeyword_2_3_0_0_0() { return cIsArrayLeftSquareBracketKeyword_2_3_0_0_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_2_3_0_1() { return cRightSquareBracketKeyword_2_3_0_1; }
+
+		//"(" (args+=BSExpression ("," args+=BSExpression)*)? ")"
+		public Group getGroup_2_3_1() { return cGroup_2_3_1; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_2_4() { return cLeftParenthesisKeyword_2_4; }
+		public Keyword getLeftParenthesisKeyword_2_3_1_0() { return cLeftParenthesisKeyword_2_3_1_0; }
 
 		//(args+=BSExpression ("," args+=BSExpression)*)?
-		public Group getGroup_2_5() { return cGroup_2_5; }
+		public Group getGroup_2_3_1_1() { return cGroup_2_3_1_1; }
 
 		//args+=BSExpression
-		public Assignment getArgsAssignment_2_5_0() { return cArgsAssignment_2_5_0; }
+		public Assignment getArgsAssignment_2_3_1_1_0() { return cArgsAssignment_2_3_1_1_0; }
 
 		//BSExpression
-		public RuleCall getArgsBSExpressionParserRuleCall_2_5_0_0() { return cArgsBSExpressionParserRuleCall_2_5_0_0; }
+		public RuleCall getArgsBSExpressionParserRuleCall_2_3_1_1_0_0() { return cArgsBSExpressionParserRuleCall_2_3_1_1_0_0; }
 
 		//("," args+=BSExpression)*
-		public Group getGroup_2_5_1() { return cGroup_2_5_1; }
+		public Group getGroup_2_3_1_1_1() { return cGroup_2_3_1_1_1; }
 
 		//","
-		public Keyword getCommaKeyword_2_5_1_0() { return cCommaKeyword_2_5_1_0; }
+		public Keyword getCommaKeyword_2_3_1_1_1_0() { return cCommaKeyword_2_3_1_1_1_0; }
 
 		//args+=BSExpression
-		public Assignment getArgsAssignment_2_5_1_1() { return cArgsAssignment_2_5_1_1; }
+		public Assignment getArgsAssignment_2_3_1_1_1_1() { return cArgsAssignment_2_3_1_1_1_1; }
 
 		//BSExpression
-		public RuleCall getArgsBSExpressionParserRuleCall_2_5_1_1_0() { return cArgsBSExpressionParserRuleCall_2_5_1_1_0; }
+		public RuleCall getArgsBSExpressionParserRuleCall_2_3_1_1_1_1_0() { return cArgsBSExpressionParserRuleCall_2_3_1_1_1_1_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_2_6() { return cRightParenthesisKeyword_2_6; }
+		public Keyword getRightParenthesisKeyword_2_3_1_2() { return cRightParenthesisKeyword_2_3_1_2; }
 	}
 
 	public class BSUnaryModifierExpressionElements extends AbstractParserRuleElementFinder {
@@ -1855,6 +1996,8 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
 		private final Action cBSMemberSelectionExpressionReceiverAction_1_0_0 = (Action)cGroup_1_0.eContents().get(0);
 		private final Keyword cFullStopKeyword_1_0_1 = (Keyword)cGroup_1_0.eContents().get(1);
+		private final Assignment cMemberAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
+		private final RuleCall cMemberBSTerminalExpressionParserRuleCall_1_0_2_0 = (RuleCall)cMemberAssignment_1_0_2.eContents().get(0);
 		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
 		private final Action cBSMethodInvokationExpressionReceiverAction_1_1_0 = (Action)cGroup_1_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
@@ -1886,13 +2029,13 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		
 		////left-to-right unary postfixes: . (...) [...] ++ --
 		//BSInvokationExpression returns BSExpression:
-		//	BSTerminalExpression ({BSMemberSelectionExpression.receiver=current} "." |
+		//	BSTerminalExpression ({BSMemberSelectionExpression.receiver=current} "." member=BSTerminalExpression |
 		//	{BSMethodInvokationExpression.receiver=current} "(" (args+=BSExpression ("," args+=BSExpression)*)? ")" |
 		//	{BSArrayAccessExpression.receiver=current} "[" (args+=BSExpression ("," args+=BSExpression)*)? "]" |
 		//	{BSPostfixArithmeticExpression.receiver=current} operator=("++" | "--"))*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//BSTerminalExpression ({BSMemberSelectionExpression.receiver=current} "." |
+		//BSTerminalExpression ({BSMemberSelectionExpression.receiver=current} "." member=BSTerminalExpression |
 		//{BSMethodInvokationExpression.receiver=current} "(" (args+=BSExpression ("," args+=BSExpression)*)? ")" |
 		//{BSArrayAccessExpression.receiver=current} "[" (args+=BSExpression ("," args+=BSExpression)*)? "]" |
 		//{BSPostfixArithmeticExpression.receiver=current} operator=("++" | "--"))*
@@ -1901,13 +2044,13 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		//BSTerminalExpression
 		public RuleCall getBSTerminalExpressionParserRuleCall_0() { return cBSTerminalExpressionParserRuleCall_0; }
 
-		//({BSMemberSelectionExpression.receiver=current} "." | {BSMethodInvokationExpression.receiver=current} "("
-		//(args+=BSExpression ("," args+=BSExpression)*)? ")" | {BSArrayAccessExpression.receiver=current} "["
-		//(args+=BSExpression ("," args+=BSExpression)*)? "]" | {BSPostfixArithmeticExpression.receiver=current} operator=("++"
-		//| "--"))*
+		//({BSMemberSelectionExpression.receiver=current} "." member=BSTerminalExpression |
+		//{BSMethodInvokationExpression.receiver=current} "(" (args+=BSExpression ("," args+=BSExpression)*)? ")" |
+		//{BSArrayAccessExpression.receiver=current} "[" (args+=BSExpression ("," args+=BSExpression)*)? "]" |
+		//{BSPostfixArithmeticExpression.receiver=current} operator=("++" | "--"))*
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//{BSMemberSelectionExpression.receiver=current} "."
+		//{BSMemberSelectionExpression.receiver=current} "." member=BSTerminalExpression
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
 		//{BSMemberSelectionExpression.receiver=current}
@@ -1915,6 +2058,12 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"."
 		public Keyword getFullStopKeyword_1_0_1() { return cFullStopKeyword_1_0_1; }
+
+		//member=BSTerminalExpression
+		public Assignment getMemberAssignment_1_0_2() { return cMemberAssignment_1_0_2; }
+
+		//BSTerminalExpression
+		public RuleCall getMemberBSTerminalExpressionParserRuleCall_1_0_2_0() { return cMemberBSTerminalExpressionParserRuleCall_1_0_2_0; }
 
 		//{BSMethodInvokationExpression.receiver=current} "(" (args+=BSExpression ("," args+=BSExpression)*)? ")"
 		public Group getGroup_1_1() { return cGroup_1_1; }
@@ -2017,8 +2166,8 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cValueINTTerminalRuleCall_2_1_0 = (RuleCall)cValueAssignment_2_1.eContents().get(0);
 		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
-		private final Action cBSRealConstantLeftAction_2_2_0 = (Action)cGroup_2_2.eContents().get(0);
-		private final Keyword cFullStopKeyword_2_2_1 = (Keyword)cGroup_2_2.eContents().get(1);
+		private final Keyword cFullStopKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
+		private final Action cBSRealConstantLeftAction_2_2_1 = (Action)cGroup_2_2.eContents().get(1);
 		private final Assignment cRightAssignment_2_2_2 = (Assignment)cGroup_2_2.eContents().get(2);
 		private final RuleCall cRightINTTerminalRuleCall_2_2_2_0 = (RuleCall)cRightAssignment_2_2_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
@@ -2031,46 +2180,38 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cBSNullLiteralAction_4_0 = (Action)cGroup_4.eContents().get(0);
 		private final Keyword cNullKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
-		private final Action cBSBreakLiteralAction_5_0 = (Action)cGroup_5.eContents().get(0);
-		private final Keyword cBreakKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
+		private final Action cBSThisLiteralAction_5_0 = (Action)cGroup_5.eContents().get(0);
+		private final Keyword cThisKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
 		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
-		private final Action cBSContinueLiteralAction_6_0 = (Action)cGroup_6.eContents().get(0);
-		private final Keyword cContinueKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
+		private final Action cBSClientLiteralAction_6_0 = (Action)cGroup_6.eContents().get(0);
+		private final Keyword cClientKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
 		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
-		private final Action cBSThisLiteralAction_7_0 = (Action)cGroup_7.eContents().get(0);
-		private final Keyword cThisKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
+		private final Action cBSParentLiteralAction_7_0 = (Action)cGroup_7.eContents().get(0);
+		private final Keyword cParentKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
 		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
-		private final Action cBSClientLiteralAction_8_0 = (Action)cGroup_8.eContents().get(0);
-		private final Keyword cClientKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
+		private final Action cBSSymbolRefAction_8_0 = (Action)cGroup_8.eContents().get(0);
+		private final Assignment cSymbolAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
+		private final CrossReference cSymbolBSSymbolCrossReference_8_1_0 = (CrossReference)cSymbolAssignment_8_1.eContents().get(0);
+		private final RuleCall cSymbolBSSymbolIDTerminalRuleCall_8_1_0_1 = (RuleCall)cSymbolBSSymbolCrossReference_8_1_0.eContents().get(1);
 		private final Group cGroup_9 = (Group)cAlternatives.eContents().get(9);
-		private final Action cBSParentLiteralAction_9_0 = (Action)cGroup_9.eContents().get(0);
-		private final Keyword cParentKeyword_9_1 = (Keyword)cGroup_9.eContents().get(1);
-		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
-		private final Action cBSSymbolRefAction_10_0 = (Action)cGroup_10.eContents().get(0);
-		private final Assignment cSymbolAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
-		private final CrossReference cSymbolBSSymbolCrossReference_10_1_0 = (CrossReference)cSymbolAssignment_10_1.eContents().get(0);
-		private final RuleCall cSymbolBSSymbolIDTerminalRuleCall_10_1_0_1 = (RuleCall)cSymbolBSSymbolCrossReference_10_1_0.eContents().get(1);
-		private final Group cGroup_11 = (Group)cAlternatives.eContents().get(11);
-		private final Action cBSParentheticalExpressionAction_11_0 = (Action)cGroup_11.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_11_1 = (Keyword)cGroup_11.eContents().get(1);
-		private final Assignment cExpressionAssignment_11_2 = (Assignment)cGroup_11.eContents().get(2);
-		private final RuleCall cExpressionBSExpressionParserRuleCall_11_2_0 = (RuleCall)cExpressionAssignment_11_2.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_11_3 = (Keyword)cGroup_11.eContents().get(3);
+		private final Action cBSParentheticalExpressionAction_9_0 = (Action)cGroup_9.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_9_1 = (Keyword)cGroup_9.eContents().get(1);
+		private final Assignment cExpressionAssignment_9_2 = (Assignment)cGroup_9.eContents().get(2);
+		private final RuleCall cExpressionBSExpressionParserRuleCall_9_2_0 = (RuleCall)cExpressionAssignment_9_2.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_9_3 = (Keyword)cGroup_9.eContents().get(3);
 		
 		////Maximum-precedence literals and keywords
 		//BSTerminalExpression returns BSExpression:
-		//	{BSStringConstant} value=STRING | {BSHexadecimalConstant} value=HEX_VALUE | {BSNumberConstant} value=INT
-		//	({BSRealConstant.left=current} "." right=INT)? | {BSBooleanConstant} value=("true" | "false") | {BSNullLiteral}
-		//	"null" | {BSBreakLiteral} "break" | {BSContinueLiteral} "continue" | {BSThisLiteral} "this" | {BSClientLiteral}
-		//	"client" | {BSParentLiteral} "parent" | {BSSymbolRef} symbol=[BSSymbol] | {BSParentheticalExpression} "("
-		//	expression=BSExpression ")";
+		//	{BSStringConstant} value=STRING | {BSHexadecimalConstant} value=HEX_VALUE | {BSNumberConstant} value=INT ("."
+		//	{BSRealConstant.left=current} right=INT)? | {BSBooleanConstant} value=("true" | "false") | {BSNullLiteral} "null" |
+		//	{BSThisLiteral} "this" | {BSClientLiteral} "client" | {BSParentLiteral} "parent" | {BSSymbolRef} symbol=[BSSymbol] |
+		//	{BSParentheticalExpression} "(" expression=BSExpression ")";
 		@Override public ParserRule getRule() { return rule; }
 
-		//{BSStringConstant} value=STRING | {BSHexadecimalConstant} value=HEX_VALUE | {BSNumberConstant} value=INT
-		//({BSRealConstant.left=current} "." right=INT)? | {BSBooleanConstant} value=("true" | "false") | {BSNullLiteral} "null"
-		//| {BSBreakLiteral} "break" | {BSContinueLiteral} "continue" | {BSThisLiteral} "this" | {BSClientLiteral} "client" |
-		//{BSParentLiteral} "parent" | {BSSymbolRef} symbol=[BSSymbol] | {BSParentheticalExpression} "(" expression=BSExpression
-		//")"
+		//{BSStringConstant} value=STRING | {BSHexadecimalConstant} value=HEX_VALUE | {BSNumberConstant} value=INT ("."
+		//{BSRealConstant.left=current} right=INT)? | {BSBooleanConstant} value=("true" | "false") | {BSNullLiteral} "null" |
+		//{BSThisLiteral} "this" | {BSClientLiteral} "client" | {BSParentLiteral} "parent" | {BSSymbolRef} symbol=[BSSymbol] |
+		//{BSParentheticalExpression} "(" expression=BSExpression ")"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//{BSStringConstant} value=STRING
@@ -2097,7 +2238,7 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		//HEX_VALUE
 		public RuleCall getValueHEX_VALUETerminalRuleCall_1_1_0() { return cValueHEX_VALUETerminalRuleCall_1_1_0; }
 
-		//{BSNumberConstant} value=INT ({BSRealConstant.left=current} "." right=INT)?
+		//{BSNumberConstant} value=INT ("." {BSRealConstant.left=current} right=INT)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//{BSNumberConstant}
@@ -2109,14 +2250,14 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		//INT
 		public RuleCall getValueINTTerminalRuleCall_2_1_0() { return cValueINTTerminalRuleCall_2_1_0; }
 
-		//({BSRealConstant.left=current} "." right=INT)?
+		//(=> "." {BSRealConstant.left=current} right=INT)?
 		public Group getGroup_2_2() { return cGroup_2_2; }
 
-		//{BSRealConstant.left=current}
-		public Action getBSRealConstantLeftAction_2_2_0() { return cBSRealConstantLeftAction_2_2_0; }
+		//=> "."
+		public Keyword getFullStopKeyword_2_2_0() { return cFullStopKeyword_2_2_0; }
 
-		//"."
-		public Keyword getFullStopKeyword_2_2_1() { return cFullStopKeyword_2_2_1; }
+		//{BSRealConstant.left=current}
+		public Action getBSRealConstantLeftAction_2_2_1() { return cBSRealConstantLeftAction_2_2_1; }
 
 		//right=INT
 		public Assignment getRightAssignment_2_2_2() { return cRightAssignment_2_2_2; }
@@ -2151,85 +2292,127 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		//"null"
 		public Keyword getNullKeyword_4_1() { return cNullKeyword_4_1; }
 
-		//{BSBreakLiteral} "break"
+		//{BSThisLiteral} "this"
 		public Group getGroup_5() { return cGroup_5; }
 
-		//{BSBreakLiteral}
-		public Action getBSBreakLiteralAction_5_0() { return cBSBreakLiteralAction_5_0; }
-
-		//"break"
-		public Keyword getBreakKeyword_5_1() { return cBreakKeyword_5_1; }
-
-		//{BSContinueLiteral} "continue"
-		public Group getGroup_6() { return cGroup_6; }
-
-		//{BSContinueLiteral}
-		public Action getBSContinueLiteralAction_6_0() { return cBSContinueLiteralAction_6_0; }
-
-		//"continue"
-		public Keyword getContinueKeyword_6_1() { return cContinueKeyword_6_1; }
-
-		//{BSThisLiteral} "this"
-		public Group getGroup_7() { return cGroup_7; }
-
 		//{BSThisLiteral}
-		public Action getBSThisLiteralAction_7_0() { return cBSThisLiteralAction_7_0; }
+		public Action getBSThisLiteralAction_5_0() { return cBSThisLiteralAction_5_0; }
 
 		//"this"
-		public Keyword getThisKeyword_7_1() { return cThisKeyword_7_1; }
+		public Keyword getThisKeyword_5_1() { return cThisKeyword_5_1; }
 
 		//{BSClientLiteral} "client"
-		public Group getGroup_8() { return cGroup_8; }
+		public Group getGroup_6() { return cGroup_6; }
 
 		//{BSClientLiteral}
-		public Action getBSClientLiteralAction_8_0() { return cBSClientLiteralAction_8_0; }
+		public Action getBSClientLiteralAction_6_0() { return cBSClientLiteralAction_6_0; }
 
 		//"client"
-		public Keyword getClientKeyword_8_1() { return cClientKeyword_8_1; }
+		public Keyword getClientKeyword_6_1() { return cClientKeyword_6_1; }
 
 		//{BSParentLiteral} "parent"
-		public Group getGroup_9() { return cGroup_9; }
+		public Group getGroup_7() { return cGroup_7; }
 
 		//{BSParentLiteral}
-		public Action getBSParentLiteralAction_9_0() { return cBSParentLiteralAction_9_0; }
+		public Action getBSParentLiteralAction_7_0() { return cBSParentLiteralAction_7_0; }
 
 		//"parent"
-		public Keyword getParentKeyword_9_1() { return cParentKeyword_9_1; }
+		public Keyword getParentKeyword_7_1() { return cParentKeyword_7_1; }
 
 		//{BSSymbolRef} symbol=[BSSymbol]
-		public Group getGroup_10() { return cGroup_10; }
+		public Group getGroup_8() { return cGroup_8; }
 
 		//{BSSymbolRef}
-		public Action getBSSymbolRefAction_10_0() { return cBSSymbolRefAction_10_0; }
+		public Action getBSSymbolRefAction_8_0() { return cBSSymbolRefAction_8_0; }
 
 		//symbol=[BSSymbol]
-		public Assignment getSymbolAssignment_10_1() { return cSymbolAssignment_10_1; }
+		public Assignment getSymbolAssignment_8_1() { return cSymbolAssignment_8_1; }
 
 		//[BSSymbol]
-		public CrossReference getSymbolBSSymbolCrossReference_10_1_0() { return cSymbolBSSymbolCrossReference_10_1_0; }
+		public CrossReference getSymbolBSSymbolCrossReference_8_1_0() { return cSymbolBSSymbolCrossReference_8_1_0; }
 
 		//ID
-		public RuleCall getSymbolBSSymbolIDTerminalRuleCall_10_1_0_1() { return cSymbolBSSymbolIDTerminalRuleCall_10_1_0_1; }
+		public RuleCall getSymbolBSSymbolIDTerminalRuleCall_8_1_0_1() { return cSymbolBSSymbolIDTerminalRuleCall_8_1_0_1; }
 
 		//{BSParentheticalExpression} "(" expression=BSExpression ")"
-		public Group getGroup_11() { return cGroup_11; }
+		public Group getGroup_9() { return cGroup_9; }
 
 		//{BSParentheticalExpression}
-		public Action getBSParentheticalExpressionAction_11_0() { return cBSParentheticalExpressionAction_11_0; }
+		public Action getBSParentheticalExpressionAction_9_0() { return cBSParentheticalExpressionAction_9_0; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_11_1() { return cLeftParenthesisKeyword_11_1; }
+		public Keyword getLeftParenthesisKeyword_9_1() { return cLeftParenthesisKeyword_9_1; }
 
 		//expression=BSExpression
-		public Assignment getExpressionAssignment_11_2() { return cExpressionAssignment_11_2; }
+		public Assignment getExpressionAssignment_9_2() { return cExpressionAssignment_9_2; }
 
 		//BSExpression
-		public RuleCall getExpressionBSExpressionParserRuleCall_11_2_0() { return cExpressionBSExpressionParserRuleCall_11_2_0; }
+		public RuleCall getExpressionBSExpressionParserRuleCall_9_2_0() { return cExpressionBSExpressionParserRuleCall_9_2_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_11_3() { return cRightParenthesisKeyword_11_3; }
+		public Keyword getRightParenthesisKeyword_9_3() { return cRightParenthesisKeyword_9_3; }
 	}
 	
+	
+	public class BSPrimitiveTypeElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "BSPrimitiveType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cNONEEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cNONENONEKeyword_0_0 = (Keyword)cNONEEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cSTRINGEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cSTRINGStringKeyword_1_0 = (Keyword)cSTRINGEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cTAGGED_STRINGEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cTAGGED_STRINGTaggedStringKeyword_2_0 = (Keyword)cTAGGED_STRINGEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cNUMBEREnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cNUMBERNumberKeyword_3_0 = (Keyword)cNUMBEREnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cOBJECTEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cOBJECTObjectKeyword_4_0 = (Keyword)cOBJECTEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cVOIDEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cVOIDVoidKeyword_5_0 = (Keyword)cVOIDEnumLiteralDeclaration_5.eContents().get(0);
+		
+		//enum BSPrimitiveType:
+		//	NONE | STRING="string" | TAGGED_STRING="taggedString" | NUMBER="number" | OBJECT="object" | VOID="void";
+		public EnumRule getRule() { return rule; }
+
+		//NONE | STRING="string" | TAGGED_STRING="taggedString" | NUMBER="number" | OBJECT="object" | VOID="void"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//NONE
+		public EnumLiteralDeclaration getNONEEnumLiteralDeclaration_0() { return cNONEEnumLiteralDeclaration_0; }
+
+		//"NONE"
+		public Keyword getNONENONEKeyword_0_0() { return cNONENONEKeyword_0_0; }
+
+		//STRING="string"
+		public EnumLiteralDeclaration getSTRINGEnumLiteralDeclaration_1() { return cSTRINGEnumLiteralDeclaration_1; }
+
+		//"string"
+		public Keyword getSTRINGStringKeyword_1_0() { return cSTRINGStringKeyword_1_0; }
+
+		//TAGGED_STRING="taggedString"
+		public EnumLiteralDeclaration getTAGGED_STRINGEnumLiteralDeclaration_2() { return cTAGGED_STRINGEnumLiteralDeclaration_2; }
+
+		//"taggedString"
+		public Keyword getTAGGED_STRINGTaggedStringKeyword_2_0() { return cTAGGED_STRINGTaggedStringKeyword_2_0; }
+
+		//NUMBER="number"
+		public EnumLiteralDeclaration getNUMBEREnumLiteralDeclaration_3() { return cNUMBEREnumLiteralDeclaration_3; }
+
+		//"number"
+		public Keyword getNUMBERNumberKeyword_3_0() { return cNUMBERNumberKeyword_3_0; }
+
+		//OBJECT="object"
+		public EnumLiteralDeclaration getOBJECTEnumLiteralDeclaration_4() { return cOBJECTEnumLiteralDeclaration_4; }
+
+		//"object"
+		public Keyword getOBJECTObjectKeyword_4_0() { return cOBJECTObjectKeyword_4_0; }
+
+		//VOID="void"
+		public EnumLiteralDeclaration getVOIDEnumLiteralDeclaration_5() { return cVOIDEnumLiteralDeclaration_5; }
+
+		//"void"
+		public Keyword getVOIDVoidKeyword_5_0() { return cVOIDVoidKeyword_5_0; }
+	}
 	
 	private final BSFileElements pBSFile;
 	private final BSImportElements pBSImport;
@@ -2243,6 +2426,8 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 	private final BSMethodBodyElements pBSMethodBody;
 	private final BSStatementElements pBSStatement;
 	private final BSReturnElements pBSReturn;
+	private final BSBreakElements pBSBreak;
+	private final BSContinueElements pBSContinue;
 	private final BSVariableDeclarationElements pBSVariableDeclaration;
 	private final BSIfStatementElements pBSIfStatement;
 	private final BSWhileLoopElements pBSWhileLoop;
@@ -2256,8 +2441,7 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 	private final BSBlockElements pBSBlock;
 	private final BSSymbolElements pBSSymbol;
 	private final BSExpressionElements pBSExpression;
-	private final BSAssignmentExpressionElements pBSAssignmentExpression;
-	private final BSTernaryExpressionElements pBSTernaryExpression;
+	private final BSAssignmentOrTernaryExpressionElements pBSAssignmentOrTernaryExpression;
 	private final BSBooleanOrExpressionElements pBSBooleanOrExpression;
 	private final BSBooleanAndExpressionElements pBSBooleanAndExpression;
 	private final BSBitwiseOrExpressionElements pBSBitwiseOrExpression;
@@ -2272,6 +2456,7 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 	private final BSUnaryModifierExpressionElements pBSUnaryModifierExpression;
 	private final BSInvokationExpressionElements pBSInvokationExpression;
 	private final BSTerminalExpressionElements pBSTerminalExpression;
+	private final BSPrimitiveTypeElements unknownRuleBSPrimitiveType;
 	private final TerminalRule tHEX_VALUE;
 	private final TerminalRule tID;
 	private final TerminalRule tINT;
@@ -2300,6 +2485,8 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		this.pBSMethodBody = new BSMethodBodyElements();
 		this.pBSStatement = new BSStatementElements();
 		this.pBSReturn = new BSReturnElements();
+		this.pBSBreak = new BSBreakElements();
+		this.pBSContinue = new BSContinueElements();
 		this.pBSVariableDeclaration = new BSVariableDeclarationElements();
 		this.pBSIfStatement = new BSIfStatementElements();
 		this.pBSWhileLoop = new BSWhileLoopElements();
@@ -2313,8 +2500,7 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		this.pBSBlock = new BSBlockElements();
 		this.pBSSymbol = new BSSymbolElements();
 		this.pBSExpression = new BSExpressionElements();
-		this.pBSAssignmentExpression = new BSAssignmentExpressionElements();
-		this.pBSTernaryExpression = new BSTernaryExpressionElements();
+		this.pBSAssignmentOrTernaryExpression = new BSAssignmentOrTernaryExpressionElements();
 		this.pBSBooleanOrExpression = new BSBooleanOrExpressionElements();
 		this.pBSBooleanAndExpression = new BSBooleanAndExpressionElements();
 		this.pBSBitwiseOrExpression = new BSBitwiseOrExpressionElements();
@@ -2329,6 +2515,7 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		this.pBSUnaryModifierExpression = new BSUnaryModifierExpressionElements();
 		this.pBSInvokationExpression = new BSInvokationExpressionElements();
 		this.pBSTerminalExpression = new BSTerminalExpressionElements();
+		this.unknownRuleBSPrimitiveType = new BSPrimitiveTypeElements();
 		this.tHEX_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HEX_VALUE");
 		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID");
 		this.tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT");
@@ -2425,7 +2612,7 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BSField:
-	//	type=[BSClass|QualifiedName] name=ID (isArray?="[" "]")? ";";
+	//	(pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) name=ID (isArray?="[" "]")? ";";
 	public BSFieldElements getBSFieldAccess() {
 		return pBSField;
 	}
@@ -2435,7 +2622,8 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BSMethod:
-	//	type=[BSClass|QualifiedName] name=ID "(" (params+=BSParameter ("," params+=BSParameter)*)? ")" body=BSMethodBody;
+	//	(pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) (isArray?="[" "]")? name=ID "(" (params+=BSParameter (","
+	//	params+=BSParameter)*)? ")" body=BSMethodBody;
 	public BSMethodElements getBSMethodAccess() {
 		return pBSMethod;
 	}
@@ -2445,7 +2633,7 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BSParameter:
-	//	type=[BSClass|QualifiedName] name=ID (isArray?="[" "]")?;
+	//	(pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) name=ID (isArray?="[" "]")?;
 	public BSParameterElements getBSParameterAccess() {
 		return pBSParameter;
 	}
@@ -2465,7 +2653,8 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BSStatement:
-	//	BSVariableDeclaration | BSReturn | BSExpression ";" | BSIfStatement | BSWhileLoop | BSForLoop | BSSwitchStatement;
+	//	BSVariableDeclaration | BSReturn | BSBreak | BSContinue | BSExpression ";" | BSIfStatement | BSWhileLoop | BSForLoop
+	//	| BSSwitchStatement;
 	public BSStatementElements getBSStatementAccess() {
 		return pBSStatement;
 	}
@@ -2475,7 +2664,7 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BSReturn:
-	//	"return" expression=BSExpression ";";
+	//	{BSReturn} "return" expression=BSExpression? ";";
 	public BSReturnElements getBSReturnAccess() {
 		return pBSReturn;
 	}
@@ -2484,8 +2673,28 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getBSReturnAccess().getRule();
 	}
 
+	//BSBreak:
+	//	{BSBreak} "break" ";";
+	public BSBreakElements getBSBreakAccess() {
+		return pBSBreak;
+	}
+	
+	public ParserRule getBSBreakRule() {
+		return getBSBreakAccess().getRule();
+	}
+
+	//BSContinue:
+	//	{BSContinue} "continue" ";";
+	public BSContinueElements getBSContinueAccess() {
+		return pBSContinue;
+	}
+	
+	public ParserRule getBSContinueRule() {
+		return getBSContinueAccess().getRule();
+	}
+
 	//BSVariableDeclaration:
-	//	type=[BSClass|QualifiedName] name=ID ("=" expression=BSExpression)? ";";
+	//	(pType=BSPrimitiveType | rType=[BSClass|QualifiedName]) name=ID ("=" expression=BSExpression)? ";";
 	public BSVariableDeclarationElements getBSVariableDeclarationAccess() {
 		return pBSVariableDeclaration;
 	}
@@ -2605,7 +2814,7 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BSExpression:
-	//	BSTernaryExpression;
+	//	BSAssignmentOrTernaryExpression;
 	public BSExpressionElements getBSExpressionAccess() {
 		return pBSExpression;
 	}
@@ -2614,30 +2823,30 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getBSExpressionAccess().getRule();
 	}
 
-	////right-to-left assignment operators: = and [op]=
-	//BSAssignmentExpression returns BSExpression:
-	//	BSTernaryExpression ({BSAssignmentExpression.left=current} assignmentOperator=("=" | "@=" | "+=" | "-=" | "*=" | "/="
-	//	| "%=" | "<<=" | ">>=" | "&=" | "^=" | "|=") right=BSExpression)?;
-	public BSAssignmentExpressionElements getBSAssignmentExpressionAccess() {
-		return pBSAssignmentExpression;
+	////right-to-left assignment and ternary operators: = [op]= (?:)
+	//BSAssignmentOrTernaryExpression returns BSExpression:
+	//	BSBooleanOrExpression ({BSAssignmentExpression.left=current} assignmentOperator=("=" | "@=" | "+=" | "-=" | "*=" |
+	//	"/=" | "%=" | "<<=" | ">>=" | "&=" | "^=" | "|=") right=BSExpression | {BSTernaryExpression.left=current} "?"
+	//	middle=BSExpression ":" right=BSExpression)?;
+	public BSAssignmentOrTernaryExpressionElements getBSAssignmentOrTernaryExpressionAccess() {
+		return pBSAssignmentOrTernaryExpression;
 	}
 	
-	public ParserRule getBSAssignmentExpressionRule() {
-		return getBSAssignmentExpressionAccess().getRule();
+	public ParserRule getBSAssignmentOrTernaryExpressionRule() {
+		return getBSAssignmentOrTernaryExpressionAccess().getRule();
 	}
 
-	////'='|'@='|'+='|'-='|'*='|'/='|'%='|'<<='|'>>='|'&='|'^='|'|='
-	////right-to-left ternary operator: (?:)
-	//BSTernaryExpression returns BSExpression:
-	//	BSBooleanOrExpression ({BSTernaryExpression.left=current} "?" middle=BSExpression ":" right=BSExpression)?;
-	public BSTernaryExpressionElements getBSTernaryExpressionAccess() {
-		return pBSTernaryExpression;
-	}
-	
-	public ParserRule getBSTernaryExpressionRule() {
-		return getBSTernaryExpressionAccess().getRule();
-	}
-
+	////right-to-left assignment operators: = [op]=
+	////BSAssignmentExpression returns BSExpression:
+	////	BSTernaryExpression
+	////	({BSAssignmentExpression.left=current} assignmentOperator=('='|'@='|'+='|'-='|'*='|'/='|'%='|'<<='|'>>='|'&='|'^='|'|=') right=BSExpression)?
+	////;
+	////
+	//////right-to-left ternary operator: (?:)
+	////BSTernaryExpression returns BSExpression:
+	////	BSBooleanOrExpression
+	////	({BSTernaryExpression.left=current} '?' middle=BSExpression ':' right=BSExpression)?
+	////;
 	////left-to-right boolean OR operator: ||
 	//BSBooleanOrExpression returns BSExpression:
 	//	BSBooleanAndExpression ({BSBooleanOrExpression.left=current} "||" right=BSBooleanAndExpression)*;
@@ -2729,7 +2938,7 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getBSBitwiseShiftExpressionAccess().getRule();
 	}
 
-	////left-to-right additive operators: + - (string concat +) @ SPC NL TAB
+	////left-to-right additive operators: + - [string concat +] @ SPC NL TAB
 	//BSPlusMinusOrStringConcatExpression returns BSExpression:
 	//	BSMulDivOrModExpression ({BSPlusMinusOrStringConcatExpression.left=current} operator=("+" | "-" | "@" | "SPC" | "NL"
 	//	| "TAB") right=BSMulDivOrModExpression)*;
@@ -2753,11 +2962,11 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getBSMulDivOrModExpressionAccess().getRule();
 	}
 
-	////right-to-left prefix unary operators: (cast) new
+	////right-to-left prefix unary operators: ([cast]) new
 	//BSCastOrNewExpression returns BSExpression:
-	//	BSUnaryModifierExpression | {BSCastExpression} "(" castType=("string" | "number" | "object") ")"
-	//	castExpr=BSCastOrNewExpression | {BSNewExpression} "new" (isArray?="[" "]")? type=[BSClass|QualifiedName] "("
-	//	(args+=BSExpression ("," args+=BSExpression)*)? ")";
+	//	BSUnaryModifierExpression | {BSCastExpression} "(" pType=BSPrimitiveType (isArray?="[" "]")? ")"
+	//	castExpr=BSCastOrNewExpression | {BSNewExpression} "new" rType=[BSClass|QualifiedName] ((isArray?="[" "]")? | "("
+	//	(args+=BSExpression ("," args+=BSExpression)*)? ")");
 	public BSCastOrNewExpressionElements getBSCastOrNewExpressionAccess() {
 		return pBSCastOrNewExpression;
 	}
@@ -2780,7 +2989,7 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	////left-to-right unary postfixes: . (...) [...] ++ --
 	//BSInvokationExpression returns BSExpression:
-	//	BSTerminalExpression ({BSMemberSelectionExpression.receiver=current} "." |
+	//	BSTerminalExpression ({BSMemberSelectionExpression.receiver=current} "." member=BSTerminalExpression |
 	//	{BSMethodInvokationExpression.receiver=current} "(" (args+=BSExpression ("," args+=BSExpression)*)? ")" |
 	//	{BSArrayAccessExpression.receiver=current} "[" (args+=BSExpression ("," args+=BSExpression)*)? "]" |
 	//	{BSPostfixArithmeticExpression.receiver=current} operator=("++" | "--"))*;
@@ -2794,11 +3003,10 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	////Maximum-precedence literals and keywords
 	//BSTerminalExpression returns BSExpression:
-	//	{BSStringConstant} value=STRING | {BSHexadecimalConstant} value=HEX_VALUE | {BSNumberConstant} value=INT
-	//	({BSRealConstant.left=current} "." right=INT)? | {BSBooleanConstant} value=("true" | "false") | {BSNullLiteral}
-	//	"null" | {BSBreakLiteral} "break" | {BSContinueLiteral} "continue" | {BSThisLiteral} "this" | {BSClientLiteral}
-	//	"client" | {BSParentLiteral} "parent" | {BSSymbolRef} symbol=[BSSymbol] | {BSParentheticalExpression} "("
-	//	expression=BSExpression ")";
+	//	{BSStringConstant} value=STRING | {BSHexadecimalConstant} value=HEX_VALUE | {BSNumberConstant} value=INT ("."
+	//	{BSRealConstant.left=current} right=INT)? | {BSBooleanConstant} value=("true" | "false") | {BSNullLiteral} "null" |
+	//	{BSThisLiteral} "this" | {BSClientLiteral} "client" | {BSParentLiteral} "parent" | {BSSymbolRef} symbol=[BSSymbol] |
+	//	{BSParentheticalExpression} "(" expression=BSExpression ")";
 	public BSTerminalExpressionElements getBSTerminalExpressionAccess() {
 		return pBSTerminalExpression;
 	}
@@ -2807,6 +3015,17 @@ public class BlorqueScriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getBSTerminalExpressionAccess().getRule();
 	}
 
+	//enum BSPrimitiveType:
+	//	NONE | STRING="string" | TAGGED_STRING="taggedString" | NUMBER="number" | OBJECT="object" | VOID="void";
+	public BSPrimitiveTypeElements getBSPrimitiveTypeAccess() {
+		return unknownRuleBSPrimitiveType;
+	}
+	
+	public EnumRule getBSPrimitiveTypeRule() {
+		return getBSPrimitiveTypeAccess().getRule();
+	}
+
+	////TODO: figure out what to do about array literals
 	////TODO: figure out how to deal with special class names: global, servercmd, server, etc.
 	////Namespace (::) deliberately excluded, as it is only allowed in Global anyway.
 	////Instead, ':' is allowed in ID, and validation will forbid it anywhere but as a single '::' in global definitions.

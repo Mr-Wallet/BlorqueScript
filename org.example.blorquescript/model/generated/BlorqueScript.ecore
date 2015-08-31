@@ -18,10 +18,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
         eType="#//BSMember" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BSMember" eSuperTypes="#//BSSymbol"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BSField" eSuperTypes="#//BSMember">
+  <eClassifiers xsi:type="ecore:EClass" name="BSMember" eSuperTypes="#//BSSymbol">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isArray" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSField" eSuperTypes="#//BSMember"/>
   <eClassifiers xsi:type="ecore:EClass" name="BSMethod" eSuperTypes="#//BSMember">
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//BSParameter" containment="true"/>
@@ -40,6 +40,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//BSExpression"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSBreak" eSuperTypes="#//BSStatement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BSContinue" eSuperTypes="#//BSStatement"/>
   <eClassifiers xsi:type="ecore:EClass" name="BSVariableDeclaration" eSuperTypes="#//BSStatement #//BSSymbol">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//BSExpression"
         containment="true"/>
@@ -99,10 +101,19 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSBlock"/>
   <eClassifiers xsi:type="ecore:EClass" name="BSSymbol">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//BSClass"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pType" eType="#//BSPrimitiveType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rType" eType="#//BSClass"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSExpression" eSuperTypes="#//BSStatement"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="BSPrimitiveType">
+    <eLiterals name="NONE" literal="NONE"/>
+    <eLiterals name="STRING" value="1" literal="string"/>
+    <eLiterals name="TAGGED_STRING" value="2" literal="taggedString"/>
+    <eLiterals name="NUMBER" value="3" literal="number"/>
+    <eLiterals name="OBJECT" value="4" literal="object"/>
+    <eLiterals name="VOID" value="5" literal="void"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSAssignmentExpression" eSuperTypes="#//BSExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//BSExpression"
         containment="true"/>
@@ -185,13 +196,14 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSCastExpression" eSuperTypes="#//BSExpression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="castType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pType" eType="#//BSPrimitiveType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isArray" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="castExpr" eType="#//BSExpression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSNewExpression" eSuperTypes="#//BSExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rType" eType="#//BSClass"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isArray" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//BSClass"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//BSExpression"
         containment="true"/>
   </eClassifiers>
@@ -202,6 +214,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSMemberSelectionExpression" eSuperTypes="#//BSExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="receiver" eType="#//BSExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="member" eType="#//BSExpression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSMethodInvokationExpression" eSuperTypes="#//BSExpression">
@@ -239,8 +253,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSNullLiteral" eSuperTypes="#//BSExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BSBreakLiteral" eSuperTypes="#//BSExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BSContinueLiteral" eSuperTypes="#//BSExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="BSThisLiteral" eSuperTypes="#//BSExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="BSClientLiteral" eSuperTypes="#//BSExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="BSParentLiteral" eSuperTypes="#//BSExpression"/>

@@ -4,6 +4,7 @@ package org.example.blorquescript.blorqueScript;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -184,16 +185,25 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSSymbol()
    * @generated
    */
-  int BS_SYMBOL = 21;
+  int BS_SYMBOL = 23;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
+   * The feature id for the '<em><b>PType</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BS_SYMBOL__TYPE = 0;
+  int BS_SYMBOL__PTYPE = 0;
+
+  /**
+   * The feature id for the '<em><b>RType</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BS_SYMBOL__RTYPE = 1;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -202,7 +212,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BS_SYMBOL__NAME = 1;
+  int BS_SYMBOL__NAME = 2;
 
   /**
    * The number of structural features of the '<em>BS Symbol</em>' class.
@@ -211,7 +221,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BS_SYMBOL_FEATURE_COUNT = 2;
+  int BS_SYMBOL_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.example.blorquescript.blorqueScript.impl.BSMemberImpl <em>BS Member</em>}' class.
@@ -224,13 +234,22 @@ public interface BlorqueScriptPackage extends EPackage
   int BS_MEMBER = 3;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
+   * The feature id for the '<em><b>PType</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BS_MEMBER__TYPE = BS_SYMBOL__TYPE;
+  int BS_MEMBER__PTYPE = BS_SYMBOL__PTYPE;
+
+  /**
+   * The feature id for the '<em><b>RType</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BS_MEMBER__RTYPE = BS_SYMBOL__RTYPE;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -242,13 +261,22 @@ public interface BlorqueScriptPackage extends EPackage
   int BS_MEMBER__NAME = BS_SYMBOL__NAME;
 
   /**
+   * The feature id for the '<em><b>Is Array</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BS_MEMBER__IS_ARRAY = BS_SYMBOL_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>BS Member</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BS_MEMBER_FEATURE_COUNT = BS_SYMBOL_FEATURE_COUNT + 0;
+  int BS_MEMBER_FEATURE_COUNT = BS_SYMBOL_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.example.blorquescript.blorqueScript.impl.BSFieldImpl <em>BS Field</em>}' class.
@@ -261,13 +289,22 @@ public interface BlorqueScriptPackage extends EPackage
   int BS_FIELD = 4;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
+   * The feature id for the '<em><b>PType</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BS_FIELD__TYPE = BS_MEMBER__TYPE;
+  int BS_FIELD__PTYPE = BS_MEMBER__PTYPE;
+
+  /**
+   * The feature id for the '<em><b>RType</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BS_FIELD__RTYPE = BS_MEMBER__RTYPE;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -285,7 +322,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BS_FIELD__IS_ARRAY = BS_MEMBER_FEATURE_COUNT + 0;
+  int BS_FIELD__IS_ARRAY = BS_MEMBER__IS_ARRAY;
 
   /**
    * The number of structural features of the '<em>BS Field</em>' class.
@@ -294,7 +331,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BS_FIELD_FEATURE_COUNT = BS_MEMBER_FEATURE_COUNT + 1;
+  int BS_FIELD_FEATURE_COUNT = BS_MEMBER_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.example.blorquescript.blorqueScript.impl.BSMethodImpl <em>BS Method</em>}' class.
@@ -307,13 +344,22 @@ public interface BlorqueScriptPackage extends EPackage
   int BS_METHOD = 5;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
+   * The feature id for the '<em><b>PType</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BS_METHOD__TYPE = BS_MEMBER__TYPE;
+  int BS_METHOD__PTYPE = BS_MEMBER__PTYPE;
+
+  /**
+   * The feature id for the '<em><b>RType</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BS_METHOD__RTYPE = BS_MEMBER__RTYPE;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -323,6 +369,15 @@ public interface BlorqueScriptPackage extends EPackage
    * @ordered
    */
   int BS_METHOD__NAME = BS_MEMBER__NAME;
+
+  /**
+   * The feature id for the '<em><b>Is Array</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BS_METHOD__IS_ARRAY = BS_MEMBER__IS_ARRAY;
 
   /**
    * The feature id for the '<em><b>Params</b></em>' containment reference list.
@@ -362,13 +417,22 @@ public interface BlorqueScriptPackage extends EPackage
   int BS_PARAMETER = 6;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
+   * The feature id for the '<em><b>PType</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BS_PARAMETER__TYPE = BS_SYMBOL__TYPE;
+  int BS_PARAMETER__PTYPE = BS_SYMBOL__PTYPE;
+
+  /**
+   * The feature id for the '<em><b>RType</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BS_PARAMETER__RTYPE = BS_SYMBOL__RTYPE;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -405,7 +469,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSBlock()
    * @generated
    */
-  int BS_BLOCK = 20;
+  int BS_BLOCK = 22;
 
   /**
    * The number of structural features of the '<em>BS Block</em>' class.
@@ -492,6 +556,44 @@ public interface BlorqueScriptPackage extends EPackage
   int BS_RETURN_FEATURE_COUNT = BS_STATEMENT_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link org.example.blorquescript.blorqueScript.impl.BSBreakImpl <em>BS Break</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.example.blorquescript.blorqueScript.impl.BSBreakImpl
+   * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSBreak()
+   * @generated
+   */
+  int BS_BREAK = 10;
+
+  /**
+   * The number of structural features of the '<em>BS Break</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BS_BREAK_FEATURE_COUNT = BS_STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.example.blorquescript.blorqueScript.impl.BSContinueImpl <em>BS Continue</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.example.blorquescript.blorqueScript.impl.BSContinueImpl
+   * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSContinue()
+   * @generated
+   */
+  int BS_CONTINUE = 11;
+
+  /**
+   * The number of structural features of the '<em>BS Continue</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BS_CONTINUE_FEATURE_COUNT = BS_STATEMENT_FEATURE_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link org.example.blorquescript.blorqueScript.impl.BSVariableDeclarationImpl <em>BS Variable Declaration</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -499,16 +601,25 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSVariableDeclaration()
    * @generated
    */
-  int BS_VARIABLE_DECLARATION = 10;
+  int BS_VARIABLE_DECLARATION = 12;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
+   * The feature id for the '<em><b>PType</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BS_VARIABLE_DECLARATION__TYPE = BS_STATEMENT_FEATURE_COUNT + 0;
+  int BS_VARIABLE_DECLARATION__PTYPE = BS_STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>RType</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BS_VARIABLE_DECLARATION__RTYPE = BS_STATEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -517,7 +628,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BS_VARIABLE_DECLARATION__NAME = BS_STATEMENT_FEATURE_COUNT + 1;
+  int BS_VARIABLE_DECLARATION__NAME = BS_STATEMENT_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -526,7 +637,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BS_VARIABLE_DECLARATION__EXPRESSION = BS_STATEMENT_FEATURE_COUNT + 2;
+  int BS_VARIABLE_DECLARATION__EXPRESSION = BS_STATEMENT_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>BS Variable Declaration</em>' class.
@@ -535,7 +646,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BS_VARIABLE_DECLARATION_FEATURE_COUNT = BS_STATEMENT_FEATURE_COUNT + 3;
+  int BS_VARIABLE_DECLARATION_FEATURE_COUNT = BS_STATEMENT_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link org.example.blorquescript.blorqueScript.impl.BSIfStatementImpl <em>BS If Statement</em>}' class.
@@ -545,7 +656,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSIfStatement()
    * @generated
    */
-  int BS_IF_STATEMENT = 11;
+  int BS_IF_STATEMENT = 13;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -591,7 +702,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSWhileLoop()
    * @generated
    */
-  int BS_WHILE_LOOP = 12;
+  int BS_WHILE_LOOP = 14;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -628,7 +739,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSForLoop()
    * @generated
    */
-  int BS_FOR_LOOP = 13;
+  int BS_FOR_LOOP = 15;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -683,7 +794,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSSwitchStatement()
    * @generated
    */
-  int BS_SWITCH_STATEMENT = 14;
+  int BS_SWITCH_STATEMENT = 16;
 
   /**
    * The feature id for the '<em><b>String Switch</b></em>' attribute.
@@ -729,7 +840,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSIfBlock()
    * @generated
    */
-  int BS_IF_BLOCK = 15;
+  int BS_IF_BLOCK = 17;
 
   /**
    * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -757,7 +868,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSLoopBlock()
    * @generated
    */
-  int BS_LOOP_BLOCK = 16;
+  int BS_LOOP_BLOCK = 18;
 
   /**
    * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -785,7 +896,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSSwitchBlock()
    * @generated
    */
-  int BS_SWITCH_BLOCK = 17;
+  int BS_SWITCH_BLOCK = 19;
 
   /**
    * The feature id for the '<em><b>Cases</b></em>' containment reference list.
@@ -813,7 +924,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSCase()
    * @generated
    */
-  int BS_CASE = 18;
+  int BS_CASE = 20;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -850,7 +961,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSCaseBlock()
    * @generated
    */
-  int BS_CASE_BLOCK = 19;
+  int BS_CASE_BLOCK = 21;
 
   /**
    * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -878,7 +989,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSExpression()
    * @generated
    */
-  int BS_EXPRESSION = 22;
+  int BS_EXPRESSION = 24;
 
   /**
    * The number of structural features of the '<em>BS Expression</em>' class.
@@ -897,7 +1008,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSAssignmentExpression()
    * @generated
    */
-  int BS_ASSIGNMENT_EXPRESSION = 23;
+  int BS_ASSIGNMENT_EXPRESSION = 25;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -943,7 +1054,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSTernaryExpression()
    * @generated
    */
-  int BS_TERNARY_EXPRESSION = 24;
+  int BS_TERNARY_EXPRESSION = 26;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -989,7 +1100,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSBooleanOrExpression()
    * @generated
    */
-  int BS_BOOLEAN_OR_EXPRESSION = 25;
+  int BS_BOOLEAN_OR_EXPRESSION = 27;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1026,7 +1137,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSBooleanAndExpression()
    * @generated
    */
-  int BS_BOOLEAN_AND_EXPRESSION = 26;
+  int BS_BOOLEAN_AND_EXPRESSION = 28;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1063,7 +1174,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSBitwiseOrExpression()
    * @generated
    */
-  int BS_BITWISE_OR_EXPRESSION = 27;
+  int BS_BITWISE_OR_EXPRESSION = 29;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1100,7 +1211,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSBitwiseXorExpression()
    * @generated
    */
-  int BS_BITWISE_XOR_EXPRESSION = 28;
+  int BS_BITWISE_XOR_EXPRESSION = 30;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1137,7 +1248,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSBitwiseAndExpression()
    * @generated
    */
-  int BS_BITWISE_AND_EXPRESSION = 29;
+  int BS_BITWISE_AND_EXPRESSION = 31;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1174,7 +1285,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSEqualityExpression()
    * @generated
    */
-  int BS_EQUALITY_EXPRESSION = 30;
+  int BS_EQUALITY_EXPRESSION = 32;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1220,7 +1331,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSOrderedRelationExpression()
    * @generated
    */
-  int BS_ORDERED_RELATION_EXPRESSION = 31;
+  int BS_ORDERED_RELATION_EXPRESSION = 33;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1266,7 +1377,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSBitwiseShiftExpression()
    * @generated
    */
-  int BS_BITWISE_SHIFT_EXPRESSION = 32;
+  int BS_BITWISE_SHIFT_EXPRESSION = 34;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1312,7 +1423,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSPlusMinusOrStringConcatExpression()
    * @generated
    */
-  int BS_PLUS_MINUS_OR_STRING_CONCAT_EXPRESSION = 33;
+  int BS_PLUS_MINUS_OR_STRING_CONCAT_EXPRESSION = 35;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1358,7 +1469,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSMulDivOrModExpression()
    * @generated
    */
-  int BS_MUL_DIV_OR_MOD_EXPRESSION = 34;
+  int BS_MUL_DIV_OR_MOD_EXPRESSION = 36;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1404,16 +1515,25 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSCastExpression()
    * @generated
    */
-  int BS_CAST_EXPRESSION = 35;
+  int BS_CAST_EXPRESSION = 37;
 
   /**
-   * The feature id for the '<em><b>Cast Type</b></em>' attribute.
+   * The feature id for the '<em><b>PType</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BS_CAST_EXPRESSION__CAST_TYPE = BS_EXPRESSION_FEATURE_COUNT + 0;
+  int BS_CAST_EXPRESSION__PTYPE = BS_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Is Array</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BS_CAST_EXPRESSION__IS_ARRAY = BS_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Cast Expr</b></em>' containment reference.
@@ -1422,7 +1542,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BS_CAST_EXPRESSION__CAST_EXPR = BS_EXPRESSION_FEATURE_COUNT + 1;
+  int BS_CAST_EXPRESSION__CAST_EXPR = BS_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>BS Cast Expression</em>' class.
@@ -1431,7 +1551,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BS_CAST_EXPRESSION_FEATURE_COUNT = BS_EXPRESSION_FEATURE_COUNT + 2;
+  int BS_CAST_EXPRESSION_FEATURE_COUNT = BS_EXPRESSION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.example.blorquescript.blorqueScript.impl.BSNewExpressionImpl <em>BS New Expression</em>}' class.
@@ -1441,7 +1561,16 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSNewExpression()
    * @generated
    */
-  int BS_NEW_EXPRESSION = 36;
+  int BS_NEW_EXPRESSION = 38;
+
+  /**
+   * The feature id for the '<em><b>RType</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BS_NEW_EXPRESSION__RTYPE = BS_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Is Array</b></em>' attribute.
@@ -1450,16 +1579,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BS_NEW_EXPRESSION__IS_ARRAY = BS_EXPRESSION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BS_NEW_EXPRESSION__TYPE = BS_EXPRESSION_FEATURE_COUNT + 1;
+  int BS_NEW_EXPRESSION__IS_ARRAY = BS_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -1487,7 +1607,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSUnaryModifierExpression()
    * @generated
    */
-  int BS_UNARY_MODIFIER_EXPRESSION = 37;
+  int BS_UNARY_MODIFIER_EXPRESSION = 39;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -1524,7 +1644,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSMemberSelectionExpression()
    * @generated
    */
-  int BS_MEMBER_SELECTION_EXPRESSION = 38;
+  int BS_MEMBER_SELECTION_EXPRESSION = 40;
 
   /**
    * The feature id for the '<em><b>Receiver</b></em>' containment reference.
@@ -1536,13 +1656,22 @@ public interface BlorqueScriptPackage extends EPackage
   int BS_MEMBER_SELECTION_EXPRESSION__RECEIVER = BS_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Member</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BS_MEMBER_SELECTION_EXPRESSION__MEMBER = BS_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>BS Member Selection Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BS_MEMBER_SELECTION_EXPRESSION_FEATURE_COUNT = BS_EXPRESSION_FEATURE_COUNT + 1;
+  int BS_MEMBER_SELECTION_EXPRESSION_FEATURE_COUNT = BS_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.example.blorquescript.blorqueScript.impl.BSMethodInvokationExpressionImpl <em>BS Method Invokation Expression</em>}' class.
@@ -1552,7 +1681,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSMethodInvokationExpression()
    * @generated
    */
-  int BS_METHOD_INVOKATION_EXPRESSION = 39;
+  int BS_METHOD_INVOKATION_EXPRESSION = 41;
 
   /**
    * The feature id for the '<em><b>Receiver</b></em>' containment reference.
@@ -1589,7 +1718,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSArrayAccessExpression()
    * @generated
    */
-  int BS_ARRAY_ACCESS_EXPRESSION = 40;
+  int BS_ARRAY_ACCESS_EXPRESSION = 42;
 
   /**
    * The feature id for the '<em><b>Receiver</b></em>' containment reference.
@@ -1626,7 +1755,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSPostfixArithmeticExpression()
    * @generated
    */
-  int BS_POSTFIX_ARITHMETIC_EXPRESSION = 41;
+  int BS_POSTFIX_ARITHMETIC_EXPRESSION = 43;
 
   /**
    * The feature id for the '<em><b>Receiver</b></em>' containment reference.
@@ -1663,7 +1792,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSStringConstant()
    * @generated
    */
-  int BS_STRING_CONSTANT = 42;
+  int BS_STRING_CONSTANT = 44;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1691,7 +1820,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSHexadecimalConstant()
    * @generated
    */
-  int BS_HEXADECIMAL_CONSTANT = 43;
+  int BS_HEXADECIMAL_CONSTANT = 45;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1719,7 +1848,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSNumberConstant()
    * @generated
    */
-  int BS_NUMBER_CONSTANT = 44;
+  int BS_NUMBER_CONSTANT = 46;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1747,7 +1876,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSRealConstant()
    * @generated
    */
-  int BS_REAL_CONSTANT = 45;
+  int BS_REAL_CONSTANT = 47;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1784,7 +1913,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSBooleanConstant()
    * @generated
    */
-  int BS_BOOLEAN_CONSTANT = 46;
+  int BS_BOOLEAN_CONSTANT = 48;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1812,7 +1941,7 @@ public interface BlorqueScriptPackage extends EPackage
    * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSNullLiteral()
    * @generated
    */
-  int BS_NULL_LITERAL = 47;
+  int BS_NULL_LITERAL = 49;
 
   /**
    * The number of structural features of the '<em>BS Null Literal</em>' class.
@@ -1822,44 +1951,6 @@ public interface BlorqueScriptPackage extends EPackage
    * @ordered
    */
   int BS_NULL_LITERAL_FEATURE_COUNT = BS_EXPRESSION_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link org.example.blorquescript.blorqueScript.impl.BSBreakLiteralImpl <em>BS Break Literal</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.example.blorquescript.blorqueScript.impl.BSBreakLiteralImpl
-   * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSBreakLiteral()
-   * @generated
-   */
-  int BS_BREAK_LITERAL = 48;
-
-  /**
-   * The number of structural features of the '<em>BS Break Literal</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BS_BREAK_LITERAL_FEATURE_COUNT = BS_EXPRESSION_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link org.example.blorquescript.blorqueScript.impl.BSContinueLiteralImpl <em>BS Continue Literal</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.example.blorquescript.blorqueScript.impl.BSContinueLiteralImpl
-   * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSContinueLiteral()
-   * @generated
-   */
-  int BS_CONTINUE_LITERAL = 49;
-
-  /**
-   * The number of structural features of the '<em>BS Continue Literal</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BS_CONTINUE_LITERAL_FEATURE_COUNT = BS_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.example.blorquescript.blorqueScript.impl.BSThisLiteralImpl <em>BS This Literal</em>}' class.
@@ -1973,6 +2064,16 @@ public interface BlorqueScriptPackage extends EPackage
    * @ordered
    */
   int BS_PARENTHETICAL_EXPRESSION_FEATURE_COUNT = BS_EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.example.blorquescript.blorqueScript.BSPrimitiveType <em>BS Primitive Type</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.example.blorquescript.blorqueScript.BSPrimitiveType
+   * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSPrimitiveType()
+   * @generated
+   */
+  int BS_PRIMITIVE_TYPE = 55;
 
 
   /**
@@ -2093,6 +2194,17 @@ public interface BlorqueScriptPackage extends EPackage
   EClass getBSMember();
 
   /**
+   * Returns the meta object for the attribute '{@link org.example.blorquescript.blorqueScript.BSMember#isIsArray <em>Is Array</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Is Array</em>'.
+   * @see org.example.blorquescript.blorqueScript.BSMember#isIsArray()
+   * @see #getBSMember()
+   * @generated
+   */
+  EAttribute getBSMember_IsArray();
+
+  /**
    * Returns the meta object for class '{@link org.example.blorquescript.blorqueScript.BSField <em>BS Field</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2101,17 +2213,6 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    */
   EClass getBSField();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.example.blorquescript.blorqueScript.BSField#isIsArray <em>Is Array</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Is Array</em>'.
-   * @see org.example.blorquescript.blorqueScript.BSField#isIsArray()
-   * @see #getBSField()
-   * @generated
-   */
-  EAttribute getBSField_IsArray();
 
   /**
    * Returns the meta object for class '{@link org.example.blorquescript.blorqueScript.BSMethod <em>BS Method</em>}'.
@@ -2217,6 +2318,26 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    */
   EReference getBSReturn_Expression();
+
+  /**
+   * Returns the meta object for class '{@link org.example.blorquescript.blorqueScript.BSBreak <em>BS Break</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>BS Break</em>'.
+   * @see org.example.blorquescript.blorqueScript.BSBreak
+   * @generated
+   */
+  EClass getBSBreak();
+
+  /**
+   * Returns the meta object for class '{@link org.example.blorquescript.blorqueScript.BSContinue <em>BS Continue</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>BS Continue</em>'.
+   * @see org.example.blorquescript.blorqueScript.BSContinue
+   * @generated
+   */
+  EClass getBSContinue();
 
   /**
    * Returns the meta object for class '{@link org.example.blorquescript.blorqueScript.BSVariableDeclaration <em>BS Variable Declaration</em>}'.
@@ -2548,15 +2669,26 @@ public interface BlorqueScriptPackage extends EPackage
   EClass getBSSymbol();
 
   /**
-   * Returns the meta object for the reference '{@link org.example.blorquescript.blorqueScript.BSSymbol#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute '{@link org.example.blorquescript.blorqueScript.BSSymbol#getPType <em>PType</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Type</em>'.
-   * @see org.example.blorquescript.blorqueScript.BSSymbol#getType()
+   * @return the meta object for the attribute '<em>PType</em>'.
+   * @see org.example.blorquescript.blorqueScript.BSSymbol#getPType()
    * @see #getBSSymbol()
    * @generated
    */
-  EReference getBSSymbol_Type();
+  EAttribute getBSSymbol_PType();
+
+  /**
+   * Returns the meta object for the reference '{@link org.example.blorquescript.blorqueScript.BSSymbol#getRType <em>RType</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>RType</em>'.
+   * @see org.example.blorquescript.blorqueScript.BSSymbol#getRType()
+   * @see #getBSSymbol()
+   * @generated
+   */
+  EReference getBSSymbol_RType();
 
   /**
    * Returns the meta object for the attribute '{@link org.example.blorquescript.blorqueScript.BSSymbol#getName <em>Name</em>}'.
@@ -3051,15 +3183,26 @@ public interface BlorqueScriptPackage extends EPackage
   EClass getBSCastExpression();
 
   /**
-   * Returns the meta object for the attribute '{@link org.example.blorquescript.blorqueScript.BSCastExpression#getCastType <em>Cast Type</em>}'.
+   * Returns the meta object for the attribute '{@link org.example.blorquescript.blorqueScript.BSCastExpression#getPType <em>PType</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Cast Type</em>'.
-   * @see org.example.blorquescript.blorqueScript.BSCastExpression#getCastType()
+   * @return the meta object for the attribute '<em>PType</em>'.
+   * @see org.example.blorquescript.blorqueScript.BSCastExpression#getPType()
    * @see #getBSCastExpression()
    * @generated
    */
-  EAttribute getBSCastExpression_CastType();
+  EAttribute getBSCastExpression_PType();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.example.blorquescript.blorqueScript.BSCastExpression#isIsArray <em>Is Array</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Is Array</em>'.
+   * @see org.example.blorquescript.blorqueScript.BSCastExpression#isIsArray()
+   * @see #getBSCastExpression()
+   * @generated
+   */
+  EAttribute getBSCastExpression_IsArray();
 
   /**
    * Returns the meta object for the containment reference '{@link org.example.blorquescript.blorqueScript.BSCastExpression#getCastExpr <em>Cast Expr</em>}'.
@@ -3083,6 +3226,17 @@ public interface BlorqueScriptPackage extends EPackage
   EClass getBSNewExpression();
 
   /**
+   * Returns the meta object for the reference '{@link org.example.blorquescript.blorqueScript.BSNewExpression#getRType <em>RType</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>RType</em>'.
+   * @see org.example.blorquescript.blorqueScript.BSNewExpression#getRType()
+   * @see #getBSNewExpression()
+   * @generated
+   */
+  EReference getBSNewExpression_RType();
+
+  /**
    * Returns the meta object for the attribute '{@link org.example.blorquescript.blorqueScript.BSNewExpression#isIsArray <em>Is Array</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3092,17 +3246,6 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    */
   EAttribute getBSNewExpression_IsArray();
-
-  /**
-   * Returns the meta object for the reference '{@link org.example.blorquescript.blorqueScript.BSNewExpression#getType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Type</em>'.
-   * @see org.example.blorquescript.blorqueScript.BSNewExpression#getType()
-   * @see #getBSNewExpression()
-   * @generated
-   */
-  EReference getBSNewExpression_Type();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.example.blorquescript.blorqueScript.BSNewExpression#getArgs <em>Args</em>}'.
@@ -3167,6 +3310,17 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    */
   EReference getBSMemberSelectionExpression_Receiver();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.example.blorquescript.blorqueScript.BSMemberSelectionExpression#getMember <em>Member</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Member</em>'.
+   * @see org.example.blorquescript.blorqueScript.BSMemberSelectionExpression#getMember()
+   * @see #getBSMemberSelectionExpression()
+   * @generated
+   */
+  EReference getBSMemberSelectionExpression_Member();
 
   /**
    * Returns the meta object for class '{@link org.example.blorquescript.blorqueScript.BSMethodInvokationExpression <em>BS Method Invokation Expression</em>}'.
@@ -3391,26 +3545,6 @@ public interface BlorqueScriptPackage extends EPackage
   EClass getBSNullLiteral();
 
   /**
-   * Returns the meta object for class '{@link org.example.blorquescript.blorqueScript.BSBreakLiteral <em>BS Break Literal</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>BS Break Literal</em>'.
-   * @see org.example.blorquescript.blorqueScript.BSBreakLiteral
-   * @generated
-   */
-  EClass getBSBreakLiteral();
-
-  /**
-   * Returns the meta object for class '{@link org.example.blorquescript.blorqueScript.BSContinueLiteral <em>BS Continue Literal</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>BS Continue Literal</em>'.
-   * @see org.example.blorquescript.blorqueScript.BSContinueLiteral
-   * @generated
-   */
-  EClass getBSContinueLiteral();
-
-  /**
    * Returns the meta object for class '{@link org.example.blorquescript.blorqueScript.BSThisLiteral <em>BS This Literal</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3481,6 +3615,16 @@ public interface BlorqueScriptPackage extends EPackage
    * @generated
    */
   EReference getBSParentheticalExpression_Expression();
+
+  /**
+   * Returns the meta object for enum '{@link org.example.blorquescript.blorqueScript.BSPrimitiveType <em>BS Primitive Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>BS Primitive Type</em>'.
+   * @see org.example.blorquescript.blorqueScript.BSPrimitiveType
+   * @generated
+   */
+  EEnum getBSPrimitiveType();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -3602,6 +3746,14 @@ public interface BlorqueScriptPackage extends EPackage
     EClass BS_MEMBER = eINSTANCE.getBSMember();
 
     /**
+     * The meta object literal for the '<em><b>Is Array</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BS_MEMBER__IS_ARRAY = eINSTANCE.getBSMember_IsArray();
+
+    /**
      * The meta object literal for the '{@link org.example.blorquescript.blorqueScript.impl.BSFieldImpl <em>BS Field</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3610,14 +3762,6 @@ public interface BlorqueScriptPackage extends EPackage
      * @generated
      */
     EClass BS_FIELD = eINSTANCE.getBSField();
-
-    /**
-     * The meta object literal for the '<em><b>Is Array</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BS_FIELD__IS_ARRAY = eINSTANCE.getBSField_IsArray();
 
     /**
      * The meta object literal for the '{@link org.example.blorquescript.blorqueScript.impl.BSMethodImpl <em>BS Method</em>}' class.
@@ -3708,6 +3852,26 @@ public interface BlorqueScriptPackage extends EPackage
      * @generated
      */
     EReference BS_RETURN__EXPRESSION = eINSTANCE.getBSReturn_Expression();
+
+    /**
+     * The meta object literal for the '{@link org.example.blorquescript.blorqueScript.impl.BSBreakImpl <em>BS Break</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.example.blorquescript.blorqueScript.impl.BSBreakImpl
+     * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSBreak()
+     * @generated
+     */
+    EClass BS_BREAK = eINSTANCE.getBSBreak();
+
+    /**
+     * The meta object literal for the '{@link org.example.blorquescript.blorqueScript.impl.BSContinueImpl <em>BS Continue</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.example.blorquescript.blorqueScript.impl.BSContinueImpl
+     * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSContinue()
+     * @generated
+     */
+    EClass BS_CONTINUE = eINSTANCE.getBSContinue();
 
     /**
      * The meta object literal for the '{@link org.example.blorquescript.blorqueScript.impl.BSVariableDeclarationImpl <em>BS Variable Declaration</em>}' class.
@@ -3982,12 +4146,20 @@ public interface BlorqueScriptPackage extends EPackage
     EClass BS_SYMBOL = eINSTANCE.getBSSymbol();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * The meta object literal for the '<em><b>PType</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference BS_SYMBOL__TYPE = eINSTANCE.getBSSymbol_Type();
+    EAttribute BS_SYMBOL__PTYPE = eINSTANCE.getBSSymbol_PType();
+
+    /**
+     * The meta object literal for the '<em><b>RType</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BS_SYMBOL__RTYPE = eINSTANCE.getBSSymbol_RType();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -4386,12 +4558,20 @@ public interface BlorqueScriptPackage extends EPackage
     EClass BS_CAST_EXPRESSION = eINSTANCE.getBSCastExpression();
 
     /**
-     * The meta object literal for the '<em><b>Cast Type</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>PType</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute BS_CAST_EXPRESSION__CAST_TYPE = eINSTANCE.getBSCastExpression_CastType();
+    EAttribute BS_CAST_EXPRESSION__PTYPE = eINSTANCE.getBSCastExpression_PType();
+
+    /**
+     * The meta object literal for the '<em><b>Is Array</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BS_CAST_EXPRESSION__IS_ARRAY = eINSTANCE.getBSCastExpression_IsArray();
 
     /**
      * The meta object literal for the '<em><b>Cast Expr</b></em>' containment reference feature.
@@ -4412,20 +4592,20 @@ public interface BlorqueScriptPackage extends EPackage
     EClass BS_NEW_EXPRESSION = eINSTANCE.getBSNewExpression();
 
     /**
+     * The meta object literal for the '<em><b>RType</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BS_NEW_EXPRESSION__RTYPE = eINSTANCE.getBSNewExpression_RType();
+
+    /**
      * The meta object literal for the '<em><b>Is Array</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute BS_NEW_EXPRESSION__IS_ARRAY = eINSTANCE.getBSNewExpression_IsArray();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BS_NEW_EXPRESSION__TYPE = eINSTANCE.getBSNewExpression_Type();
 
     /**
      * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
@@ -4478,6 +4658,14 @@ public interface BlorqueScriptPackage extends EPackage
      * @generated
      */
     EReference BS_MEMBER_SELECTION_EXPRESSION__RECEIVER = eINSTANCE.getBSMemberSelectionExpression_Receiver();
+
+    /**
+     * The meta object literal for the '<em><b>Member</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BS_MEMBER_SELECTION_EXPRESSION__MEMBER = eINSTANCE.getBSMemberSelectionExpression_Member();
 
     /**
      * The meta object literal for the '{@link org.example.blorquescript.blorqueScript.impl.BSMethodInvokationExpressionImpl <em>BS Method Invokation Expression</em>}' class.
@@ -4666,26 +4854,6 @@ public interface BlorqueScriptPackage extends EPackage
     EClass BS_NULL_LITERAL = eINSTANCE.getBSNullLiteral();
 
     /**
-     * The meta object literal for the '{@link org.example.blorquescript.blorqueScript.impl.BSBreakLiteralImpl <em>BS Break Literal</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.example.blorquescript.blorqueScript.impl.BSBreakLiteralImpl
-     * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSBreakLiteral()
-     * @generated
-     */
-    EClass BS_BREAK_LITERAL = eINSTANCE.getBSBreakLiteral();
-
-    /**
-     * The meta object literal for the '{@link org.example.blorquescript.blorqueScript.impl.BSContinueLiteralImpl <em>BS Continue Literal</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.example.blorquescript.blorqueScript.impl.BSContinueLiteralImpl
-     * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSContinueLiteral()
-     * @generated
-     */
-    EClass BS_CONTINUE_LITERAL = eINSTANCE.getBSContinueLiteral();
-
-    /**
      * The meta object literal for the '{@link org.example.blorquescript.blorqueScript.impl.BSThisLiteralImpl <em>BS This Literal</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4750,6 +4918,16 @@ public interface BlorqueScriptPackage extends EPackage
      * @generated
      */
     EReference BS_PARENTHETICAL_EXPRESSION__EXPRESSION = eINSTANCE.getBSParentheticalExpression_Expression();
+
+    /**
+     * The meta object literal for the '{@link org.example.blorquescript.blorqueScript.BSPrimitiveType <em>BS Primitive Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.example.blorquescript.blorqueScript.BSPrimitiveType
+     * @see org.example.blorquescript.blorqueScript.impl.BlorqueScriptPackageImpl#getBSPrimitiveType()
+     * @generated
+     */
+    EEnum BS_PRIMITIVE_TYPE = eINSTANCE.getBSPrimitiveType();
 
   }
 

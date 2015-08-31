@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.example.blorquescript.blorqueScript.BSClass;
 import org.example.blorquescript.blorqueScript.BSExpression;
+import org.example.blorquescript.blorqueScript.BSPrimitiveType;
 import org.example.blorquescript.blorqueScript.BSSymbol;
 import org.example.blorquescript.blorqueScript.BSVariableDeclaration;
 import org.example.blorquescript.blorqueScript.BlorqueScriptPackage;
@@ -24,7 +25,8 @@ import org.example.blorquescript.blorqueScript.BlorqueScriptPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSVariableDeclarationImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSVariableDeclarationImpl#getPType <em>PType</em>}</li>
+ *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSVariableDeclarationImpl#getRType <em>RType</em>}</li>
  *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSVariableDeclarationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSVariableDeclarationImpl#getExpression <em>Expression</em>}</li>
  * </ul>
@@ -34,14 +36,34 @@ import org.example.blorquescript.blorqueScript.BlorqueScriptPackage;
 public class BSVariableDeclarationImpl extends BSStatementImpl implements BSVariableDeclaration
 {
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * The default value of the '{@link #getPType() <em>PType</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getPType()
    * @generated
    * @ordered
    */
-  protected BSClass type;
+  protected static final BSPrimitiveType PTYPE_EDEFAULT = BSPrimitiveType.NONE;
+
+  /**
+   * The cached value of the '{@link #getPType() <em>PType</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPType()
+   * @generated
+   * @ordered
+   */
+  protected BSPrimitiveType pType = PTYPE_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getRType() <em>RType</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRType()
+   * @generated
+   * @ordered
+   */
+  protected BSClass rType;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -99,19 +121,42 @@ public class BSVariableDeclarationImpl extends BSStatementImpl implements BSVari
    * <!-- end-user-doc -->
    * @generated
    */
-  public BSClass getType()
+  public BSPrimitiveType getPType()
   {
-    if (type != null && type.eIsProxy())
+    return pType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setPType(BSPrimitiveType newPType)
+  {
+    BSPrimitiveType oldPType = pType;
+    pType = newPType == null ? PTYPE_EDEFAULT : newPType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BlorqueScriptPackage.BS_VARIABLE_DECLARATION__PTYPE, oldPType, pType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BSClass getRType()
+  {
+    if (rType != null && rType.eIsProxy())
     {
-      InternalEObject oldType = (InternalEObject)type;
-      type = (BSClass)eResolveProxy(oldType);
-      if (type != oldType)
+      InternalEObject oldRType = (InternalEObject)rType;
+      rType = (BSClass)eResolveProxy(oldRType);
+      if (rType != oldRType)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlorqueScriptPackage.BS_VARIABLE_DECLARATION__TYPE, oldType, type));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, BlorqueScriptPackage.BS_VARIABLE_DECLARATION__RTYPE, oldRType, rType));
       }
     }
-    return type;
+    return rType;
   }
 
   /**
@@ -119,9 +164,9 @@ public class BSVariableDeclarationImpl extends BSStatementImpl implements BSVari
    * <!-- end-user-doc -->
    * @generated
    */
-  public BSClass basicGetType()
+  public BSClass basicGetRType()
   {
-    return type;
+    return rType;
   }
 
   /**
@@ -129,12 +174,12 @@ public class BSVariableDeclarationImpl extends BSStatementImpl implements BSVari
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(BSClass newType)
+  public void setRType(BSClass newRType)
   {
-    BSClass oldType = type;
-    type = newType;
+    BSClass oldRType = rType;
+    rType = newRType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BlorqueScriptPackage.BS_VARIABLE_DECLARATION__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, BlorqueScriptPackage.BS_VARIABLE_DECLARATION__RTYPE, oldRType, rType));
   }
 
   /**
@@ -234,9 +279,11 @@ public class BSVariableDeclarationImpl extends BSStatementImpl implements BSVari
   {
     switch (featureID)
     {
-      case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
+      case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__PTYPE:
+        return getPType();
+      case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__RTYPE:
+        if (resolve) return getRType();
+        return basicGetRType();
       case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__NAME:
         return getName();
       case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__EXPRESSION:
@@ -255,8 +302,11 @@ public class BSVariableDeclarationImpl extends BSStatementImpl implements BSVari
   {
     switch (featureID)
     {
-      case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__TYPE:
-        setType((BSClass)newValue);
+      case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__PTYPE:
+        setPType((BSPrimitiveType)newValue);
+        return;
+      case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__RTYPE:
+        setRType((BSClass)newValue);
         return;
       case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__NAME:
         setName((String)newValue);
@@ -278,8 +328,11 @@ public class BSVariableDeclarationImpl extends BSStatementImpl implements BSVari
   {
     switch (featureID)
     {
-      case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__TYPE:
-        setType((BSClass)null);
+      case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__PTYPE:
+        setPType(PTYPE_EDEFAULT);
+        return;
+      case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__RTYPE:
+        setRType((BSClass)null);
         return;
       case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__NAME:
         setName(NAME_EDEFAULT);
@@ -301,8 +354,10 @@ public class BSVariableDeclarationImpl extends BSStatementImpl implements BSVari
   {
     switch (featureID)
     {
-      case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__TYPE:
-        return type != null;
+      case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__PTYPE:
+        return pType != PTYPE_EDEFAULT;
+      case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__RTYPE:
+        return rType != null;
       case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__EXPRESSION:
@@ -323,7 +378,8 @@ public class BSVariableDeclarationImpl extends BSStatementImpl implements BSVari
     {
       switch (derivedFeatureID)
       {
-        case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__TYPE: return BlorqueScriptPackage.BS_SYMBOL__TYPE;
+        case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__PTYPE: return BlorqueScriptPackage.BS_SYMBOL__PTYPE;
+        case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__RTYPE: return BlorqueScriptPackage.BS_SYMBOL__RTYPE;
         case BlorqueScriptPackage.BS_VARIABLE_DECLARATION__NAME: return BlorqueScriptPackage.BS_SYMBOL__NAME;
         default: return -1;
       }
@@ -343,7 +399,8 @@ public class BSVariableDeclarationImpl extends BSStatementImpl implements BSVari
     {
       switch (baseFeatureID)
       {
-        case BlorqueScriptPackage.BS_SYMBOL__TYPE: return BlorqueScriptPackage.BS_VARIABLE_DECLARATION__TYPE;
+        case BlorqueScriptPackage.BS_SYMBOL__PTYPE: return BlorqueScriptPackage.BS_VARIABLE_DECLARATION__PTYPE;
+        case BlorqueScriptPackage.BS_SYMBOL__RTYPE: return BlorqueScriptPackage.BS_VARIABLE_DECLARATION__RTYPE;
         case BlorqueScriptPackage.BS_SYMBOL__NAME: return BlorqueScriptPackage.BS_VARIABLE_DECLARATION__NAME;
         default: return -1;
       }
@@ -362,7 +419,9 @@ public class BSVariableDeclarationImpl extends BSStatementImpl implements BSVari
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    result.append(" (pType: ");
+    result.append(pType);
+    result.append(", name: ");
     result.append(name);
     result.append(')');
     return result.toString();

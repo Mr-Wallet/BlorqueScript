@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.example.blorquescript.blorqueScript.BSCastExpression;
 import org.example.blorquescript.blorqueScript.BSExpression;
+import org.example.blorquescript.blorqueScript.BSPrimitiveType;
 import org.example.blorquescript.blorqueScript.BlorqueScriptPackage;
 
 /**
@@ -22,7 +23,8 @@ import org.example.blorquescript.blorqueScript.BlorqueScriptPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSCastExpressionImpl#getCastType <em>Cast Type</em>}</li>
+ *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSCastExpressionImpl#getPType <em>PType</em>}</li>
+ *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSCastExpressionImpl#isIsArray <em>Is Array</em>}</li>
  *   <li>{@link org.example.blorquescript.blorqueScript.impl.BSCastExpressionImpl#getCastExpr <em>Cast Expr</em>}</li>
  * </ul>
  *
@@ -31,24 +33,44 @@ import org.example.blorquescript.blorqueScript.BlorqueScriptPackage;
 public class BSCastExpressionImpl extends BSExpressionImpl implements BSCastExpression
 {
   /**
-   * The default value of the '{@link #getCastType() <em>Cast Type</em>}' attribute.
+   * The default value of the '{@link #getPType() <em>PType</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getCastType()
+   * @see #getPType()
    * @generated
    * @ordered
    */
-  protected static final String CAST_TYPE_EDEFAULT = null;
+  protected static final BSPrimitiveType PTYPE_EDEFAULT = BSPrimitiveType.NONE;
 
   /**
-   * The cached value of the '{@link #getCastType() <em>Cast Type</em>}' attribute.
+   * The cached value of the '{@link #getPType() <em>PType</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getCastType()
+   * @see #getPType()
    * @generated
    * @ordered
    */
-  protected String castType = CAST_TYPE_EDEFAULT;
+  protected BSPrimitiveType pType = PTYPE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isIsArray() <em>Is Array</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isIsArray()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean IS_ARRAY_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isIsArray() <em>Is Array</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isIsArray()
+   * @generated
+   * @ordered
+   */
+  protected boolean isArray = IS_ARRAY_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getCastExpr() <em>Cast Expr</em>}' containment reference.
@@ -86,9 +108,9 @@ public class BSCastExpressionImpl extends BSExpressionImpl implements BSCastExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getCastType()
+  public BSPrimitiveType getPType()
   {
-    return castType;
+    return pType;
   }
 
   /**
@@ -96,12 +118,35 @@ public class BSCastExpressionImpl extends BSExpressionImpl implements BSCastExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCastType(String newCastType)
+  public void setPType(BSPrimitiveType newPType)
   {
-    String oldCastType = castType;
-    castType = newCastType;
+    BSPrimitiveType oldPType = pType;
+    pType = newPType == null ? PTYPE_EDEFAULT : newPType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BlorqueScriptPackage.BS_CAST_EXPRESSION__CAST_TYPE, oldCastType, castType));
+      eNotify(new ENotificationImpl(this, Notification.SET, BlorqueScriptPackage.BS_CAST_EXPRESSION__PTYPE, oldPType, pType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isIsArray()
+  {
+    return isArray;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setIsArray(boolean newIsArray)
+  {
+    boolean oldIsArray = isArray;
+    isArray = newIsArray;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BlorqueScriptPackage.BS_CAST_EXPRESSION__IS_ARRAY, oldIsArray, isArray));
   }
 
   /**
@@ -178,8 +223,10 @@ public class BSCastExpressionImpl extends BSExpressionImpl implements BSCastExpr
   {
     switch (featureID)
     {
-      case BlorqueScriptPackage.BS_CAST_EXPRESSION__CAST_TYPE:
-        return getCastType();
+      case BlorqueScriptPackage.BS_CAST_EXPRESSION__PTYPE:
+        return getPType();
+      case BlorqueScriptPackage.BS_CAST_EXPRESSION__IS_ARRAY:
+        return isIsArray();
       case BlorqueScriptPackage.BS_CAST_EXPRESSION__CAST_EXPR:
         return getCastExpr();
     }
@@ -196,8 +243,11 @@ public class BSCastExpressionImpl extends BSExpressionImpl implements BSCastExpr
   {
     switch (featureID)
     {
-      case BlorqueScriptPackage.BS_CAST_EXPRESSION__CAST_TYPE:
-        setCastType((String)newValue);
+      case BlorqueScriptPackage.BS_CAST_EXPRESSION__PTYPE:
+        setPType((BSPrimitiveType)newValue);
+        return;
+      case BlorqueScriptPackage.BS_CAST_EXPRESSION__IS_ARRAY:
+        setIsArray((Boolean)newValue);
         return;
       case BlorqueScriptPackage.BS_CAST_EXPRESSION__CAST_EXPR:
         setCastExpr((BSExpression)newValue);
@@ -216,8 +266,11 @@ public class BSCastExpressionImpl extends BSExpressionImpl implements BSCastExpr
   {
     switch (featureID)
     {
-      case BlorqueScriptPackage.BS_CAST_EXPRESSION__CAST_TYPE:
-        setCastType(CAST_TYPE_EDEFAULT);
+      case BlorqueScriptPackage.BS_CAST_EXPRESSION__PTYPE:
+        setPType(PTYPE_EDEFAULT);
+        return;
+      case BlorqueScriptPackage.BS_CAST_EXPRESSION__IS_ARRAY:
+        setIsArray(IS_ARRAY_EDEFAULT);
         return;
       case BlorqueScriptPackage.BS_CAST_EXPRESSION__CAST_EXPR:
         setCastExpr((BSExpression)null);
@@ -236,8 +289,10 @@ public class BSCastExpressionImpl extends BSExpressionImpl implements BSCastExpr
   {
     switch (featureID)
     {
-      case BlorqueScriptPackage.BS_CAST_EXPRESSION__CAST_TYPE:
-        return CAST_TYPE_EDEFAULT == null ? castType != null : !CAST_TYPE_EDEFAULT.equals(castType);
+      case BlorqueScriptPackage.BS_CAST_EXPRESSION__PTYPE:
+        return pType != PTYPE_EDEFAULT;
+      case BlorqueScriptPackage.BS_CAST_EXPRESSION__IS_ARRAY:
+        return isArray != IS_ARRAY_EDEFAULT;
       case BlorqueScriptPackage.BS_CAST_EXPRESSION__CAST_EXPR:
         return castExpr != null;
     }
@@ -255,8 +310,10 @@ public class BSCastExpressionImpl extends BSExpressionImpl implements BSCastExpr
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (castType: ");
-    result.append(castType);
+    result.append(" (pType: ");
+    result.append(pType);
+    result.append(", isArray: ");
+    result.append(isArray);
     result.append(')');
     return result.toString();
   }
